@@ -1,0 +1,8 @@
+# Fichiers qui ne doivent pas etre publies sur le site
+_originaux
+scripts
+node_modules
+*.md
+package-lock.json
+desktop.ini
+certs

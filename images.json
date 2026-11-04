@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "images": {
+    "boutique-bijou1": {
+      "src": "img/boutique-bijou1.webp?v=873e7bed",
+      "w": 900,
+      "h": 366
+    },
+    "boutique-bijou2": {
+      "src": "img/boutique-bijou2.webp?v=5848324d",
+      "w": 900,
+      "h": 665
+    },
+    "cert-aigenai": {
+      "src": "img/cert-aigenai.webp?v=7b722c88",
+      "w": 1104,
+      "h": 578,
+      "sm": "img/cert-aigenai-sm.webp?v=7b722c88",
+      "smw": 700,
+      "smh": 366
+    },
+    "cert-aws": {
+      "src": "img/cert-aws.webp?v=d3cf7c6b",
+      "w": 1400,
+      "h": 1083,
+      "sm": "img/cert-aws-sm.webp?v=d3cf7c6b",
+      "smw": 700,
+      "smh": 542
+    },
+    "cert-market": {
+      "src": "img/cert-market.webp?v=4277deeb",
+      "w": 1400,
+      "h": 658,
+      "sm": "img/cert-market-sm.webp?v=4277deeb",
+      "smw": 700,
+      "smh": 329
+    },
+    "cert-nocode": {
+      "src": "img/cert-nocode.webp?v=a7a9ed31",
+      "w": 1104,
+      "h": 519,
+      "sm": "img/cert-nocode-sm.webp?v=a7a9ed31",
+      "smw": 700,
+      "smh": 329
+    },
+    "cert-programming": {
+      "src": "img/cert-programming.webp?v=46ed7bce",
+      "w": 1400,
+      "h": 658,
+      "sm": "img/cert-programming-sm.webp?v=46ed7bce",
+      "smw": 700,
+      "smh": 329
+    },
+    "cert-prompt": {
+      "src": "img/cert-prompt.webp?v=3bafc4c7",
+      "w": 1104,
+      "h": 519,
+      "sm": "img/cert-prompt-sm.webp?v=3bafc4c7",
+      "smw": 700,
+      "smh": 329
+    },
+    "cert-sheets": {
+      "src": "img/cert-sheets.webp?v=3c3be050",
+      "w": 1104,
+      "h": 519,
+      "sm": "img/cert-sheets-sm.webp?v=3c3be050",
+      "smw": 700,
+      "smh": 329
+    },
+    "cert-structuring": {
+      "src": "img/cert-structuring.webp?v=b5035eb2",
+      "w": 1400,
+      "h": 991,
+      "sm": "img/cert-structuring-sm.webp?v=b5035eb2",
+      "smw": 700,
+      "smh": 496
+    },
+    "galerie-1": {
+      "src": "img/galerie-1.webp?v=a221b48e",
+      "w": 1074,
+      "h": 1465,
+      "sm": "img/galerie-1-sm.webp?v=a221b48e",
+      "smw": 660,
+      "smh": 900
+    },
+    "galerie-2": {
+      "src": "img/galerie-2.webp?v=03956cd4",
+      "w": 1600,
+      "h": 1293,
+      "sm": "img/galerie-2-sm.webp?v=03956cd4",
+      "smw": 900,
+      "smh": 727
+    },
+    "galerie-3": {
+      "src": "img/galerie-3.webp?v=4ef4d64d",
+      "w": 707,
+      "h": 1600,
+      "sm": "img/galerie-3-sm.webp?v=4ef4d64d",
+      "smw": 398,
+      "smh": 900
+    },
+    "galerie-4": {
+      "src": "img/galerie-4.webp?v=6629da7d",
+      "w": 1200,
+      "h": 1600,
+      "sm": "img/galerie-4-sm.webp?v=6629da7d",
+      "smw": 675,
+      "smh": 900
+    },
+    "galerie-5": {
+      "src": "img/galerie-5.webp?v=fa61be73",
+      "w": 1600,
+      "h": 1038,
+      "sm": "img/galerie-5-sm.webp?v=fa61be73",
+      "smw": 900,
+      "smh": 584
+    },
+    "galerie-6": {
+      "src": "img/galerie-6.webp?v=766d8329",
+      "w": 1159,
+      "h": 1600,
+      "sm": "img/galerie-6-sm.webp?v=766d8329",
+      "smw": 652,
+      "smh": 900
+    },
+    "galerie-7": {
+      "src": "img/galerie-7.webp?v=a2b258d8",
+      "w": 869,
+      "h": 1600,
+      "sm": "img/galerie-7-sm.webp?v=a2b258d8",
+      "smw": 489,
+      "smh": 900
+    },
+    "kadi": {
+      "src": "img/kadi.webp?v=e50206f1",
+      "w": 800,
+      "h": 800
+    },
+    "parole-1": {
+      "src": "img/parole-1.webp?v=67256f5b",
+      "w": 1096,
+      "h": 1600,
+      "sm": "img/parole-1-sm.webp?v=67256f5b",
+      "smw": 617,
+      "smh": 900
+    },
+    "parole-2": {
+      "src": "img/parole-2.webp?v=e0a91015",
+      "w": 961,
+      "h": 879,
+      "sm": "img/parole-2-sm.webp?v=e0a91015",
+      "smw": 900,
+      "smh": 823
+    },
+    "parole-2-2": {
+      "src": "img/parole-2-2.webp?v=20336cc1",
+      "w": 1170,
+      "h": 713,
+      "sm": "img/parole-2-2-sm.webp?v=20336cc1",
+      "smw": 900,
+      "smh": 548
+    },
+    "parole-3": {
+      "src": "img/parole-3.webp?v=d2a46dae",
+      "w": 1083,
+      "h": 1600,
+      "sm": "img/parole-3-sm.webp?v=d2a46dae",
+      "smw": 609,
+      "smh": 900
+    },
+    "parole-4": {
+      "src": "img/parole-4.webp?v=7f6d9d21",
+      "w": 1600,
+      "h": 970,
+      "sm": "img/parole-4-sm.webp?v=7f6d9d21",
+      "smw": 900,
+      "smh": 546
+    },
+    "projet-ecommerce": {
+      "src": "img/projet-ecommerce.webp?v=e356d5dd",
+      "w": 900,
+      "h": 1600
+    },
+    "projet-lms": {
+      "src": "img/projet-lms.webp?v=7598ddc9",
+      "w": 900,
+      "h": 533
+    },
+    "projet-revops": {
+      "src": "img/projet-revops.webp?v=8232a649",
+      "w": 673,
+      "h": 532
+    },
+    "projet-tcim": {
+      "src": "img/projet-tcim.webp?v=32145a84",
+      "w": 900,
+      "h": 731
+    },
+    "projet-wmdp": {
+      "src": "img/projet-wmdp.webp?v=2afe52d7",
+      "w": 900,
+      "h": 900
+    }
+  }
+}

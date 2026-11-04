@@ -1,0 +1,13 @@
+{
+  "name": "portfolio-kadi",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "images": "node scripts/images.mjs",
+    "serve": "http-server . -p 8080 -c-1"
+  },
+  "devDependencies": {
+    "http-server": "14.1.1",
+    "sharp": "0.34.1"
+  }
+}

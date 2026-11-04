@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Mulish:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preload" href="fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/mulish-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="images.json" as="fetch" crossorigin="anonymous">
 <title>Kadidiatou Ibrahima Bagayoko | Data & IA</title>
 <meta name="description" content="Portfolio de Kadidiatou Ibrahima Bagayoko, étudiante spécialisée en Data & Intelligence Artificielle à l'ECE Paris. Analyse de données, machine learning et solutions d'IA.">
 <style>
+/* Polices Fraunces et Mulish (SIL Open Font License), hebergees localement, sous-ensembles latin et latin-ext */
+@font-face {font-family:'Fraunces';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/fraunces-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face {font-family:'Fraunces';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/fraunces-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face {font-family:'Fraunces';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/fraunces-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face {font-family:'Fraunces';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/fraunces-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face {font-family:'Fraunces';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/fraunces-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face {font-family:'Fraunces';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/fraunces-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face {font-family:'Fraunces';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/fraunces-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face {font-family:'Fraunces';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/fraunces-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face {font-family:'Fraunces';font-style:normal;font-weight:900;font-display:swap;src:url(fonts/fraunces-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face {font-family:'Fraunces';font-style:normal;font-weight:900;font-display:swap;src:url(fonts/fraunces-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face {font-family:'Mulish';font-style:normal;font-weight:300;font-display:swap;src:url(fonts/mulish-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face {font-family:'Mulish';font-style:normal;font-weight:300;font-display:swap;src:url(fonts/mulish-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face {font-family:'Mulish';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/mulish-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face {font-family:'Mulish';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/mulish-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face {font-family:'Mulish';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/mulish-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face {font-family:'Mulish';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/mulish-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face {font-family:'Mulish';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/mulish-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face {font-family:'Mulish';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/mulish-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face {font-family:'Mulish';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/mulish-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face {font-family:'Mulish';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/mulish-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face {font-family:'Mulish';font-style:normal;font-weight:800;font-display:swap;src:url(fonts/mulish-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face {font-family:'Mulish';font-style:normal;font-weight:800;font-display:swap;src:url(fonts/mulish-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
 :root{
   --violet:#667eea; --violet2:#764ba2; --violet-deep:#1e3a5f; --violet-navy:#1e3a5f;
   --or:#c8901a; --or-clair:#e3b24a; --or-deep:#a6760f;
@@ -252,12 +276,13 @@ footer .sig{color:var(--or);font-style:italic}
 .speak-num{font-family:'Fraunces',serif;font-size:1.7rem;font-weight:600;color:var(--or);flex-shrink:0;line-height:1;min-width:2.2rem}
 
 /* ---------- GALERIE (carrousel) ---------- */
-#gallery{background:var(--page);overflow:hidden}
 .g-stage{position:relative;width:100vw;margin-left:calc(50% - 50vw);height:540px;perspective:1800px;overflow:hidden;cursor:grab;touch-action:pan-y;outline:none;user-select:none}
 .g-stage.drag{cursor:grabbing}
 .g-track{position:absolute;left:0;top:50%;height:0;display:flex;align-items:center;gap:40px;transition:transform .75s cubic-bezier(.22,.8,.24,1);transform-style:preserve-3d;will-change:transform}
-.g-item{flex:0 0 auto;height:420px;border-radius:14px;overflow:hidden;background:var(--card);box-shadow:0 22px 46px rgba(15,20,35,.28);transition:transform .75s cubic-bezier(.22,.8,.24,1),filter .5s;cursor:pointer}
-.g-item img{display:block;height:100%;width:auto;max-width:calc(100vw - 70px);object-fit:contain;-webkit-user-drag:none;pointer-events:none}
+.g-stage{--gh:420px}
+.g-item{flex:0 0 auto;border-radius:14px;overflow:hidden;background:var(--card);box-shadow:0 22px 46px rgba(15,20,35,.28);transition:transform .75s cubic-bezier(.22,.8,.24,1),filter .5s;cursor:pointer}
+/* cadre = proportions exactes de la photo : ni vide ni debordement */
+.g-item img{display:block;width:min(calc(var(--r,1) * var(--gh)),calc(100vw - 70px));height:auto;aspect-ratio:var(--r,1);object-fit:cover;-webkit-user-drag:none;pointer-events:none}
 .g-item.is-prev{transform:rotateY(34deg) scale(.8);filter:brightness(.78)}
 .g-item.is-next{transform:rotateY(-34deg) scale(.8);filter:brightness(.78)}
 .g-item.is-active{transform:translateZ(70px);cursor:zoom-in;box-shadow:0 34px 70px rgba(15,20,35,.38)}
@@ -274,7 +299,7 @@ footer .sig{color:var(--or);font-style:italic}
 .g-light{position:fixed;inset:0;background:#0d1017;z-index:400;display:none;align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
 .g-light.open{display:flex}
 .g-light img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px}
-@media(max-width:900px){.g-stage{height:380px}.g-item{height:290px}.g-track{gap:24px}}
+@media(max-width:900px){.g-stage{height:380px;--gh:290px}.g-track{gap:24px}}
 
 
 /* ---------- AUTRES REALISATIONS (volets) ---------- */
@@ -310,6 +335,9 @@ footer .sig{color:var(--or);font-style:italic}
 @keyframes marq{to{transform:translateX(-50%)}}
 .project-card{transform-style:preserve-3d}
 @media(prefers-reduced-motion:reduce){.marquee-track{animation:none}.reveal.on>*{animation:none!important}.section-head .section-title{clip-path:none;transform:none;transition:none}}
+/* animations en pause quand leur section est hors ecran (classe posee par IntersectionObserver) */
+.is-off,.is-off *,.is-off *::before,.is-off *::after{animation-play-state:paused!important}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.badge-dot,.online-dot,.tap-cue svg,.tap-cue::after{animation:none}.g-track,.g-item,.strip,.strip img,.strip-body{transition:none}}
 
 
 .strip-num{display:none}
@@ -370,6 +398,7 @@ footer .sig{color:var(--or);font-style:italic}
 :root[data-theme="dark"] .gf-shadow{background:rgba(0,0,0,.62)}
 .gf-back{position:absolute;inset:0;overflow:hidden;background:linear-gradient(180deg,#25456d 0%,#16304f 100%);clip-path:path('M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z')}
 .gf-art{position:absolute;left:-12px;top:-12px;width:364px;height:296px;max-width:none;object-fit:cover;transform:translate(calc(var(--gf-px)*-7px),calc(var(--gf-py)*-6px)) scale(1.02);transition:transform 1.1s var(--gf-ease)}
+.gf-art--doc{object-fit:contain;background:#fff}
 .gf-files{position:absolute;inset:0;z-index:5;pointer-events:none;clip-path:inset(-400px -400px 10px -400px)}
 .gf-sheet{all:unset;box-sizing:border-box;position:absolute;left:34px;top:96px;width:272px;height:184px;border-radius:16px;overflow:hidden;cursor:pointer;pointer-events:auto;background:linear-gradient(180deg,#fff 0%,#f2f2f0 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 0 0 .5px rgba(0,0,0,.1),0 10px 26px -8px rgba(10,12,20,.28);transform-origin:50% 100%;transform:translate(calc(var(--gf-jx) + var(--gf-slot)*var(--gf-spread)),calc(var(--gf-lift) + var(--gf-depth)*var(--gf-stack)*-1)) rotate(calc(var(--gf-jr) + var(--gf-slot)*var(--gf-fan)));transition:transform .75s var(--gf-spring) calc(var(--gf-depth)*40ms),box-shadow .4s var(--gf-ease)}
 .gf-root[data-open] .gf-sheet:hover,.gf-root[data-open] .gf-sheet:focus-visible{transform:translate(calc(var(--gf-jx) + var(--gf-slot)*var(--gf-spread)),calc(var(--gf-lift) + var(--gf-depth)*var(--gf-stack)*-1 - 18px)) rotate(calc(var(--gf-slot)*var(--gf-fan)*.6));box-shadow:0 22px 40px -12px rgba(10,12,20,.42);transition-delay:0s}
@@ -414,7 +443,7 @@ footer .sig{color:var(--or);font-style:italic}
 @media(max-width:900px){.lan-row{grid-template-columns:repeat(2,1fr);row-gap:40px}}
 @media(max-width:520px){.lan-row{grid-template-columns:1fr}}
 </style>
-<meta property="og:type" content="website"><meta property="og:title" content="Kadidiatou Ibrahima Bagayoko | Data &amp; IA"><meta property="og:description" content="Portfolio de Kadidiatou, étudiante Data &amp; Intelligence Artificielle à l'ECE Paris, en recherche d'alternance."><meta property="og:image" content="kadi.jpg">
+<meta property="og:type" content="website"><meta property="og:title" content="Kadidiatou Ibrahima Bagayoko | Data &amp; IA"><meta property="og:description" content="Portfolio de Kadidiatou, étudiante Data &amp; Intelligence Artificielle à l'ECE Paris, en recherche d'alternance."><meta property="og:image" content="img/kadi.webp?v=e50206f1">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231e3a5f'/%3E%3Ctext x='32' y='44' font-size='36' text-anchor='middle' font-family='Georgia,serif' fill='%23e3b24a'%3EK%3C/text%3E%3C/svg%3E">
 <meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#1e3a5f">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Kadidiatou Ibrahima Bagayoko","jobTitle":"Étudiante Data & Intelligence Artificielle, en recherche d'alternance","alumniOf":{"@type":"CollegeOrUniversity","name":"ECE Paris"},"knowsAbout":["Data analysis","Machine Learning","NLP","Python","Flask","Intelligence artificielle"],"sameAs":["https://www.linkedin.com/in/kadi-bagayoko","https://github.com/Kadi2207"]}</script>
@@ -445,7 +474,7 @@ footer .sig{color:var(--or);font-style:italic}
 <section class="hero">
   <div class="hero-photo-wrap">
     <div class="hero-photo-ring"></div>
-    <img src="kadi.jpg" alt="Kadidiatou Ibrahima Bagayoko" class="hero-photo">
+    <img width="800" height="800" src="img/kadi.webp?v=e50206f1" alt="Kadidiatou Ibrahima Bagayoko" class="hero-photo" fetchpriority="high">
   </div>
   <div class="hero-content">
     <div class="badge"><span class="badge-dot"></span> <span data-fr="Disponible | Alternance Data & IA | Novembre 2026" data-en="Available | Data & AI Apprenticeship | November 2026">Disponible | Alternance Data & IA | Novembre 2026</span></div>
@@ -533,7 +562,7 @@ footer .sig{color:var(--or);font-style:italic}
     <div class="projects-grid four reveal">
 
       <div class="project-card" onclick="openProject('tcim')">
-        <div class="card-media"><span class="media-label">TCIM</span><img src="projet-tcim.jpg" alt="" loading="lazy" onerror="tryExt(this)"></div>
+        <div class="card-media"><span class="media-label">TCIM</span><img data-img="projet-tcim" alt="" loading="lazy" decoding="async"></div>
         <div class="card-body">
           <div class="card-title" data-fr="Protection de données par IA : TCIM" data-en="AI Data Protection: TCIM">Protection de données par IA : TCIM</div>
           <div class="card-desc" data-fr="Coordination d'une équipe de 4 en agile. Solution de sécurisation avec classification IA à 82,5% de précision, application complète Flask + PostgreSQL et dashboard temps réel." data-en="Led a team of 4 (agile). Data-protection solution with AI classification at 82.5% precision, full Flask + PostgreSQL app and real-time dashboard.">Coordination d'une équipe de 4 en agile. Solution de sécurisation avec classification IA à 82,5% de précision, application complète Flask + PostgreSQL et dashboard temps réel.</div>
@@ -543,7 +572,7 @@ footer .sig{color:var(--or);font-style:italic}
       </div>
 
       <div class="project-card" onclick="openProject('ecommerce')">
-        <div class="card-media"><span class="media-label">E-commerce</span><img src="projet-ecommerce.jpg" alt="" loading="lazy" onerror="tryExt(this)"></div>
+        <div class="card-media"><span class="media-label">E-commerce</span><img data-img="projet-ecommerce" alt="" loading="lazy" decoding="async"></div>
         <div class="card-body">
           <div class="card-title" data-fr="Dashboard E-commerce Analytics" data-en="E-commerce Analytics Dashboard">Dashboard E-commerce Analytics</div>
           <div class="card-desc" data-fr="397 884 lignes de transactions analysées (4 338 clients, 37 pays). Dashboard interactif de 6 indicateurs et 6 graphiques pour dégager les leviers de croissance." data-en="397,884 transaction rows analyzed (4,338 customers, 37 countries). Interactive dashboard of 6 indicators and 6 charts to reveal growth levers.">397 884 lignes de transactions analysées (4 338 clients, 37 pays). Dashboard interactif de 6 indicateurs et 6 graphiques pour dégager les leviers de croissance.</div>
@@ -553,7 +582,7 @@ footer .sig{color:var(--or);font-style:italic}
       </div>
 
       <div class="project-card" onclick="openProject('revops')">
-        <div class="card-media"><span class="media-label">RevOps</span><img src="projet-revops.png" alt="" loading="lazy" onerror="tryExt(this)"></div>
+        <div class="card-media"><span class="media-label">RevOps</span><img data-img="projet-revops" alt="" loading="lazy" decoding="async"></div>
         <div class="card-body">
           <div class="card-title" data-fr="Audit RevOps & Migration CRM" data-en="RevOps Audit & CRM Migration">Audit RevOps & Migration CRM</div>
           <div class="card-desc" data-fr="Audit qualité d'une base CRM et simulation de migration Salesforce vers HubSpot. Nettoyage Python de 5 234 contacts, import de 950 contacts avec 0 erreur." data-en="CRM data-quality audit and Salesforce-to-HubSpot migration simulation. Python cleaning of 5,234 contacts, 950 imported with 0 errors.">Audit qualité d'une base CRM et simulation de migration Salesforce vers HubSpot. Nettoyage Python de 5 234 contacts, import de 950 contacts avec 0 erreur.</div>
@@ -563,7 +592,7 @@ footer .sig{color:var(--or);font-style:italic}
       </div>
 
       <div class="project-card" onclick="openProject('wmdp')">
-        <div class="card-media"><span class="media-label">LLM</span><img src="projet-wmdp.jpg" alt="" loading="lazy" onerror="tryExt(this)"></div>
+        <div class="card-media"><span class="media-label">LLM</span><img data-img="projet-wmdp" alt="" loading="lazy" decoding="async"></div>
         <div class="card-body">
           <div class="card-title" data-fr="Évaluation de robustesse de LLMs" data-en="LLM Robustness Evaluation">Évaluation de robustesse de LLMs</div>
           <div class="card-desc" data-fr="Corpus de 250 prompts adversariaux et pipeline Python interrogeant 6 LLMs open-source (Llama, Qwen, DeepSeek) via l'API Hugging Face, avec scoring automatisé." data-en="Corpus of 250 adversarial prompts and a Python pipeline querying 6 open-source LLMs (Llama, Qwen, DeepSeek) via the Hugging Face API, with automated scoring.">Corpus de 250 prompts adversariaux et pipeline Python interrogeant 6 LLMs open-source (Llama, Qwen, DeepSeek) via l'API Hugging Face, avec scoring automatisé.</div>
@@ -577,22 +606,22 @@ footer .sig{color:var(--or);font-style:italic}
     <div class="subhead reveal" data-fr="Autres réalisations" data-en="Other projects">Autres réalisations</div>
     <div class="strips reveal" id="strips">
       <div class="strip active" onclick="stripClick(this,'candy')" tabindex="0">
-        <span class="media-label">Candy</span><img src="projet-candy.jpg" alt="" loading="lazy" onerror="tryExt(this)">
+        <span class="media-label">Candy</span><img data-img="projet-candy" alt="" loading="lazy" decoding="async">
         <span class="strip-plus"></span><span class="strip-vert">Candy</span>
         <div class="strip-body"><h4 data-fr="CandyECE : Jeu en C" data-en="CandyECE: C game">CandyECE : Jeu en C</h4><p data-fr="Jeu Candy Crush en langage C : grille 15×15, 4 niveaux, score et sauvegarde." data-en="Candy Crush game in C: 15×15 grid, 4 levels, scoring and save.">Jeu Candy Crush en langage C : grille 15×15, 4 niveaux, score et sauvegarde.</p><span class="strip-cta" aria-label="Plus" data-fr-aria="Plus"></span></div>
       </div>
       <div class="strip" onclick="stripClick(this,'lms')" tabindex="0">
-        <span class="media-label">LMS</span><img src="projet-lms.jpg" alt="" loading="lazy" onerror="tryExt(this)">
+        <span class="media-label">LMS</span><img data-img="projet-lms" alt="" loading="lazy" decoding="async">
         <span class="strip-plus"></span><span class="strip-vert">LMS</span>
         <div class="strip-body"><h4 data-fr="Plateforme LMS" data-en="LMS Platform">Plateforme LMS</h4><p data-fr="Plateforme d'apprentissage type Blackboard : cours, examens, reporting, SSO." data-en="Blackboard-style learning platform: courses, exams, reporting, SSO.">Plateforme d'apprentissage type Blackboard : cours, examens, reporting, SSO.</p><span class="strip-cta" aria-label="Plus" data-fr-aria="Plus"></span></div>
       </div>
       <div class="strip" onclick="stripClick(this,'bijoux')" tabindex="0">
-        <span class="media-label">Bijoux</span><img src="boutique-bijou1.png" alt="" loading="lazy" onerror="tryExt(this)">
+        <span class="media-label">Bijoux</span><img data-img="boutique-bijou1" alt="" loading="lazy" decoding="async">
         <span class="strip-plus"></span><span class="strip-vert">Bijoux</span>
         <div class="strip-body"><h4 data-fr="Boutique de bijoux" data-en="Jewelry store">Boutique de bijoux</h4><p data-fr="Site e-commerce complet sur WordPress (thème Kadence) : catalogue et tunnel d'achat." data-en="Full e-commerce site on WordPress (Kadence theme): catalog and checkout.">Site e-commerce complet sur WordPress (thème Kadence) : catalogue et tunnel d'achat.</p><span class="strip-cta" aria-label="Plus" data-fr-aria="Plus"></span></div>
       </div>
       <div class="strip" onclick="stripClick(this,'veloMax')" tabindex="0">
-        <span class="media-label">VéloMax</span><img src="projet-velomax.jpg" alt="" loading="lazy" onerror="tryExt(this)">
+        <span class="media-label">VéloMax</span><img data-img="projet-velomax" alt="" loading="lazy" decoding="async">
         <span class="strip-plus"></span><span class="strip-vert">VéloMax</span>
         <div class="strip-body"><h4 data-fr="VéloMax : Base de données" data-en="VéloMax: Database">VéloMax : Base de données</h4><p data-fr="Modélisation et création d'une base relationnelle et d'une appli console de gestion." data-en="Modeling and building a relational database and a console management app.">Modélisation et création d'une base relationnelle et d'une appli console de gestion.</p><span class="strip-cta" aria-label="Plus" data-fr-aria="Plus"></span></div>
       </div>
@@ -604,7 +633,7 @@ footer .sig{color:var(--or);font-style:italic}
 <div id="projectModal" class="modal-overlay" onclick="if(event.target===this)closeProject()">
   <div style="background:#fff;border-radius:24px;width:100%;max-width:700px;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.3)">
     <button onclick="closeProject()" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,.95);border:none;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1.2rem;color:#666;z-index:2;box-shadow:0 2px 10px rgba(0,0,0,.1)">✕</button>
-    <img id="projImg" src="" alt="" style="width:100%;height:auto;display:none;border-radius:24px 24px 0 0;background:#f5f3ff">
+    <img id="projImg" alt="" decoding="async" style="width:100%;height:auto;display:none;border-radius:24px 24px 0 0;background:#f5f3ff">
     <div style="padding:32px">
       
       <h3 id="projTitle" style="font-size:1.45rem;font-weight:800;margin-bottom:14px"></h3>
@@ -672,7 +701,7 @@ footer .sig{color:var(--or);font-style:italic}
     </div>
     <div class="lan-rail reveal"><div class="lan-bar"></div><div class="lan-row">
 <div class="lan" data-n="1"><div class="lan-pivot"><div class="lan-strap"></div><div class="lan-clip"></div><button type="button" class="lan-badge" aria-label="Interview : IA & GenAI"><span class="lan-hole"></span><span class="lan-photo"></span><span class="lan-title" data-fr="Interview : IA & GenAI" data-en="Interview: AI & GenAI">Interview : IA & GenAI</span><span class="lan-meta">OMNES Education</span><span class="lan-desc" data-fr="Invitée par OMNES Education pour une interview en anglais afin de sensibiliser et engager les étudiants autour de l'IA et de l'IA générative." data-en="Invited by OMNES Education for an English interview to raise awareness and engage students around AI and generative AI.">Invitée par OMNES Education pour une interview en anglais afin de sensibiliser et engager les étudiants autour de l'IA et de l'IA générative.</span></button></div></div>
-<div class="lan" data-n="2"><div class="lan-pivot"><div class="lan-strap"></div><div class="lan-clip"></div><button type="button" class="lan-badge" aria-label="VivaTech"><span class="lan-hole"></span><span class="lan-photo"></span><span class="lan-title" data-fr="VivaTech" data-en="VivaTech">VivaTech</span><span class="lan-meta">Article Orbite Média</span><span class="lan-desc" data-fr="Mise à l'honneur dans un article sur les talents africains : « Un badge, un sourire, une carrière à construire seule »." data-en="Featured in an article on African talents: "A badge, a smile, a career to build alone".">Mise à l'honneur dans un article sur les talents africains : « Un badge, un sourire, une carrière à construire seule ».</span></button></div></div>
+<div class="lan" data-n="2"><div class="lan-pivot"><div class="lan-strap"></div><div class="lan-clip"></div><button type="button" class="lan-badge" aria-label="VivaTech"><span class="lan-hole"></span><span class="lan-photo"></span><span class="lan-title" data-fr="VivaTech" data-en="VivaTech">VivaTech</span><span class="lan-meta">Article Orbite Média</span><span class="lan-desc" data-fr="Mise à l'honneur dans un article sur les talents africains : « Un badge, un sourire, une carrière à construire seule »." data-en="Featured in an article on African talents: &quot;A badge, a smile, a career to build alone&quot;.">Mise à l'honneur dans un article sur les talents africains : « Un badge, un sourire, une carrière à construire seule ».</span></button></div></div>
 <div class="lan" data-n="3"><div class="lan-pivot"><div class="lan-strap"></div><div class="lan-clip"></div><button type="button" class="lan-badge" aria-label="Ambassadrice de l'ECE"><span class="lan-hole"></span><span class="lan-photo"></span><span class="lan-title" data-fr="Ambassadrice de l'ECE" data-en="ECE Ambassador">Ambassadrice de l'ECE</span><span class="lan-meta">Portes ouvertes et forums</span><span class="lan-desc" data-fr="Représentation de l'école et de ses programmes lors des journées portes ouvertes et forums, prise de parole en amphithéâtre." data-en="Representing the school and its programs at open days and forums, public speaking in the amphitheatre.">Représentation de l'école et de ses programmes lors des journées portes ouvertes et forums, prise de parole en amphithéâtre.</span></button></div></div>
 <div class="lan" data-n="4"><div class="lan-pivot"><div class="lan-strap"></div><div class="lan-clip"></div><button type="button" class="lan-badge" aria-label="Major de promotion & Référente"><span class="lan-hole"></span><span class="lan-photo"></span><span class="lan-title" data-fr="Major de promotion & Référente" data-en="Top of class & Referent">Major de promotion & Référente</span><span class="lan-meta">B2, 2025-2026</span><span class="lan-desc" data-fr="Major de la promotion B2 (2025-2026). Référente étudiante : entraide entre pairs et coordination des projets de groupe." data-en="Top of the B2 class (2025-2026). Student referent: peer support and coordination of group projects.">Major de la promotion B2 (2025-2026). Référente étudiante : entraide entre pairs et coordination des projets de groupe.</span></button></div></div>
 </div></div>
@@ -694,7 +723,7 @@ footer .sig{color:var(--or);font-style:italic}
       <div class="folder-card"><div class="gf-root" data-cert="programming" data-title-fr="Programming Niveau 1" data-title-en="Programming Niveau 1" data-meta-fr="Datascientest, 2025" data-meta-en="Datascientest, 2025"></div><p class="folder-desc" data-fr="Fondamentaux : algorithmique, structures de données, Python." data-en="Fundamentals: algorithms, data structures, Python.">Fondamentaux : algorithmique, structures de données, Python.</p></div>
       <div class="folder-card"><div class="gf-root" data-cert="nocode" data-title-fr="No Code : TechAway" data-title-en="No Code : TechAway" data-meta-fr="Datascientest × OMNES, 2025" data-meta-en="Datascientest × OMNES, 2025"></div><p class="folder-desc" data-fr="Programme intensif : applications et automatisation sans code." data-en="Intensive program: apps and automation without code.">Programme intensif : applications et automatisation sans code.</p></div>
       <div class="folder-card"><div class="gf-root" data-cert="sheets" data-title-fr="Google Sheets Marketing" data-title-en="Google Sheets Marketing" data-meta-fr="Datascientest, 2025" data-meta-en="Datascientest, 2025"></div><p class="folder-desc" data-fr="Google Sheets avancé : tableaux croisés, formules, dashboards." data-en="Advanced Google Sheets: pivot tables, formulas, dashboards.">Google Sheets avancé : tableaux croisés, formules, dashboards.</p></div>
-      <div class="folder-card"><div class="gf-root" data-cert="programmingblank" data-title-fr="Examens TechAway Niv.1" data-title-en="Examens TechAway Niv.1" data-meta-fr="Datascientest, 2025" data-meta-en="Datascientest, 2025"></div><p class="folder-desc" data-fr="Validation du parcours No Code & Google Sheets (examens blancs et QCM)." data-en="No Code & Google Sheets track validation (mock exams and quizzes).">Validation du parcours No Code & Google Sheets (examens blancs et QCM).</p></div>
+      <div class="folder-card"><div class="gf-root" data-cert="sheetsqcm" data-title-fr="QCM Google Sheets : No Code TechAway Niv.1" data-title-en="QCM Google Sheets : No Code TechAway Niv.1" data-meta-fr="Datascientest, 2024" data-meta-en="Datascientest, 2024"></div><p class="folder-desc" data-fr="QCM de validation du module Google Sheets du parcours No Code TechAway." data-en="Multiple-choice validation of the Google Sheets module of the No Code TechAway track.">QCM de validation du module Google Sheets du parcours No Code TechAway.</p></div>
     </div>
   </div>
 </section>
@@ -737,7 +766,7 @@ footer .sig{color:var(--or);font-style:italic}
     </div>
     <div id="cModalId" style="padding:8px 26px;background:#fafafa;font-size:.74rem;color:#999;font-family:monospace;border-bottom:1px solid var(--border);flex-shrink:0"></div>
     <iframe id="cModalIframe" src="" style="flex:1;border:none;min-height:500px;display:none"></iframe>
-    <img id="cModalImg" src="" alt="" style="flex:1;width:100%;max-height:70vh;object-fit:contain;display:none;padding:18px;background:var(--surface-soft)">
+    <img id="cModalImg" alt="" decoding="async" style="flex:0 1 auto;width:100%;height:auto;min-height:0;max-height:70vh;object-fit:contain;display:none;padding:18px;background:var(--surface-soft)">
   </div>
 </div>
 
@@ -793,8 +822,18 @@ footer .sig{color:var(--or);font-style:italic}
 const GROQ_KEY = "";
 const GROQ_MODEL = "openai/gpt-oss-120b";
 let currentLang = 'fr';
-const EXTS=['jpg','jpeg','png','webp'];
-function tryExt(img){const base=img.dataset.base||img.getAttribute('src').replace(/\.[^.\/]+$/,'');img.dataset.base=base;const i=(+img.dataset.i||0)+1;if(i<EXTS.length){img.dataset.i=i;img.src=base+'.'+EXTS[i];}else{img.style.display='none';}}
+/* ===== IMAGES : manifeste images.json (genere par "npm run images") =====
+   Le site ne devine plus les extensions : il lit la liste des images reellement presentes.
+   Si le manifeste manque, secours silencieux : chemin img/<nom>.webp, et image masquee si absente. */
+const IMG={m:null};
+IMG.ready=fetch('images.json').then(r=>r.ok?r.json():null).catch(()=>null).then(j=>{IMG.m=(j&&j.images)||null;return IMG.m;});
+function imgGet(name){if(!name)return null;if(IMG.m)return IMG.m[name]||null;return {src:'img/'+name+'.webp'};}
+function imgSrc(name,small){const i=imgGet(name);return i?(small&&i.sm?i.sm:i.src):null;}
+function imgNames(re){return IMG.m?Object.keys(IMG.m).filter(k=>re.test(k)).sort((a,b)=>a.localeCompare(b,'en',{numeric:true})):[];}
+function imgApply(el,name,small){const i=imgGet(name);if(!i)return false;const s=small&&i.sm;const w=s?i.smw:i.w,h=s?i.smh:i.h;if(w&&h){el.width=w;el.height=h;}el.src=s?i.sm:i.src;return true;}
+document.addEventListener('error',e=>{const t=e.target;if(t&&t.tagName==='IMG')t.style.visibility='hidden';},true);
+document.addEventListener('load',e=>{const t=e.target;if(t&&t.tagName==='IMG')t.style.visibility='';},true);
+IMG.ready.then(()=>document.querySelectorAll('img[data-img]').forEach(el=>{if(!imgApply(el,el.dataset.img))el.remove();}));
 
 /* ===== BASE DE CONNAISSANCES (faits vérifiés) ===== */
 const KB_FR = `Tu es l'assistante virtuelle du portfolio de Kadidiatou Ibrahima Bagayoko (Kadi), étudiante en Bachelor Intelligence Artificielle (grade Licence, B3, spécialisation Data & IA) à l'ECE Paris, diplômée en 2027. Tu parles d'elle à la 3e personne (« elle »). Public : recruteurs et tuteurs d'alternance.
@@ -1114,14 +1153,15 @@ function mdToHtml(t){
 
 /* ===== PROJETS ===== */
 const projectData={
-  'tcim':{emoji:'🛡️',title:{fr:'Protection de données par IA : TCIM',en:'AI Data Protection: TCIM'},img:'projet-tcim.jpg',link:'LIEN_DEMO_TCIM',linkLabel:{fr:'Voir la démo →',en:'Watch the demo →'},desc:{fr:"Coordination et pilotage d'une équipe de 4 en méthode agile, du besoin à la restitution. Solution de protection de données intégrant automatisation et IA : modèle de classification TF-IDF + Random Forest (300 arbres) détectant les données sensibles à 82,5% de précision. Application complète développée : API Flask, base PostgreSQL, dashboard temps réel (Chart.js), score de conformité RGPD pondéré, chiffrement automatique (Fernet) et reporting PDF.",en:"Led and coordinated a team of 4 (agile), from needs to delivery. Data-protection solution combining automation and AI: TF-IDF + Random Forest classification model (300 trees) detecting sensitive data at 82.5% precision. Full application built: Flask API, PostgreSQL database, real-time dashboard (Chart.js), weighted GDPR compliance score, automatic encryption (Fernet) and PDF reporting."},tags:['Python','Scikit-learn','Flask','PostgreSQL','Chart.js']},
-  'ecommerce':{emoji:'📊',title:{fr:'Dashboard E-commerce Analytics',en:'E-commerce Analytics Dashboard'},img:'projet-ecommerce.jpg',link:'https://github.com/Kadi2207/ecommerce-dashboard-analytics',linkLabel:{fr:'Voir sur GitHub →',en:'View on GitHub →'},desc:{fr:"Projet personnel d'analyse de 397 884 lignes de transactions (18 532 factures, 4 338 clients, 37 pays). Nettoyage, exploration et restitution de 6 indicateurs et 6 graphiques dans un dashboard interactif pour dégager les leviers de croissance : produits phares, panier moyen (481£), poids du Royaume-Uni (82%), pour un chiffre d'affaires de 8,91M£.",en:"Personal project analyzing 397,884 transaction rows (18,532 invoices, 4,338 customers, 37 countries). Cleaning, exploration and delivery of 6 indicators and 6 charts in an interactive dashboard to reveal growth levers: top products, average basket (£481), UK share (82%), for £8.91M revenue."},tags:['Python','Pandas','Streamlit','Plotly']},
-  'revops':{emoji:'🔄',title:{fr:'Audit RevOps & Migration CRM',en:'RevOps Audit & CRM Migration'},img:'projet-revops.png',link:'https://github.com/Kadi2207/revops-crm-migration-analysis',linkLabel:{fr:'Voir sur GitHub →',en:'View on GitHub →'},desc:{fr:"Audit qualité et analyse RevOps d'une migration CRM. Notebook Python de nettoyage écrit ligne par ligne (5 234 contacts, 734 sociétés) : normalisation de la casse, correction de typos par dictionnaire, standardisation des champs. Pratique HubSpot réelle : création de propriétés, import de 950 contacts avec mapping et 0 erreur, base juridique RGPD.",en:"Data-quality audit and RevOps analysis of a CRM migration. Python cleaning notebook written line by line (5,234 contacts, 734 companies): case normalization, typo correction via dictionary, field standardization. Real HubSpot practice: property creation, import of 950 contacts with mapping and 0 errors, GDPR legal basis."},tags:['Python','Pandas','HubSpot','RevOps']},
-  'wmdp':{emoji:'🔐',title:{fr:'Évaluation de robustesse de LLMs',en:'LLM Robustness Evaluation'},img:'projet-wmdp.jpg',link:'https://github.com/Kadi2207/wmdp-cyber',linkLabel:{fr:'Voir sur GitHub →',en:'View on GitHub →'},desc:{fr:"Hackathon ECE Paris mené en autonomie, encadré par deux enseignants. Conception d'un corpus de 250 prompts adversariaux (5 types de reformulation) et d'un pipeline Python interrogeant 6 LLMs open-source (Llama-3.2, Llama-3.3, Qwen2.5, DeepSeek-R1) via l'API Hugging Face, avec scoring automatisé des réponses. Dépôt propre : docker-compose, README professionnel, rapport PDF.",en:"ECE Paris hackathon done independently, supervised by two teachers. Designed a corpus of 250 adversarial prompts (5 reformulation types) and a Python pipeline querying 6 open-source LLMs (Llama-3.2, Llama-3.3, Qwen2.5, DeepSeek-R1) via the Hugging Face API, with automated response scoring. Clean repo: docker-compose, professional README, PDF report."},tags:['Python','Hugging Face','LLM','Docker']},
-  'candy':{emoji:'🍬',title:{fr:'CandyECE : Jeu Candy Crush en C',en:'CandyECE: Candy Crush game in C'},img:'projet-candy.jpg',link:'',desc:{fr:"Développement complet du jeu Candy Crush en langage C. Grille 15×15, 4 niveaux de difficulté (bonbons, obstacles, jokers, cascade), calcul de score par regroupement, sauvegarde dans un fichier. Projet en équipe avec présentation et graphe d'appel Doxygen.",en:"Full development of the Candy Crush game in C. 15×15 grid, 4 difficulty levels (candies, obstacles, jokers, cascade), group-based scoring, file save. Team project with presentation and Doxygen call graph."},tags:['C','Algorithmique','CodeBlocks']},
-  'lms':{emoji:'🎓',title:{fr:'Plateforme LMS',en:'LMS Platform'},img:'projet-lms.jpg',link:'',desc:{fr:"Conception d'une plateforme de gestion de l'apprentissage type Blackboard. Gestion des cours et ressources, devoirs et examens en ligne avec système anti-triche, forums et messagerie, tableaux de bord et reporting, authentification SSO. Conforme RGPD.",en:"Design of a Blackboard-style learning management platform. Course and resource management, online assignments and exams with anti-cheating, forums and messaging, dashboards and reporting, SSO authentication. GDPR compliant."},tags:['Web','LMS','SSO','RGPD']},
-  'bijoux':{emoji:'💎',title:{fr:'Boutique de bijoux',en:'Jewelry store'},img:'boutique-bijou1.png',imgs:['boutique-bijou1','boutique-bijou2'],link:'',desc:{fr:"Conception complète d'une boutique de bijoux en ligne sur WordPress avec le thème Kadence, par initiative personnelle. Design responsive, catalogue produits, tunnel d'achat et optimisation UX/UI de bout en bout.",en:"Full design of an online jewelry store on WordPress with the Kadence theme, personal initiative. Responsive design, product catalog, checkout funnel and end-to-end UX/UI optimization."},tags:['WordPress','UX/UI','E-commerce']},
-  'veloMax':{emoji:'🗄️',title:{fr:'VéloMax : Base de données',en:'VéloMax: Database'},img:'projet-velomax.jpg',link:'',desc:{fr:"Projet de base de données : modélisation (JMerise) et création d'une base relationnelle, puis développement d'une application console de gestion. Stack XAMPP / MariaDB avec menu de lancement.",en:"Database project: modeling (JMerise) and building a relational database, then developing a console management application. XAMPP / MariaDB stack with a launch menu."},tags:['SQL','MariaDB','JMerise']}
+  'tcim':{emoji:'🛡️',title:{fr:'Protection de données par IA : TCIM',en:'AI Data Protection: TCIM'},img:'projet-tcim',link:'LIEN_DEMO_TCIM',linkLabel:{fr:'Voir la démo →',en:'Watch the demo →'},desc:{fr:"Coordination et pilotage d'une équipe de 4 en méthode agile, du besoin à la restitution. Solution de protection de données intégrant automatisation et IA : modèle de classification TF-IDF + Random Forest (300 arbres) détectant les données sensibles à 82,5% de précision. Application complète développée : API Flask, base PostgreSQL, dashboard temps réel (Chart.js), score de conformité RGPD pondéré, chiffrement automatique (Fernet) et reporting PDF.",en:"Led and coordinated a team of 4 (agile), from needs to delivery. Data-protection solution combining automation and AI: TF-IDF + Random Forest classification model (300 trees) detecting sensitive data at 82.5% precision. Full application built: Flask API, PostgreSQL database, real-time dashboard (Chart.js), weighted GDPR compliance score, automatic encryption (Fernet) and PDF reporting."},tags:['Python','Scikit-learn','Flask','PostgreSQL','Chart.js']},
+  'ecommerce':{emoji:'📊',title:{fr:'Dashboard E-commerce Analytics',en:'E-commerce Analytics Dashboard'},img:'projet-ecommerce',link:'https://github.com/Kadi2207/ecommerce-dashboard-analytics',linkLabel:{fr:'Voir sur GitHub →',en:'View on GitHub →'},desc:{fr:"Projet personnel d'analyse de 397 884 lignes de transactions (18 532 factures, 4 338 clients, 37 pays). Nettoyage, exploration et restitution de 6 indicateurs et 6 graphiques dans un dashboard interactif pour dégager les leviers de croissance : produits phares, panier moyen (481£), poids du Royaume-Uni (82%), pour un chiffre d'affaires de 8,91M£.",en:"Personal project analyzing 397,884 transaction rows (18,532 invoices, 4,338 customers, 37 countries). Cleaning, exploration and delivery of 6 indicators and 6 charts in an interactive dashboard to reveal growth levers: top products, average basket (£481), UK share (82%), for £8.91M revenue."},tags:['Python','Pandas','Streamlit','Plotly']},
+  'revops':{emoji:'🔄',title:{fr:'Audit RevOps & Migration CRM',en:'RevOps Audit & CRM Migration'},img:'projet-revops',link:'https://github.com/Kadi2207/revops-crm-migration-analysis',linkLabel:{fr:'Voir sur GitHub →',en:'View on GitHub →'},desc:{fr:"Audit qualité et analyse RevOps d'une migration CRM. Notebook Python de nettoyage écrit ligne par ligne (5 234 contacts, 734 sociétés) : normalisation de la casse, correction de typos par dictionnaire, standardisation des champs. Pratique HubSpot réelle : création de propriétés, import de 950 contacts avec mapping et 0 erreur, base juridique RGPD.",en:"Data-quality audit and RevOps analysis of a CRM migration. Python cleaning notebook written line by line (5,234 contacts, 734 companies): case normalization, typo correction via dictionary, field standardization. Real HubSpot practice: property creation, import of 950 contacts with mapping and 0 errors, GDPR legal basis."},tags:['Python','Pandas','HubSpot','RevOps']},
+  'wmdp':{emoji:'🔐',title:{fr:'Évaluation de robustesse de LLMs',en:'LLM Robustness Evaluation'},img:'projet-wmdp',link:'https://github.com/Kadi2207/wmdp-cyber',linkLabel:{fr:'Voir sur GitHub →',en:'View on GitHub →'},desc:{fr:"Hackathon ECE Paris mené en autonomie, encadré par deux enseignants. Conception d'un corpus de 250 prompts adversariaux (5 types de reformulation) et d'un pipeline Python interrogeant 6 LLMs open-source (Llama-3.2, Llama-3.3, Qwen2.5, DeepSeek-R1) via l'API Hugging Face, avec scoring automatisé des réponses. Dépôt propre : docker-compose, README professionnel, rapport PDF.",en:"ECE Paris hackathon done independently, supervised by two teachers. Designed a corpus of 250 adversarial prompts (5 reformulation types) and a Python pipeline querying 6 open-source LLMs (Llama-3.2, Llama-3.3, Qwen2.5, DeepSeek-R1) via the Hugging Face API, with automated response scoring. Clean repo: docker-compose, professional README, PDF report."},tags:['Python','Hugging Face','LLM','Docker']},
+  'candy':{emoji:'🍬',title:{fr:'CandyECE : Jeu Candy Crush en C',en:'CandyECE: Candy Crush game in C'},img:'projet-candy',link:'',desc:{fr:"Développement complet du jeu Candy Crush en langage C. Grille 15×15, 4 niveaux de difficulté (bonbons, obstacles, jokers, cascade), calcul de score par regroupement, sauvegarde dans un fichier. Projet en équipe avec présentation et graphe d'appel Doxygen.",en:"Full development of the Candy Crush game in C. 15×15 grid, 4 difficulty levels (candies, obstacles, jokers, cascade), group-based scoring, file save. Team project with presentation and Doxygen call graph."},tags:['C','Algorithmique','CodeBlocks']},
+  'lms':{emoji:'🎓',title:{fr:'Plateforme LMS',en:'LMS Platform'},img:'projet-lms',link:'',desc:{fr:"Conception d'une plateforme de gestion de l'apprentissage type Blackboard. Gestion des cours et ressources, devoirs et examens en ligne avec système anti-triche, forums et messagerie, tableaux de bord et reporting, authentification SSO. Conforme RGPD.",en:"Design of a Blackboard-style learning management platform. Course and resource management, online assignments and exams with anti-cheating, forums and messaging, dashboards and reporting, SSO authentication. GDPR compliant."},tags:['Web','LMS','SSO','RGPD']},
+  'bijoux':{emoji:'💎',title:{fr:'Boutique de bijoux',en:'Jewelry store'},img:'boutique-bijou1',imgs:['boutique-bijou1','boutique-bijou2'],link:'',desc:{fr:"Conception complète d'une boutique de bijoux en ligne sur WordPress avec le thème Kadence, par initiative personnelle. Design responsive, catalogue produits, tunnel d'achat et optimisation UX/UI de bout en bout.",en:"Full design of an online jewelry store on WordPress with the Kadence theme, personal initiative. Responsive design, product catalog, checkout funnel and end-to-end UX/UI optimization."},tags:['WordPress','UX/UI','E-commerce']},
+  'veloMax':{emoji:'🗄️',title:{fr:'VéloMax : Base de données',en:'VéloMax: Database'},img:'projet-velomax',link:'',desc:{fr:"Projet de base de données : modélisation (JMerise) et création d'une base relationnelle, puis développement d'une application console de gestion. Stack XAMPP / MariaDB avec menu de lancement.",en:"Database project: modeling (JMerise) and building a relational database, then developing a console management application. XAMPP / MariaDB stack with a launch menu."},tags:['SQL','MariaDB','JMerise']}
+
 };
 
 function openProject(key){
@@ -1129,7 +1169,13 @@ function openProject(key){
   document.getElementById('projTitle').textContent=p.title[currentLang];
   document.getElementById('projDesc').textContent=p.desc[currentLang];
   const img=document.getElementById('projImg');
-  if(p.img){img.dataset.i=0;img.dataset.base='';img.onerror=function(){tryExt(this)};img.src=p.img;img.style.display='block';img.onclick=null;img.style.cursor='';if(p.imgs){Promise.all(p.imgs.map(findImg)).then(l=>{l=l.filter(Boolean);if(l.length>1){let k=0;img.style.cursor='pointer';img.onclick=()=>{k=(k+1)%l.length;img.onerror=null;img.src=l[k];};}});}}
+  img.onclick=null;img.style.cursor='';
+  const list=(p.imgs||[p.img]).filter(n=>imgGet(n));
+  if(list.length&&imgApply(img,list[0])){
+    img.style.display='block';
+    // 2e image chargee seulement au clic
+    if(list.length>1){let k=0;img.style.cursor='pointer';img.onclick=()=>{k=(k+1)%list.length;imgApply(img,list[k]);};}
+  }
   else{img.style.display='none';}
   const td=document.getElementById('projTags');td.innerHTML='';
   p.tags.forEach(t=>{const s=document.createElement('span');s.className='tag';s.textContent=t;td.appendChild(s);});
@@ -1140,16 +1186,15 @@ function openProject(key){
 function closeProject(){document.getElementById('projectModal').classList.remove('open');}
 
 /* ===== CERTIFICATIONS ===== */
-const CERT_FILES={sheets:['market','sheets'],programmingblank:['programmingblank','exam-blanc-nocode']};
 const certData={
-  'aws':{name:'AWS Cloud Foundations',org:'Amazon Web Services',id:'ID: f4bb5cf1-902a-4336-9372-0b41a9ac4d16',link:'https://www.credly.com/badges/f4bb5cf1-902a-4336-9372-0b41a9ac4d16',logo:'☁️',bg:'linear-gradient(135deg,#FF9900,#FF6600)',img:'cert-aws.jpg'},
-  'aigenai':{name:'AI & GenAI : Level 2',org:'Liora.io',id:'ID: b790e3cd-ee26-4cde-9efb-8b29a1a328ec',link:'https://files.datascientest.com/certification/b790e3cd-ee26-4cde-9efb-8b29a1a328ec.pdf',logo:'🤖',bg:'linear-gradient(135deg,#667eea,#764ba2)'},
-  'prompt':{name:'Prompt Engineering Fundamentals',org:'Datascientest',id:'ID: 7ea44b89-fdaf-42fc-accb-836379ef2ef5',link:'https://files.datascientest.com/certification/7ea44b89-fdaf-42fc-accb-836379ef2ef5.pdf',logo:'⚡',bg:'linear-gradient(135deg,#06b6d4,#0284c7)'},
-  'structuring':{name:'Structuring Data & GenAI Tools',org:'OMNES Education',id:'OMNES Education, 2025',link:'#',logo:'📐',bg:'linear-gradient(135deg,#8b5cf6,#6d28d9)'},
-  'programming':{name:'Programming Niveau 1',org:'Datascientest',id:'ID: 6b58e001-7972-4f3e-988a-a7d7a9340ce9',link:'https://files.datascientest.com/certification/6b58e001-7972-4f3e-988a-a7d7a9340ce9.pdf',logo:'💻',bg:'linear-gradient(135deg,#10b981,#059669)'},
-  'nocode':{name:'No Code Final : TechAway',org:'Datascientest × OMNES',id:'ID: 0c1a7a6f-c731-46c6-a80c-a54ca84a76f7',link:'https://files.datascientest.com/certification/0c1a7a6f-c731-46c6-a80c-a54ca84a76f7.pdf',logo:'🛠️',bg:'linear-gradient(135deg,#f59e0b,#d97706)'},
-  'sheets':{name:'Google Sheets Marketing',org:'Datascientest',id:'ID: b3bf7f96-c814-4058-9838-619b5288d174',link:'https://files.datascientest.com/certification/b3bf7f96-c814-4058-9838-619b5288d174.pdf',logo:'📊',bg:'linear-gradient(135deg,#22c55e,#16a34a)'},
-  'programmingblank':{name:'Examens TechAway Niveau 1',org:'Datascientest',id:'ID: f8606746-8d42-4e4b-ab00-bd706fceac76',link:'https://files.datascientest.com/certification/f8606746-8d42-4e4b-ab00-bd706fceac76.pdf',logo:'📋',bg:'linear-gradient(135deg,#ec4899,#be185d)'}
+  'aws':{name:'AWS Cloud Foundations',org:'Amazon Web Services',id:'ID: f4bb5cf1-902a-4336-9372-0b41a9ac4d16',link:'https://www.credly.com/badges/f4bb5cf1-902a-4336-9372-0b41a9ac4d16',logo:'☁️',bg:'linear-gradient(135deg,#FF9900,#FF6600)',img:'cert-aws'},
+  'aigenai':{name:'AI & GenAI : Level 2',org:'Liora.io',id:'ID: b790e3cd-ee26-4cde-9efb-8b29a1a328ec',link:'https://files.datascientest.com/certification/b790e3cd-ee26-4cde-9efb-8b29a1a328ec.pdf',logo:'🤖',bg:'linear-gradient(135deg,#667eea,#764ba2)',img:'cert-aigenai'},
+  'prompt':{name:'Prompt Engineering Fundamentals',org:'Datascientest',id:'ID: 7ea44b89-fdaf-42fc-accb-836379ef2ef5',link:'https://files.datascientest.com/certification/7ea44b89-fdaf-42fc-accb-836379ef2ef5.pdf',logo:'⚡',bg:'linear-gradient(135deg,#06b6d4,#0284c7)',img:'cert-prompt'},
+  'structuring':{name:'Structuring Data & GenAI Tools',org:'OMNES Education',id:'OMNES Education, 2025',link:'#',logo:'📐',bg:'linear-gradient(135deg,#8b5cf6,#6d28d9)',img:'cert-structuring'},
+  'programming':{name:'Programming Niveau 1',org:'Datascientest',id:'ID: 6b58e001-7972-4f3e-988a-a7d7a9340ce9',link:'https://files.datascientest.com/certification/6b58e001-7972-4f3e-988a-a7d7a9340ce9.pdf',logo:'💻',bg:'linear-gradient(135deg,#10b981,#059669)',img:'cert-programming'},
+  'nocode':{name:'No Code Final : TechAway',org:'Datascientest × OMNES',id:'ID: 0c1a7a6f-c731-46c6-a80c-a54ca84a76f7',link:'https://files.datascientest.com/certification/0c1a7a6f-c731-46c6-a80c-a54ca84a76f7.pdf',logo:'🛠️',bg:'linear-gradient(135deg,#f59e0b,#d97706)',img:'cert-nocode'},
+  'sheets':{name:'Google Sheets Marketing',org:'Datascientest',id:'ID: b3bf7f96-c814-4058-9838-619b5288d174',link:'https://files.datascientest.com/certification/b3bf7f96-c814-4058-9838-619b5288d174.pdf',logo:'📊',bg:'linear-gradient(135deg,#22c55e,#16a34a)',img:'cert-market'},
+  'sheetsqcm':{name:'QCM Google Sheets : No Code TechAway Niv.1',org:'Datascientest',id:'ID: 48caed53-616a-406b-9a80-a274916807d8',link:'https://files.datascientest.com/certification/48caed53-616a-406b-9a80-a274916807d8.pdf',logo:'',bg:'linear-gradient(135deg,#ec4899,#be185d)',img:'cert-sheets'}
 };
 function openCert(key){
   const c=certData[key];
@@ -1160,12 +1205,10 @@ function openCert(key){
   document.getElementById('cModalLink').href=c.link;
   const iframe=document.getElementById('cModalIframe'),cimg=document.getElementById('cModalImg');
   iframe.style.display='none';cimg.style.display='none';
-  const bases=CERT_FILES[key]||[key];const urls=[];
-  bases.forEach(bs=>['cert-','cert_'].forEach(p=>EXTS.forEach(e=>urls.push(p+bs+'.'+e))));
-  let k=0;
-  cimg.onload=function(){cimg.style.display='block';iframe.style.display='none';};
-  cimg.onerror=function(){k++;if(k<urls.length){cimg.src=urls[k];}else{cimg.style.display='none';if(c.link&&c.link!=='#'){iframe.src=c.link;iframe.style.display='block';}}};
-  cimg.src=urls[0];
+  const showPdf=()=>{cimg.style.display='none';if(c.link&&c.link!=='#'){iframe.src=c.link;iframe.style.display='block';}};
+  // image pleine taille chargee seulement a l'ouverture ; PDF officiel en secours
+  cimg.onerror=showPdf;cimg.onload=null;
+  if(imgGet(c.img)&&imgApply(cimg,c.img)){cimg.style.display='block';}else{showPdf();}
   document.getElementById('cModalLink').style.display=(c.link&&c.link!=='#')?'':'none';
   document.getElementById('certModal').classList.add('open');
 }
@@ -1178,21 +1221,21 @@ function closeCert(){
 }
 
 
-/* ===== GALERIE : carrousel 3D (détecte galerie-1 à galerie-15) ===== */
+/* ===== GALERIE : carrousel 3D (liste galerie-N lue dans images.json) ===== */
 (function(){
   const track=document.getElementById('gTrack'),stage=document.getElementById('gStage'),bar=document.getElementById('gBar');
   const ticks=document.getElementById('gTicks'),now=document.getElementById('gNow'),tot=document.getElementById('gTot');
   const light=document.getElementById('gLight'),lightImg=document.getElementById('gLightImg');
   const items=[];let idx=0;
   const pad=n=>String(n).padStart(2,'0');
-  function find(n){
-    return Promise.all(EXTS.map(e=>new Promise(r=>{const im=new Image();const src='galerie-'+n+'.'+e;im.onload=()=>r(src);im.onerror=()=>r(null);im.src=src;}))).then(a=>a.find(Boolean)||null);
+  // Seules la carte active et ses 2 voisines de chaque cote (celles visibles a l'ecran) sont chargees,
+  // et seulement quand la galerie approche de l'ecran.
+  let armed=false;
+  function loadNear(){
+    if(!armed)return;
+    items.forEach((el,k)=>{if(Math.abs(k-idx)<=2){const im=el.firstChild;if(!im.getAttribute('src'))im.src=im.dataset.src;}});
   }
-  async function scan(){
-    const found=[];let miss=0;
-    for(let n=1;n<=15&&miss<3;n++){const f=await find(n);if(f){found.push(f);miss=0;}else miss++;}
-    return found;
-  }
+  new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){armed=true;loadNear();o.disconnect();}},{rootMargin:'600px 0px'}).observe(stage);
   function layout(){
     if(!items.length)return;
     const el=items[idx];
@@ -1203,7 +1246,7 @@ function closeCert(){
     idx=Math.max(0,Math.min(items.length-1,i));
     items.forEach((el,k)=>{el.className='g-item'+(k===idx?' is-active':k<idx?' is-prev':' is-next');});
     [...ticks.children].forEach((t,k)=>t.classList.toggle('on',k===idx));
-    now.textContent=pad(idx+1);layout();
+    now.textContent=pad(idx+1);layout();loadNear();
   }
   function openLight(src){lightImg.src=src;light.classList.add('open');}
   light.onclick=()=>light.classList.remove('open');
@@ -1217,13 +1260,18 @@ function closeCert(){
   addEventListener('pointermove',e=>{if(down)dx=e.clientX-sx;});
   addEventListener('pointerup',()=>{if(!down)return;down=false;stage.classList.remove('drag');if(Math.abs(dx)>50)go(idx+(dx<0?1:-1));});
   addEventListener('resize',layout);
-  scan().then(list=>{
+  IMG.ready.then(()=>{
+    const list=imgNames(/^galerie-\d+$/);
     if(!list.length){stage.innerHTML='<div class="g-empty">Photos à venir</div>';bar.style.display='none';return;}
-    list.forEach((src,i)=>{
+    list.forEach((name,i)=>{
+      const info=imgGet(name);
       const d=document.createElement('div');d.className='g-item';
-      const im=document.createElement('img');im.alt='';im.draggable=false;im.onload=layout;im.src=src;
+      const im=document.createElement('img');im.alt='';im.draggable=false;im.decoding='async';
+      if(info.smw&&info.smh){im.width=info.smw;im.height=info.smh;im.style.setProperty('--r',(info.smw/info.smh).toFixed(4));}
+      im.dataset.src=info.sm||info.src;
       d.appendChild(im);
-      d.addEventListener('click',()=>{if(Math.abs(dx)>6)return;if(i===idx)openLight(src);else go(i);});
+      // photo pleine taille chargee seulement a l'agrandissement
+      d.addEventListener('click',()=>{if(Math.abs(dx)>6)return;if(i===idx)openLight(info.src);else go(i);});
       track.appendChild(d);items.push(d);
       const t=document.createElement('button');t.className='g-tick';t.setAttribute('aria-label','Photo '+(i+1));t.onclick=()=>go(i);ticks.appendChild(t);
     });
@@ -1254,8 +1302,12 @@ function stripClick(el,key){
   document.querySelectorAll('.projects-grid,.cert-grid,.speak-grid,.exp-list,.skills-grid').forEach(g=>[...g.children].forEach((c,i)=>c.style.setProperty('--i',i)));
   // progress bar
   const pb=document.getElementById('progress');
-  function prog(){const h=document.documentElement;const m=h.scrollHeight-innerHeight;pb.style.transform='scaleX('+(m>0?scrollY/m:0)+')';}
-  addEventListener('scroll',prog,{passive:true});prog();
+  let pbq=0;
+  function prog(){pbq=0;const h=document.documentElement;const m=h.scrollHeight-innerHeight;pb.style.transform='scaleX('+(m>0?scrollY/m:0)+')';}
+  addEventListener('scroll',()=>{if(!pbq)pbq=requestAnimationFrame(prog);},{passive:true});prog();
+  // animations en boucle mises en pause quand leur section sort de l'ecran
+  const offObs=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('is-off',!e.isIntersecting)),{rootMargin:'100px 0px'});
+  document.querySelectorAll('section,.marquee').forEach(el=>offObs.observe(el));
   if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
     // tilt on project cards
     document.querySelectorAll('.project-card,.cert-card').forEach(c=>{
@@ -1271,10 +1323,6 @@ function stripClick(el,key){
 })();
 
 
-/* ===== PRISE DE PAROLE : image associée ===== */
-function findImg(base){
-  return Promise.all(EXTS.map(e=>new Promise(r=>{const im=new Image();im.onload=()=>r(base+'.'+e);im.onerror=()=>r(null);im.src=base+'.'+e;}))).then(a=>a.find(Boolean)||null);
-}
 document.querySelectorAll('.cert-card').forEach(c=>c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();c.click();}}));
 
 
@@ -1286,11 +1334,7 @@ document.querySelectorAll('.cert-card').forEach(c=>c.addEventListener('keydown',
   const roots=document.querySelectorAll('.gf-root');
   function fit(r){const k=r.clientWidth/340;r.style.height=(326*k)+'px';r.querySelector('.gf-stage').style.transform='translateY('+(54*k)+'px) scale('+k+')';}
   function h(str){let x=2166136261;for(let i=0;i<str.length;i++){x=Math.imul(x^str.charCodeAt(i),16777619);}return (x>>>0)/4294967296;}
-  async function files(n){
-    const out=[];const single=await findImg('parole-'+n);if(single)out.push(single);
-    for(let j=1;j<=6;j++){const f=await findImg('parole-'+n+'-'+j);if(f)out.push(f);else if(j>2)break;}
-    return out;
-  }
+  function files(n){return imgNames(new RegExp('^parole-'+n+'(-\\d+)?$')).map(x=>imgSrc(x,true));}
   roots.forEach(async r=>{
     const n=r.dataset.n,ck=r.dataset.cert;
     r.innerHTML='<div class="gf-stage"><div class="gf-tilt"><div class="gf-shadow"></div><div class="gf-back"></div><div class="gf-files" role="list"></div><div class="gf-front"><div class="gf-tint"></div><svg class="gf-rim" viewBox="0 0 340 198" aria-hidden="true"><path d="'+FRONT+'"/></svg><button type="button" class="gf-hit" aria-expanded="false"></button><div class="gf-label"><span class="gf-title" data-fr="'+r.dataset.titleFr+'" data-en="'+r.dataset.titleEn+'">'+r.dataset.titleFr+'</span><span class="gf-meta" data-fr="'+r.dataset.metaFr+'" data-en="'+r.dataset.metaEn+'">'+r.dataset.metaFr+'</span></div></div>'+CUE+'</div></div>';
@@ -1306,9 +1350,12 @@ document.querySelectorAll('.cert-card').forEach(c=>c.addEventListener('keydown',
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&r.hasAttribute('data-open')){setOpen(false);hit.focus();}});
     document.addEventListener('pointerdown',e=>{if(r.hasAttribute('data-open')&&!r.contains(e.target))setOpen(false);});
     // contenu
-    let list;if(ck){const bs=(CERT_FILES[ck]||[ck]);list=[];for(const x of bs){const f=(await findImg('cert-'+x))||(await findImg('cert_'+x));if(f){list=[f];break;}}}else list=await files(n);
+    await IMG.ready;
+    const cn=ck&&certData[ck]&&certData[ck].img;
+    let list;if(ck){const s=imgGet(cn)?imgSrc(cn,true):null;list=s?[s]:[];}else list=files(n);
     const back=r.querySelector('.gf-back');
-    if(list[0]){const im=document.createElement('img');im.className='gf-art';im.alt='';im.src=list[0];im.draggable=false;back.appendChild(im);}
+    // vignette chargee a l'approche (lazy) ; certificat entier visible (contain)
+    if(list[0]){const im=document.createElement('img');im.className='gf-art'+(ck?' gf-art--doc':'');im.alt='';im.loading='lazy';im.decoding='async';im.src=list[0];im.draggable=false;back.appendChild(im);}
     const shown=ck?[]:list.slice(-4);
     shown.forEach((src,v)=>{
       const cnt=shown.length;const slot=cnt<=1?0:(v/(cnt-1))*2-1;
@@ -1327,7 +1374,12 @@ document.querySelectorAll('.cert-card').forEach(c=>c.addEventListener('keydown',
 (function(){
   const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
   const items=[...document.querySelectorAll('.lan')].map((el,i)=>({el,p:el.querySelector('.lan-pivot'),b:el.querySelector('.lan-badge'),a:0,v:0,drag:false,sx:0,sa:0,moved:false,ph:i*1.7,src:null}));
-  items.forEach(async it=>{const n=it.el.dataset.n;const src=await findImg('parole-'+n);const s2=await findImg('parole-'+n+'-2');it.all=[src,s2].filter(Boolean);if(src){it.src=src;it.el.querySelector('.lan-photo').style.backgroundImage='url('+src+')';}});
+  const rail=document.querySelector('.lan-rail');
+  // vignettes chargees a l'approche du rail ; grandes photos seulement au clic (lightbox)
+  IMG.ready.then(()=>{
+    items.forEach(it=>{const names=imgNames(new RegExp('^parole-'+it.el.dataset.n+'(-\\d+)?$'));it.all=names.map(x=>imgSrc(x));it.src=it.all[0]||null;it.thumb=names[0]?imgSrc(names[0],true):null;});
+    new IntersectionObserver((es,o)=>{if(!es[0].isIntersecting)return;items.forEach(it=>{if(it.thumb)it.el.querySelector('.lan-photo').style.backgroundImage='url("'+it.thumb+'")';});o.disconnect();},{rootMargin:'500px 0px'}).observe(rail);
+  });
   items.forEach(it=>{
     it.b.addEventListener('pointerdown',e=>{it.drag=true;it.moved=false;it.sx=e.clientX;it.sa=it.a;it.b.setPointerCapture(e.pointerId);});
     it.b.addEventListener('pointermove',e=>{if(!it.drag)return;const dx=e.clientX-it.sx;if(Math.abs(dx)>4)it.moved=true;it.a=Math.max(-38,Math.min(38,it.sa+dx*.25));it.v=0;});
@@ -1337,16 +1389,17 @@ document.querySelectorAll('.cert-card').forEach(c=>c.addEventListener('keydown',
     it.b.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')it.v-=3;if(e.key==='ArrowRight')it.v+=3;});
     it.el.addEventListener('pointerenter',e=>{if(!it.drag&&e.pointerType!=='touch')it.v+=(Math.random()<.5?-1:1)*1.6;});
   });
-  let t=0,vis=false;
-  new IntersectionObserver(es=>{vis=es[0].isIntersecting;},{threshold:0}).observe(document.querySelector('.lan-rail'));
+  // boucle requestAnimationFrame arretee completement quand le rail est hors ecran
+  let t=0,vis=false,raf=0;
+  new IntersectionObserver(es=>{vis=es[0].isIntersecting;if(vis&&!raf)raf=requestAnimationFrame(tick);},{threshold:0}).observe(rail);
   function tick(){
-    requestAnimationFrame(tick);if(!vis)return;t+=.016;
+    raf=0;if(!vis)return;t+=.016;
     items.forEach(it=>{
       if(!it.drag){const sway=rm?0:Math.sin(t*.9+it.ph)*1.2;it.v+=(-.045*(it.a-sway));it.v*=.965;it.a+=it.v;}
       it.p.style.setProperty('--ang',it.a.toFixed(2)+'deg');
     });
+    raf=requestAnimationFrame(tick);
   }
-  tick();
 })();
 
 /* ===== ANIMATIONS : reveal au scroll ===== */

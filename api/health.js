@@ -15,7 +15,7 @@ function body() {
   });
 }
 
-const headers = { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' };
+const headers = { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' };
 
 export function GET() {
   return new Response(body(), { status: 200, headers });

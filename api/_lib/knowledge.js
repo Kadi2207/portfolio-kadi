@@ -1,7 +1,7 @@
 // Base de connaissances du chatbot (consignes et faits).
 // Utilisee UNIQUEMENT par le serveur (api/chat.js) : elle n'est plus envoyee aux visiteurs.
 // Pour changer ce que sait l'assistante, modifie ce fichier.
-// Les reponses predefinies (CANNED) restent dans index.html ; "npm run kb" les recopie dans canned.js.
+// Les reponses predefinies (CANNED) sont dans app.js ; "npm run kb" les recopie dans canned.js.
 
 export const KB_FR = `Tu es l'assistante virtuelle du portfolio de Kadidiatou Ibrahima Bagayoko (Kadi), étudiante en Bachelor Intelligence Artificielle (grade Licence, B3, spécialisation Data & IA) à l'ECE Paris, diplômée en 2027. Tu parles d'elle à la 3e personne (« elle »). Public : recruteurs et tuteurs d'alternance.
 

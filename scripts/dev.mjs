@@ -24,6 +24,21 @@ for (const f of ['.env.local', '.env']) {
   }
 }
 
+// En-tetes de vercel.json (securite, cache) appliques aussi en local, pour tester dans les memes conditions.
+// En local, le cache est desactive et HSTS / upgrade-insecure-requests sont retires (pas de HTTPS en local).
+const VERCEL_HEADERS = JSON.parse(fs.readFileSync(path.join(ROOT, 'vercel.json'), 'utf8')).headers || [];
+function vercelHeaders(pathname) {
+  const out = {};
+  for (const rule of VERCEL_HEADERS) {
+    const re = new RegExp('^' + rule.source.split('(.*)').map(s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('.*') + '$');
+    if (re.test(pathname)) for (const { key, value } of rule.headers) out[key] = value;
+  }
+  delete out['Strict-Transport-Security'];
+  if (out['Content-Security-Policy']) out['Content-Security-Policy'] = out['Content-Security-Policy'].replace(/;\s*upgrade-insecure-requests/, '');
+  out['Cache-Control'] = 'no-store';
+  return out;
+}
+
 const API = { '/api/chat': 'api/chat.js', '/api/health': 'api/health.js' };
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8', '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.ico': 'image/x-icon', '.xml': 'application/xml', '.txt': 'text/plain; charset=utf-8' };
 // Jamais servis : secrets, sources, copies d'origine, dependances
@@ -39,7 +54,11 @@ async function handleApi(req, res, file) {
   const hasBody = !['GET', 'HEAD'].includes(req.method);
   const request = new Request(`http://${req.headers.host}${req.url}`, { method: req.method, headers, body: hasBody ? Readable.toWeb(req) : undefined, duplex: hasBody ? 'half' : undefined });
   const response = await fn(request);
-  res.writeHead(response.status, Object.fromEntries(response.headers));
+  // fusion sans doublon (les noms d'en-tete ne tiennent pas compte de la casse) : la fonction a le dernier mot
+  const merged = {};
+  for (const [k, v] of Object.entries(vercelHeaders(new URL(req.url, 'http://x').pathname))) merged[k.toLowerCase()] = v;
+  for (const [k, v] of response.headers) merged[k.toLowerCase()] = v;
+  res.writeHead(response.status, merged);
   res.end(Buffer.from(await response.arrayBuffer()));
 }
 
@@ -51,7 +70,7 @@ function handleStatic(req, res) {
   if (BLOCKED.test(p) || !file.startsWith(ROOT + path.sep) || !fs.existsSync(file) || !fs.statSync(file).isFile()) {
     res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }); return res.end('Introuvable');
   }
-  res.writeHead(200, { 'Content-Type': MIME[path.extname(file).toLowerCase()] || 'application/octet-stream', 'Cache-Control': 'no-store' });
+  res.writeHead(200, { ...vercelHeaders(p), 'Content-Type': MIME[path.extname(file).toLowerCase()] || 'application/octet-stream' });
   fs.createReadStream(file).pipe(res);
 }
 

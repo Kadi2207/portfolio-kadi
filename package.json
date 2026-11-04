@@ -2,12 +2,16 @@
   "name": "portfolio-kadi",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "images": "node scripts/images.mjs",
-    "serve": "http-server . -p 8080 -c-1"
+    "kb": "node scripts/sync-kb.mjs",
+    "preserve": "node scripts/sync-kb.mjs",
+    "serve": "node scripts/dev.mjs"
   },
   "devDependencies": {
-    "http-server": "14.1.1",
     "sharp": "0.34.1"
   }
 }

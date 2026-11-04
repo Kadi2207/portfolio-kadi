@@ -1,6 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
+  "functions": {
+    "api/chat.js": { "maxDuration": 30 },
+    "api/health.js": { "maxDuration": 5 }
+  },
   "headers": [
     {
       "source": "/img/(.*)",

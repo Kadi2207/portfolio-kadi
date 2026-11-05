@@ -32,12 +32,12 @@ Son parcours combine ainsi analyse, conception, développement et mise en œuvre
 
 Sa régularité et son excellence académique, illustrées par son classement de **major de promotion en B2** et une note de **19,75/20** sur son projet chez Skills4Mind, témoignent également de sa rigueur et de sa capacité d'apprentissage.`,exp:`Kadidiatou a acquis une expérience polyvalente en Data, IA, développement et conseil digital à travers trois expériences :
 - **Skills4Mind (2026), Data, IA & Cybersécurité** : conception d'une solution de détection et de protection des données sensibles, développement d'un modèle Machine Learning et d'une API Flask, sécurisation des données (chiffrement, authentification forte, contrôle des accès). Coordination d'une équipe de 4 personnes. Projet noté 19,75/20.
-- **Consulat général du Mali (2026), Audit & conseil digital** : audit du site et des services consulaires, analyse de 205 réponses utilisateurs, identification des besoins et recommandations pour améliorer l'expérience et la digitalisation des services.
+- **Consulat général du Mali (2026), Audit & conseil digital** : audit du site et des services consulaires, analyse de plus de 200 réponses utilisateurs, identification des besoins et recommandations pour améliorer l'expérience et la digitalisation des services.
 - **Femmes Audacieuses (2025), Marketing & stratégie digitale** : étude de marché et de la concurrence, analyse des personas, stratégie de communication, création de contenus et planification éditoriale. Contribution à une hausse de 30 % de l'engagement (estimation).
 
 Ces expériences lui permettent d'intervenir de l'analyse d'un besoin jusqu'à la conception de solutions concrètes.`,tcim:`Le projet MSP TCIM, réalisé chez Skills4Mind, portait sur la conception d'un système intelligent de détection et de protection des données médicales sensibles.
 
-Kadidiatou a assuré le pilotage du projet de bout en bout, en méthode Agile : coordination d'une équipe de 4 personnes, organisation des travaux et suivi des livrables, avec l'accompagnement expert de M. Taha Ridene.
+Kadidiatou a assuré le pilotage du projet de bout en bout, en méthode Agile : coordination d'une équipe de 4 personnes, organisation des travaux et suivi des livrables. Le projet était encadré par un enseignant de l'ECE.
 
 Sur le volet technique, elle est intervenue sur plusieurs axes :
 - **IA & Machine Learning** : modèle TF-IDF + Random Forest (300 arbres), entraîné sur environ 190 textes annotés, avec 82,5 % de précision.
@@ -53,8 +53,8 @@ Le projet a obtenu **19,75/20**. Il démontre sa capacité à associer gestion d
 
 Ces expériences illustrent sa capacité à organiser le travail collectif, coordonner des profils différents, prendre des initiatives et atteindre des objectifs communs.`,ia:`Kadidiatou possède des compétences en Intelligence Artificielle, du Machine Learning à l'IA générative, avec des applications concrètes :
 - **Machine Learning & NLP** : préparation et vectorisation de données textuelles (TF-IDF), classification supervisée avec Random Forest, analyse de sentiments et évaluation de modèles.
-- **LLMs & IA générative** : benchmark de 6 modèles open source via Hugging Face, conception de 250 prompts adversariaux et analyse de la robustesse et des mécanismes de sécurité des modèles.
-- **Embeddings & IA agentique** : avec son projet individuel Embedding Lab (en cours), elle approfondit les Transformers, le fine-tuning, le contrastive learning, la recherche sémantique, le RAG et la conception d'agents IA capables de retrouver, relier et exploiter des informations.
+- **LLMs & IA générative** : évaluation de 6 modèles open source via Hugging Face, conception de 250 prompts adversariaux et analyse de la robustesse et des mécanismes de sécurité des modèles.
+- **Embeddings & IA agentique** : avec son projet individuel Embedding Lab (en cours), elle approfondit les Transformers, le fine-tuning, le contrastive learning, la recherche sémantique et la conception d'agents IA capables de retrouver, relier et exploiter des informations, et elle explore le RAG.
 - **Développement IA** : Python, Scikit-learn, Pandas, NumPy, Hugging Face, API Flask et Docker pour intégrer et exploiter des solutions intelligentes.
 
 Elle complète ces réalisations par des certifications en IA, IA générative et Prompt Engineering.`,ecom:`Kadidiatou a développé un dashboard interactif d'analyse des ventes e-commerce à partir du jeu de données UCI Online Retail.
@@ -65,14 +65,14 @@ Avec Streamlit et Plotly, elle a conçu un outil décisionnel comprenant 6 KPI, 
 
 L'analyse a notamment révélé un chiffre d'affaires de **8,91 millions de livres sterling**, dont 82 % réalisés au Royaume-Uni, et identifié novembre 2011 comme le mois le plus performant.
 
-Ce projet démontre sa capacité à transformer des données brutes en indicateurs business et outils d'aide à la décision.`,dispo:`Oui ! Kadidiatou recherche une alternance de **10 à 12 mois en Data & IA**, avec une disponibilité dès **novembre 2026**.
+Ce projet démontre sa capacité à transformer des données brutes en indicateurs business et outils d'aide à la décision.`,dispo:`Oui ! Kadidiatou recherche une alternance de **10 à 12 mois en Data & IA**, **disponible dès maintenant**.
 - **Rythme** : 3 semaines en entreprise / 2 semaines à l'école, puis une présence presque à temps plein en entreprise à partir de mars 2027.
 - **Mobilité** : toute la France.
 
 Pour échanger sur son profil ou organiser un entretien, vous pouvez la contacter à kadibaga22@gmail.com.`,consulat:`Au Consulat Général du Mali à Paris (avril à juin 2026), Kadidiatou a contribué à plusieurs missions d'analyse, de conseil numérique et de conception de solutions, après une immersion dans **sept services consulaires** : NINA et retrait de carte biométrique, accueil, visas, passeports, informatique et état civil.
 - **Audit et refonte du site web** : diagnostic des parcours utilisateurs, liens inactifs, incohérences tarifaires et problèmes d'accessibilité des documents. Elle a proposé une refonte complète intégrant de nouvelles pages, des formulaires dématérialisés, un chatbot intelligent multilingue et un système de suivi des demandes de visa.
 - **Gestion des associations** : recueil des besoins auprès du conseiller responsable et conception d'une solution de gestion centralisée : préinscriptions en ligne, base de données, notifications automatiques, identifiants uniques et annuaire conditionnel.
-- **Analyse de données** : traitement et nettoyage de centaines de réponses à une enquête du service état civil avec Google Sheets, puis réalisation de tableaux croisés dynamiques et de visualisations.
+- **Analyse de données** : traitement et nettoyage de plus de 200 réponses à une enquête du service état civil avec Google Sheets, puis réalisation de tableaux croisés dynamiques et de visualisations.
 - **Présentations institutionnelles** : présentation de ses diagnostics et propositions devant le Consul Général, les conseillers consulaires et les membres du conseil, à l'occasion de plusieurs séances auxquelles elle a été convoquée.
 
 Cette expérience démontre sa capacité à comprendre des processus métier, analyser des besoins, concevoir des solutions numériques et défendre des recommandations auprès de décideurs institutionnels.`,awards:`- **Major de promotion des B2** (2025-2026).
@@ -99,12 +99,12 @@ Her background combines analysis, design, development and implementation. She do
 
 Her consistency and academic excellence, shown by her rank as **top of the B2 class** and a grade of **19.75/20** on her Skills4Mind project, also reflect her rigor and ability to learn.`,exp:`Kadidiatou has built versatile experience in Data, AI, development and digital consulting through three experiences:
 - **Skills4Mind (2026), Data, AI & Cybersecurity**: design of a solution to detect and protect sensitive data, development of a Machine Learning model and a Flask API, data security (encryption, strong authentication, access control). Coordination of a team of 4. Project graded 19.75/20.
-- **Consulate General of Mali (2026), Audit & digital consulting**: audit of the website and consular services, analysis of 205 user responses, identification of needs and recommendations to improve the experience and digitalization of services.
+- **Consulate General of Mali (2026), Audit & digital consulting**: audit of the website and consular services, analysis of more than 200 user responses, identification of needs and recommendations to improve the experience and digitalization of services.
 - **Femmes Audacieuses (2025), Marketing & digital strategy**: market and competitor study, persona analysis, communication strategy, content creation and editorial planning. Contribution to a 30% engagement increase (estimate).
 
 These experiences let her work from analyzing a need through to designing concrete solutions.`,tcim:`The MSP TCIM project, carried out at Skills4Mind, was about designing an intelligent system to detect and protect sensitive medical data.
 
-Kadidiatou led the project end to end, in Agile: coordination of a team of 4, organization of the work and deliverable tracking, with expert guidance from Mr. Taha Ridene.
+Kadidiatou led the project end to end, in Agile: coordination of a team of 4, organization of the work and deliverable tracking. The project was supervised by an ECE teacher.
 
 On the technical side, she worked on several areas:
 - **AI & Machine Learning**: TF-IDF + Random Forest model (300 trees), trained on about 190 annotated texts, with 82.5% precision.
@@ -120,8 +120,8 @@ The project was graded **19.75/20**. It shows her ability to combine project man
 
 These experiences show her ability to organize collective work, coordinate different profiles, take initiative and reach common goals.`,ia:`Kadidiatou has Artificial Intelligence skills, from Machine Learning to generative AI, with concrete applications:
 - **Machine Learning & NLP**: preparation and vectorization of text data (TF-IDF), supervised classification with Random Forest, sentiment analysis and model evaluation.
-- **LLMs & generative AI**: benchmark of 6 open-source models via Hugging Face, design of 250 adversarial prompts and analysis of model robustness and safety mechanisms.
-- **Embeddings & agentic AI**: with her individual Embedding Lab project (in progress), she is deepening Transformers, fine-tuning, contrastive learning, semantic search, RAG and the design of AI agents able to retrieve, link and use information.
+- **LLMs & generative AI**: evaluation of 6 open-source models via Hugging Face, design of 250 adversarial prompts and analysis of model robustness and safety mechanisms.
+- **Embeddings & agentic AI**: with her individual Embedding Lab project (in progress), she is deepening Transformers, fine-tuning, contrastive learning, semantic search and the design of AI agents able to retrieve, link and use information, and she is exploring RAG.
 - **AI development**: Python, Scikit-learn, Pandas, NumPy, Hugging Face, Flask API and Docker to integrate and run intelligent solutions.
 
 She completes these projects with certifications in AI, generative AI and Prompt Engineering.`,ecom:`Kadidiatou built an interactive e-commerce sales analysis dashboard from the UCI Online Retail dataset.
@@ -132,14 +132,14 @@ With Streamlit and Plotly, she designed a decision-support tool with 6 KPIs, 6 i
 
 The analysis showed revenue of **£8.91 million**, 82% of it in the United Kingdom, and identified November 2011 as the best-performing month.
 
-This project shows her ability to turn raw data into business indicators and decision-support tools.`,dispo:`Yes! Kadidiatou is looking for a **10 to 12-month apprenticeship in Data & AI**, available from **November 2026**.
+This project shows her ability to turn raw data into business indicators and decision-support tools.`,dispo:`Yes! Kadidiatou is looking for a **10 to 12-month apprenticeship in Data & AI**, **available now**.
 - **Schedule**: 3 weeks at the company / 2 weeks at school, then almost full-time at the company from March 2027.
 - **Mobility**: anywhere in France.
 
 To discuss her profile or set up an interview, you can contact her at kadibaga22@gmail.com.`,consulat:`At the Consulate General of Mali in Paris (April to June 2026), Kadidiatou contributed to several analysis, digital consulting and solution design missions, after an immersion in **seven consular services**: NINA and biometric card pick-up, reception, visas, passports, IT and civil registry.
 - **Website audit and redesign**: diagnosis of user journeys, dead links, pricing inconsistencies and document accessibility issues. She proposed a full redesign with new pages, digital forms, a multilingual intelligent chatbot and a visa request tracking system.
 - **Associations management**: gathering needs from the responsible advisor and designing a centralized management solution: online pre-registration, database, automatic notifications, unique identifiers and conditional directory.
-- **Data analysis**: processing and cleaning hundreds of responses to a civil registry survey with Google Sheets, then building pivot tables and visualizations.
+- **Data analysis**: processing and cleaning more than 200 responses to a civil registry survey with Google Sheets, then building pivot tables and visualizations.
 - **Institutional presentations**: presenting her diagnoses and proposals to the Consul General, consular advisors and council members over several sessions she was invited to.
 
 This experience shows her ability to understand business processes, analyze needs, design digital solutions and defend recommendations before institutional decision-makers.`,awards:`- **Top of the B2 class** (2025-2026).
@@ -168,9 +168,29 @@ function toggleLang(){
     else{el.innerHTML = el.getAttribute('data-'+currentLang);}
   });
   renderSuggestions();
+  updateMailto();
 }
 
 /* ===== CHATBOT ===== */
+/* Questions libres : desactivees. Pour les rouvrir, mettre CHAT_FREE a true ici ET CHAT_FREE_ENABLED=true sur Vercel
+   (sinon /api/chat repond 503). Voir MAINTENANCE.md, "Rouvrir les questions libres". */
+const CHAT_FREE=false;
+const MAIL={to:'kadibaga22@gmail.com',
+  fr:{subject:'Question depuis votre portfolio',body:"Bonjour Kadi,\n\nJ'ai consulté votre portfolio et j'aimerais vous poser une question :\n\n"},
+  en:{subject:'Question from your portfolio',body:'Hello Kadi,\n\nI visited your portfolio and would like to ask you a question:\n\n'}};
+function mailtoHref(lang){const m=MAIL[lang];return 'mailto:'+MAIL.to+'?subject='+encodeURIComponent(m.subject)+'&body='+encodeURIComponent(m.body);}
+function updateMailto(){const a=document.getElementById('chatMail');if(a)a.href=mailtoHref(currentLang);}
+function setupChatFooter(){
+  updateMailto();
+  if(!CHAT_FREE)return;
+  const box=document.getElementById('chatContact');
+  const row=document.createElement('div');row.className='chat-input-row';
+  row.innerHTML='<input class="chat-input" id="chatInput" maxlength="1000" data-fr="" data-en="" aria-label="Question"><button class="chat-send" data-act="chat-send" data-fr="Envoyer" data-en="Send"></button>';
+  box.replaceWith(row);
+  const input=row.querySelector('input'),btn=row.querySelector('button');
+  input.placeholder=currentLang==='fr'?'Posez votre question...':'Ask your question...';btn.textContent=currentLang==='fr'?'Envoyer':'Send';
+  input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing)sendMessage();});
+}
 function renderSuggestions(){
   const row=document.getElementById('suggestionsRow');
   row.innerHTML='';
@@ -264,14 +284,14 @@ function mdToHtml(t){
 
 /* ===== PROJETS ===== */
 const projectData={
-  'tcim':{emoji:'🛡️',title:{fr:'Protection de données par IA : TCIM',en:'AI Data Protection: TCIM'},img:'projet-tcim',link:'LIEN_DEMO_TCIM',linkLabel:{fr:'Voir la démo →',en:'Watch the demo →'},desc:{fr:"Coordination et pilotage d'une équipe de 4 en méthode agile, du besoin à la restitution. Solution de protection de données intégrant automatisation et IA : modèle de classification TF-IDF + Random Forest (300 arbres) détectant les données sensibles à 82,5% de précision. Application complète développée : API Flask, base PostgreSQL, dashboard temps réel (Chart.js), score de conformité RGPD pondéré, chiffrement automatique (Fernet) et reporting PDF.",en:"Led and coordinated a team of 4 (agile), from needs to delivery. Data-protection solution combining automation and AI: TF-IDF + Random Forest classification model (300 trees) detecting sensitive data at 82.5% precision. Full application built: Flask API, PostgreSQL database, real-time dashboard (Chart.js), weighted GDPR compliance score, automatic encryption (Fernet) and PDF reporting."},tags:['Python','Scikit-learn','Flask','PostgreSQL','Chart.js']},
-  'ecommerce':{emoji:'📊',title:{fr:'Dashboard E-commerce Analytics',en:'E-commerce Analytics Dashboard'},img:'projet-ecommerce',link:'https://github.com/Kadi2207/ecommerce-dashboard-analytics',linkLabel:{fr:'Voir sur GitHub →',en:'View on GitHub →'},desc:{fr:"Projet personnel d'analyse de 397 884 lignes de transactions (18 532 factures, 4 338 clients, 37 pays). Nettoyage, exploration et restitution de 6 indicateurs et 6 graphiques dans un dashboard interactif pour dégager les leviers de croissance : produits phares, panier moyen (481£), poids du Royaume-Uni (82%), pour un chiffre d'affaires de 8,91M£.",en:"Personal project analyzing 397,884 transaction rows (18,532 invoices, 4,338 customers, 37 countries). Cleaning, exploration and delivery of 6 indicators and 6 charts in an interactive dashboard to reveal growth levers: top products, average basket (£481), UK share (82%), for £8.91M revenue."},tags:['Python','Pandas','Streamlit','Plotly']},
-  'revops':{emoji:'🔄',title:{fr:'Audit RevOps & Migration CRM',en:'RevOps Audit & CRM Migration'},img:'projet-revops',link:'https://github.com/Kadi2207/revops-crm-migration-analysis',linkLabel:{fr:'Voir sur GitHub →',en:'View on GitHub →'},desc:{fr:"Audit qualité et analyse RevOps d'une migration CRM. Notebook Python de nettoyage écrit ligne par ligne (5 234 contacts, 734 sociétés) : normalisation de la casse, correction de typos par dictionnaire, standardisation des champs. Pratique HubSpot réelle : création de propriétés, import de 950 contacts avec mapping et 0 erreur, base juridique RGPD.",en:"Data-quality audit and RevOps analysis of a CRM migration. Python cleaning notebook written line by line (5,234 contacts, 734 companies): case normalization, typo correction via dictionary, field standardization. Real HubSpot practice: property creation, import of 950 contacts with mapping and 0 errors, GDPR legal basis."},tags:['Python','Pandas','HubSpot','RevOps']},
-  'wmdp':{emoji:'🔐',title:{fr:'Évaluation de robustesse de LLMs',en:'LLM Robustness Evaluation'},img:'projet-wmdp',link:'https://github.com/Kadi2207/wmdp-cyber',linkLabel:{fr:'Voir sur GitHub →',en:'View on GitHub →'},desc:{fr:"Hackathon ECE Paris mené en autonomie, encadré par deux enseignants. Conception d'un corpus de 250 prompts adversariaux (5 types de reformulation) et d'un pipeline Python interrogeant 6 LLMs open-source (Llama-3.2, Llama-3.3, Qwen2.5, DeepSeek-R1) via l'API Hugging Face, avec scoring automatisé des réponses. Dépôt propre : docker-compose, README professionnel, rapport PDF.",en:"ECE Paris hackathon done independently, supervised by two teachers. Designed a corpus of 250 adversarial prompts (5 reformulation types) and a Python pipeline querying 6 open-source LLMs (Llama-3.2, Llama-3.3, Qwen2.5, DeepSeek-R1) via the Hugging Face API, with automated response scoring. Clean repo: docker-compose, professional README, PDF report."},tags:['Python','Hugging Face','LLM','Docker']},
-  'candy':{emoji:'🍬',title:{fr:'CandyECE : Jeu Candy Crush en C',en:'CandyECE: Candy Crush game in C'},img:'projet-candy',link:'',desc:{fr:"Développement complet du jeu Candy Crush en langage C. Grille 15×15, 4 niveaux de difficulté (bonbons, obstacles, jokers, cascade), calcul de score par regroupement, sauvegarde dans un fichier. Projet en équipe avec présentation et graphe d'appel Doxygen.",en:"Full development of the Candy Crush game in C. 15×15 grid, 4 difficulty levels (candies, obstacles, jokers, cascade), group-based scoring, file save. Team project with presentation and Doxygen call graph."},tags:['C','Algorithmique','CodeBlocks']},
-  'lms':{emoji:'🎓',title:{fr:'Plateforme LMS',en:'LMS Platform'},img:'projet-lms',link:'',desc:{fr:"Conception d'une plateforme de gestion de l'apprentissage type Blackboard. Gestion des cours et ressources, devoirs et examens en ligne avec système anti-triche, forums et messagerie, tableaux de bord et reporting, authentification SSO. Conforme RGPD.",en:"Design of a Blackboard-style learning management platform. Course and resource management, online assignments and exams with anti-cheating, forums and messaging, dashboards and reporting, SSO authentication. GDPR compliant."},tags:['Web','LMS','SSO','RGPD']},
-  'bijoux':{emoji:'💎',title:{fr:'Boutique de bijoux',en:'Jewelry store'},img:'boutique-bijou1',imgs:['boutique-bijou1','boutique-bijou2'],link:'',desc:{fr:"Conception complète d'une boutique de bijoux en ligne sur WordPress avec le thème Kadence, par initiative personnelle. Design responsive, catalogue produits, tunnel d'achat et optimisation UX/UI de bout en bout.",en:"Full design of an online jewelry store on WordPress with the Kadence theme, personal initiative. Responsive design, product catalog, checkout funnel and end-to-end UX/UI optimization."},tags:['WordPress','UX/UI','E-commerce']},
-  'veloMax':{emoji:'🗄️',title:{fr:'VéloMax : Base de données',en:'VéloMax: Database'},img:'projet-velomax',link:'',desc:{fr:"Projet de base de données : modélisation (JMerise) et création d'une base relationnelle, puis développement d'une application console de gestion. Stack XAMPP / MariaDB avec menu de lancement.",en:"Database project: modeling (JMerise) and building a relational database, then developing a console management application. XAMPP / MariaDB stack with a launch menu."},tags:['SQL','MariaDB','JMerise']}
+  'tcim':{title:{fr:'Protection de données par IA : TCIM',en:'AI Data Protection: TCIM'},img:'projet-tcim',link:'',linkLabel:{fr:'Voir la démo →',en:'Watch the demo →'},desc:{fr:"Coordination et pilotage d'une équipe de 4 en méthode agile, du besoin à la restitution. Solution de protection de données intégrant automatisation et IA : modèle de classification TF-IDF + Random Forest (300 arbres) détectant les données sensibles à 82,5% de précision. Application complète développée : API Flask, base PostgreSQL, dashboard temps réel (Chart.js), score de conformité RGPD pondéré, chiffrement automatique (Fernet) et reporting PDF.",en:"Led and coordinated a team of 4 (agile), from needs to delivery. Data-protection solution combining automation and AI: TF-IDF + Random Forest classification model (300 trees) detecting sensitive data at 82.5% precision. Full application built: Flask API, PostgreSQL database, real-time dashboard (Chart.js), weighted GDPR compliance score, automatic encryption (Fernet) and PDF reporting."},tags:['Python','Scikit-learn','Flask','PostgreSQL','Chart.js']},
+  'ecommerce':{title:{fr:'Dashboard E-commerce Analytics',en:'E-commerce Analytics Dashboard'},img:'projet-ecommerce',link:'https://github.com/Kadi2207/ecommerce-dashboard-analytics',linkLabel:{fr:'Voir sur GitHub →',en:'View on GitHub →'},desc:{fr:"Projet personnel d'analyse de 397 884 lignes de transactions (18 532 factures, 4 338 clients, 37 pays). Nettoyage, exploration et restitution de 6 indicateurs et 6 graphiques dans un dashboard interactif pour dégager les leviers de croissance : produits phares, panier moyen (481£), poids du Royaume-Uni (82%), pour un chiffre d'affaires de 8,91M£.",en:"Personal project analyzing 397,884 transaction rows (18,532 invoices, 4,338 customers, 37 countries). Cleaning, exploration and delivery of 6 indicators and 6 charts in an interactive dashboard to reveal growth levers: top products, average basket (£481), UK share (82%), for £8.91M revenue."},tags:['Python','Pandas','Streamlit','Plotly']},
+  'revops':{title:{fr:'Audit RevOps & Migration CRM',en:'RevOps Audit & CRM Migration'},img:'projet-revops',link:'https://github.com/Kadi2207/revops-crm-migration-analysis',linkLabel:{fr:'Voir sur GitHub →',en:'View on GitHub →'},desc:{fr:"Audit qualité et analyse RevOps d'une migration CRM. Notebook Python de nettoyage écrit ligne par ligne (5 234 contacts, 734 sociétés) : normalisation de la casse, correction de typos par dictionnaire, standardisation des champs. Pratique HubSpot réelle : création de propriétés, import de 950 contacts avec mapping et 0 erreur, base juridique RGPD.",en:"Data-quality audit and RevOps analysis of a CRM migration. Python cleaning notebook written line by line (5,234 contacts, 734 companies): case normalization, typo correction via dictionary, field standardization. Real HubSpot practice: property creation, import of 950 contacts with mapping and 0 errors, GDPR legal basis."},tags:['Python','Pandas','HubSpot','RevOps']},
+  'wmdp':{title:{fr:'Évaluation de robustesse de LLMs',en:'LLM Robustness Evaluation'},img:'projet-wmdp',link:'https://github.com/Kadi2207/wmdp-cyber',linkLabel:{fr:'Voir sur GitHub →',en:'View on GitHub →'},desc:{fr:"Hackathon ECE Paris mené en autonomie, encadré par deux enseignants. Conception d'un corpus de 250 prompts adversariaux (5 types de reformulation) et d'un pipeline Python interrogeant 6 LLMs open-source (Llama-3.2, Llama-3.3, Qwen2.5, DeepSeek-R1) via l'API Hugging Face, avec scoring automatisé des réponses. Dépôt propre : docker-compose, README professionnel, rapport PDF.",en:"ECE Paris hackathon done independently, supervised by two teachers. Designed a corpus of 250 adversarial prompts (5 reformulation types) and a Python pipeline querying 6 open-source LLMs (Llama-3.2, Llama-3.3, Qwen2.5, DeepSeek-R1) via the Hugging Face API, with automated response scoring. Clean repo: docker-compose, professional README, PDF report."},tags:['Python','Hugging Face','LLM','Docker']},
+  'candy':{title:{fr:'CandyECE : Jeu Candy Crush en C',en:'CandyECE: Candy Crush game in C'},link:'',desc:{fr:"Développement complet du jeu Candy Crush en langage C. Grille 15×15, 4 niveaux de difficulté (bonbons, obstacles, jokers, cascade), calcul de score par regroupement, sauvegarde dans un fichier. Projet en équipe avec présentation et graphe d'appel Doxygen.",en:"Full development of the Candy Crush game in C. 15×15 grid, 4 difficulty levels (candies, obstacles, jokers, cascade), group-based scoring, file save. Team project with presentation and Doxygen call graph."},tags:['C','Algorithmique','CodeBlocks']},
+  'lms':{title:{fr:'Plateforme LMS',en:'LMS Platform'},img:'projet-lms',link:'',desc:{fr:"Conception d'une plateforme de gestion de l'apprentissage type Blackboard. Gestion des cours et ressources, devoirs et examens en ligne avec système anti-triche, forums et messagerie, tableaux de bord et reporting, authentification SSO. Conforme RGPD.",en:"Design of a Blackboard-style learning management platform. Course and resource management, online assignments and exams with anti-cheating, forums and messaging, dashboards and reporting, SSO authentication. GDPR compliant."},tags:['Web','LMS','SSO','RGPD']},
+  'bijoux':{title:{fr:'Boutique de bijoux',en:'Jewelry store'},img:'boutique-bijou1',imgs:['boutique-bijou1','boutique-bijou2'],link:'',desc:{fr:"Conception complète d'une boutique de bijoux en ligne sur WordPress avec le thème Kadence, par initiative personnelle. Design responsive, catalogue produits, tunnel d'achat et optimisation UX/UI de bout en bout.",en:"Full design of an online jewelry store on WordPress with the Kadence theme, personal initiative. Responsive design, product catalog, checkout funnel and end-to-end UX/UI optimization."},tags:['WordPress','UX/UI','E-commerce']},
+  'veloMax':{title:{fr:'VéloMax : Base de données',en:'VéloMax: Database'},link:'',desc:{fr:"Projet de base de données : modélisation (JMerise) et création d'une base relationnelle, puis développement d'une application console de gestion. Stack XAMPP / MariaDB avec menu de lancement.",en:"Database project: modeling (JMerise) and building a relational database, then developing a console management application. XAMPP / MariaDB stack with a launch menu."},tags:['SQL','MariaDB','JMerise']}
 
 };
 
@@ -298,14 +318,14 @@ function closeProject(){document.getElementById('projectModal').classList.remove
 
 /* ===== CERTIFICATIONS ===== */
 const certData={
-  'aws':{name:'AWS Cloud Foundations',org:'Amazon Web Services',id:'ID: f4bb5cf1-902a-4336-9372-0b41a9ac4d16',link:'https://www.credly.com/badges/f4bb5cf1-902a-4336-9372-0b41a9ac4d16',logo:'☁️',bg:'linear-gradient(135deg,#FF9900,#FF6600)',img:'cert-aws'},
-  'aigenai':{name:'AI & GenAI : Level 2',org:'Liora.io',id:'ID: b790e3cd-ee26-4cde-9efb-8b29a1a328ec',link:'https://files.datascientest.com/certification/b790e3cd-ee26-4cde-9efb-8b29a1a328ec.pdf',logo:'🤖',bg:'linear-gradient(135deg,#667eea,#764ba2)',img:'cert-aigenai'},
-  'prompt':{name:'Prompt Engineering Fundamentals',org:'Datascientest',id:'ID: 7ea44b89-fdaf-42fc-accb-836379ef2ef5',link:'https://files.datascientest.com/certification/7ea44b89-fdaf-42fc-accb-836379ef2ef5.pdf',logo:'⚡',bg:'linear-gradient(135deg,#06b6d4,#0284c7)',img:'cert-prompt'},
-  'structuring':{name:'Structuring Data & GenAI Tools',org:'OMNES Education',id:'OMNES Education, 2025',link:'#',logo:'📐',bg:'linear-gradient(135deg,#8b5cf6,#6d28d9)',img:'cert-structuring'},
-  'programming':{name:'Programming Niveau 1',org:'Datascientest',id:'ID: 6b58e001-7972-4f3e-988a-a7d7a9340ce9',link:'https://files.datascientest.com/certification/6b58e001-7972-4f3e-988a-a7d7a9340ce9.pdf',logo:'💻',bg:'linear-gradient(135deg,#10b981,#059669)',img:'cert-programming'},
-  'nocode':{name:'No Code Final : TechAway',org:'Datascientest × OMNES',id:'ID: 0c1a7a6f-c731-46c6-a80c-a54ca84a76f7',link:'https://files.datascientest.com/certification/0c1a7a6f-c731-46c6-a80c-a54ca84a76f7.pdf',logo:'🛠️',bg:'linear-gradient(135deg,#f59e0b,#d97706)',img:'cert-nocode'},
-  'sheets':{name:'Google Sheets Marketing',org:'Datascientest',id:'ID: b3bf7f96-c814-4058-9838-619b5288d174',link:'https://files.datascientest.com/certification/b3bf7f96-c814-4058-9838-619b5288d174.pdf',logo:'📊',bg:'linear-gradient(135deg,#22c55e,#16a34a)',img:'cert-market'},
-  'sheetsqcm':{name:'QCM Google Sheets : No Code TechAway Niv.1',org:'Datascientest',id:'ID: 48caed53-616a-406b-9a80-a274916807d8',link:'https://files.datascientest.com/certification/48caed53-616a-406b-9a80-a274916807d8.pdf',logo:'',bg:'linear-gradient(135deg,#ec4899,#be185d)',img:'cert-sheets'}
+  'aws':{name:'AWS Cloud Foundations',org:'Amazon Web Services',id:'ID: f4bb5cf1-902a-4336-9372-0b41a9ac4d16',link:'https://www.credly.com/badges/f4bb5cf1-902a-4336-9372-0b41a9ac4d16',bg:'linear-gradient(135deg,#FF9900,#FF6600)',img:'cert-aws'},
+  'aigenai':{name:'AI & GenAI : Level 2',org:'Liora.io',id:'ID: b790e3cd-ee26-4cde-9efb-8b29a1a328ec',link:'https://files.datascientest.com/certification/b790e3cd-ee26-4cde-9efb-8b29a1a328ec.pdf',bg:'linear-gradient(135deg,#667eea,#764ba2)',img:'cert-aigenai'},
+  'prompt':{name:'Prompt Engineering Fundamentals',org:'Datascientest',id:'ID: 7ea44b89-fdaf-42fc-accb-836379ef2ef5',link:'https://files.datascientest.com/certification/7ea44b89-fdaf-42fc-accb-836379ef2ef5.pdf',bg:'linear-gradient(135deg,#06b6d4,#0284c7)',img:'cert-prompt'},
+  'structuring':{name:'Structuring Data & GenAI Tools',org:'OMNES Education',id:'OMNES Education, 2025',link:'#',bg:'linear-gradient(135deg,#8b5cf6,#6d28d9)',img:'cert-structuring'},
+  'programming':{name:'Programming Niveau 1',org:'Datascientest',id:'ID: 6b58e001-7972-4f3e-988a-a7d7a9340ce9',link:'https://files.datascientest.com/certification/6b58e001-7972-4f3e-988a-a7d7a9340ce9.pdf',bg:'linear-gradient(135deg,#10b981,#059669)',img:'cert-programming'},
+  'nocode':{name:'No Code Final : TechAway',org:'Datascientest × OMNES',id:'ID: 0c1a7a6f-c731-46c6-a80c-a54ca84a76f7',link:'https://files.datascientest.com/certification/0c1a7a6f-c731-46c6-a80c-a54ca84a76f7.pdf',bg:'linear-gradient(135deg,#f59e0b,#d97706)',img:'cert-nocode'},
+  'sheets':{name:'Google Sheets Marketing',org:'Datascientest',id:'ID: b3bf7f96-c814-4058-9838-619b5288d174',link:'https://files.datascientest.com/certification/b3bf7f96-c814-4058-9838-619b5288d174.pdf',bg:'linear-gradient(135deg,#22c55e,#16a34a)',img:'cert-market'},
+  'sheetsqcm':{name:'QCM Google Sheets : No Code TechAway Niv.1',org:'Datascientest',id:'ID: 48caed53-616a-406b-9a80-a274916807d8',link:'https://files.datascientest.com/certification/48caed53-616a-406b-9a80-a274916807d8.pdf',bg:'linear-gradient(135deg,#ec4899,#be185d)',img:'cert-sheets'}
 };
 function openCert(key){
   const c=certData[key];
@@ -571,7 +591,7 @@ document.addEventListener('click',e=>{
     case 'chat-open':openChat();break;
     case 'chat-overlay':if(e.target===el)closeChat();break;
     case 'chat-close':closeChat();break;
-    case 'chat-send':sendMessage();break;
+    case 'chat-send':if(CHAT_FREE)sendMessage();break;
     case 'project':openProject(k);break;
     case 'strip':stripClick(el,k);break;
     case 'project-overlay':if(e.target===el)closeProject();break;
@@ -580,4 +600,4 @@ document.addEventListener('click',e=>{
     case 'cert-close':closeCert();break;
   }
 });
-document.getElementById('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing)sendMessage();});
+setupChatFooter();

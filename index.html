@@ -133,7 +133,8 @@ section{padding:90px 40px}
 .chatbot-preview-body .hint{font-size:.82rem;color:var(--soft);width:100%;margin-bottom:4px}
 .mini-chip{font-size:.76rem;background:color-mix(in srgb,var(--steel) 12%,var(--card));color:var(--steel);border:1px solid color-mix(in srgb,var(--steel) 30%,transparent);border-radius:50px;padding:6px 14px}
 
-.chat-messages{flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:12px;min-height:320px;max-height:420px;background:var(--card)}
+.chat-panel{background:var(--card);border-radius:26px;width:100%;max-width:600px;height:86vh;height:86dvh;max-height:720px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.45)}
+.chat-messages{flex:1 1 auto;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:12px;min-height:110px;background:var(--card)}
 .msg{max-width:82%;padding:13px 17px;border-radius:18px;font-size:.88rem;line-height:1.6;white-space:pre-wrap}
 .msg.bot{background:var(--surface-soft);color:var(--txt);align-self:flex-start;border-bottom-left-radius:4px;border:1px solid var(--line)}
 .msg.bot p{margin:0 0 9px}
@@ -142,7 +143,10 @@ section{padding:90px 40px}
 .msg.bot li{margin:3px 0}
 .msg.bot strong{color:var(--or-deep);font-weight:700}
 .msg.user{background:var(--grad);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
-.suggestions-row{padding:14px 22px;background:#faf8ff;border-top:1px solid #f0ebff;display:flex;flex-wrap:wrap;gap:8px}
+.suggestions-row{padding:14px 22px;background:#faf8ff;border-top:1px solid #f0ebff;display:flex;flex-wrap:wrap;gap:8px;flex-shrink:0;max-height:138px;overflow-y:auto}
+.chat-contact{flex-shrink:0;padding:14px 20px;background:var(--card);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.chat-contact p{flex:1 1 220px;margin:0;font-size:.85rem;line-height:1.5;color:var(--txt)}
+a.chat-send{display:inline-flex;align-items:center;justify-content:center;min-height:44px;text-decoration:none;white-space:nowrap}
 .suggestion{background:var(--card);color:var(--txt);border:1px solid var(--line);border-radius:50px;padding:8px 15px;font-size:.78rem;cursor:pointer;transition:.2s;font-weight:500}
 .suggestion:hover{background:var(--violet-navy);color:#fff}
 .chat-input-row{padding:16px 20px;background:var(--card);border-top:1px solid var(--line);display:flex;gap:10px}
@@ -477,7 +481,7 @@ footer .sig{color:var(--or);font-style:italic}
     <img width="800" height="800" src="img/kadi.webp?v=e50206f1" alt="Kadidiatou Ibrahima Bagayoko" class="hero-photo" fetchpriority="high">
   </div>
   <div class="hero-content">
-    <div class="badge"><span class="badge-dot"></span> <span data-fr="Disponible | Alternance Data & IA | Novembre 2026" data-en="Available | Data & AI Apprenticeship | November 2026">Disponible | Alternance Data & IA | Novembre 2026</span></div>
+    <div class="badge"><span class="badge-dot"></span> <span data-fr="Disponible dès maintenant | Alternance Data & IA" data-en="Available now | Data & AI Apprenticeship">Disponible dès maintenant | Alternance Data & IA</span></div>
     <h1>Kadidiatou <span class="grad">Ibrahima Bagayoko</span></h1>
     <div class="chips">
       <span class="chip" data-fr="Analyse de données" data-en="Data Analysis">Analyse de données</span>
@@ -486,10 +490,10 @@ footer .sig{color:var(--or);font-style:italic}
       <span class="chip" data-fr="Optimisation de processus" data-en="Process Optimization">Optimisation de processus</span>
       <span class="chip or" data-fr="Dev IA" data-en="AI Development">Dev IA</span>
     </div>
-    <p class="hero-sub" data-fr="Étudiante spécialisée en Data & Intelligence Artificielle à l'ECE Paris. J'analyse des données, je conçois des modèles de machine learning et je développe des solutions d'IA, de l'analyse du besoin à la conception technique." data-en="Student specialized in Data & Artificial Intelligence at ECE Paris. I analyze data, build machine learning models and develop AI solutions, from collection to deployment.">Étudiante spécialisée en Data & Intelligence Artificielle à l'ECE Paris. J'analyse des données, je conçois des modèles de machine learning et je développe des solutions d'IA, de l'analyse du besoin à la conception technique.</p>
+    <p class="hero-sub" data-fr="Étudiante spécialisée en Data & Intelligence Artificielle à l'ECE Paris. J'analyse des données, je conçois des modèles de machine learning et je développe des solutions d'IA, de l'analyse du besoin à la conception technique." data-en="Student specialized in Data & Artificial Intelligence at ECE Paris. I analyze data, build machine learning models and develop AI solutions, from needs analysis to technical design.">Étudiante spécialisée en Data & Intelligence Artificielle à l'ECE Paris. J'analyse des données, je conçois des modèles de machine learning et je développe des solutions d'IA, de l'analyse du besoin à la conception technique.</p>
     <div class="hero-btns">
       <a href="#chatbot" class="btn-or" data-fr="💬 Discuter avec mon IA" data-en="💬 Chat with my AI">💬 Discuter avec mon IA</a>
-      <a href="https://linkedin.com/in/kadi-bagayoko" target="_blank" rel="noopener noreferrer" class="btn-secondary"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18.34V9.99H5.67v8.35h2.67zM7 8.81a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1zm11.34 9.53v-4.58c0-2.45-1.31-3.59-3.06-3.59-1.41 0-2.04.78-2.39 1.32v-1.13h-2.67c.04.75 0 8.35 0 8.35h2.67v-4.66c0-.24.02-.48.09-.65.19-.48.62-.98 1.35-.98.96 0 1.34.73 1.34 1.79v4.5h2.67z"/></svg>LinkedIn</a>
+      <a href="https://www.linkedin.com/in/kadi-bagayoko" target="_blank" rel="noopener noreferrer" class="btn-secondary"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18.34V9.99H5.67v8.35h2.67zM7 8.81a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1zm11.34 9.53v-4.58c0-2.45-1.31-3.59-3.06-3.59-1.41 0-2.04.78-2.39 1.32v-1.13h-2.67c.04.75 0 8.35 0 8.35h2.67v-4.66c0-.24.02-.48.09-.65.19-.48.62-.98 1.35-.98.96 0 1.34.73 1.34 1.79v4.5h2.67z"/></svg>LinkedIn</a>
       <a href="https://github.com/Kadi2207" target="_blank" rel="noopener noreferrer" class="btn-secondary"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.7c-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.84c.85 0 1.71.12 2.51.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.82c0 .27.18.59.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>GitHub</a>
     </div>
     <div class="stats">
@@ -530,11 +534,11 @@ footer .sig{color:var(--or);font-style:italic}
 
 <!-- CHAT MODAL -->
 <div id="chatModal" class="modal-overlay" data-act="chat-overlay">
-  <div style="background:var(--card);border-radius:26px;width:100%;max-width:600px;max-height:86vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.45)">
+  <div class="chat-panel" role="dialog" aria-modal="true" aria-labelledby="chatTitle">
     <div class="chatbot-bar" style="flex-shrink:0">
       <div class="chatbot-avatar">🤖</div>
       <div class="chatbot-bar-info">
-        <h3 data-fr="Assistante de Kadidiatou" data-en="Kadidiatou's Assistant">Assistante de Kadidiatou</h3>
+        <h3 id="chatTitle" data-fr="Assistante de Kadidiatou" data-en="Kadidiatou's Assistant">Assistante de Kadidiatou</h3>
         <p><span class="online-dot"></span><span data-fr="En ligne | Répond en quelques secondes" data-en="Online | Responds in seconds">En ligne | Répond en quelques secondes</span></p>
       </div>
       <button data-act="chat-close" style="background:rgba(255,255,255,.2);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.1rem;color:#fff;margin-left:auto">✕</button>
@@ -543,9 +547,9 @@ footer .sig{color:var(--or);font-style:italic}
       <div class="msg bot" data-fr="Bonjour ! Je suis l'assistante virtuelle de Kadidiatou. Posez-moi vos questions sur son parcours, ses projets ou ses compétences." data-en="Hello! I'm Kadidiatou's virtual assistant. Ask me anything about her background, projects or skills.">Bonjour ! Je suis l'assistante virtuelle de Kadidiatou. Posez-moi vos questions sur son parcours, ses projets ou ses compétences.</div>
     </div>
     <div class="suggestions-row" id="suggestionsRow"></div>
-    <div class="chat-input-row">
-      <input class="chat-input" id="chatInput" maxlength="1000" placeholder="Posez votre question...">
-      <button class="chat-send" data-act="chat-send" data-fr="Envoyer" data-en="Send">Envoyer</button>
+    <div class="chat-contact" id="chatContact">
+      <p data-fr="Une autre question ? Écrivez-moi, Kadi vous répondra dans les plus brefs délais." data-en="Another question? Write to me, Kadi will get back to you as soon as possible.">Une autre question ? Écrivez-moi, Kadi vous répondra dans les plus brefs délais.</p>
+      <a class="chat-send" id="chatMail" href="mailto:kadibaga22@gmail.com" data-fr="Écrire à Kadi" data-en="Email Kadi">Écrire à Kadi</a>
     </div>
   </div>
 </div>
@@ -606,7 +610,7 @@ footer .sig{color:var(--or);font-style:italic}
     <div class="subhead reveal" data-fr="Autres réalisations" data-en="Other projects">Autres réalisations</div>
     <div class="strips reveal" id="strips">
       <div class="strip active" data-act="strip" data-key="candy" tabindex="0">
-        <span class="media-label">Candy</span><img data-img="projet-candy" alt="" loading="lazy" decoding="async">
+        <span class="media-label">Candy</span>
         <span class="strip-plus"></span><span class="strip-vert">Candy</span>
         <div class="strip-body"><h4 data-fr="CandyECE : Jeu en C" data-en="CandyECE: C game">CandyECE : Jeu en C</h4><p data-fr="Jeu Candy Crush en langage C : grille 15×15, 4 niveaux, score et sauvegarde." data-en="Candy Crush game in C: 15×15 grid, 4 levels, scoring and save.">Jeu Candy Crush en langage C : grille 15×15, 4 niveaux, score et sauvegarde.</p><span class="strip-cta" aria-label="Plus" data-fr-aria="Plus"></span></div>
       </div>
@@ -621,7 +625,7 @@ footer .sig{color:var(--or);font-style:italic}
         <div class="strip-body"><h4 data-fr="Boutique de bijoux" data-en="Jewelry store">Boutique de bijoux</h4><p data-fr="Site e-commerce complet sur WordPress (thème Kadence) : catalogue et tunnel d'achat." data-en="Full e-commerce site on WordPress (Kadence theme): catalog and checkout.">Site e-commerce complet sur WordPress (thème Kadence) : catalogue et tunnel d'achat.</p><span class="strip-cta" aria-label="Plus" data-fr-aria="Plus"></span></div>
       </div>
       <div class="strip" data-act="strip" data-key="veloMax" tabindex="0">
-        <span class="media-label">VéloMax</span><img data-img="projet-velomax" alt="" loading="lazy" decoding="async">
+        <span class="media-label">VéloMax</span>
         <span class="strip-plus"></span><span class="strip-vert">VéloMax</span>
         <div class="strip-body"><h4 data-fr="VéloMax : Base de données" data-en="VéloMax: Database">VéloMax : Base de données</h4><p data-fr="Modélisation et création d'une base relationnelle et d'une appli console de gestion." data-en="Modeling and building a relational database and a console management app.">Modélisation et création d'une base relationnelle et d'une appli console de gestion.</p><span class="strip-cta" aria-label="Plus" data-fr-aria="Plus"></span></div>
       </div>
@@ -671,7 +675,7 @@ footer .sig{color:var(--or);font-style:italic}
           <div><span class="exp-company">Consulat du Mali | Paris</span> <span class="exp-period" data-fr="Avril à Juin 2026" data-en="April to June 2026">Avril à Juin 2026</span></div>
           <ul class="exp-desc">
             <li data-fr="Immersion dans sept services consulaires, audit du site web (liens inactifs, incohérences tarifaires, accessibilité des documents) et recommandations numériques : refonte du site, chatbot multilingue, suivi des demandes de visa." data-en="Immersion in seven consular services, website audit (dead links, pricing inconsistencies, document accessibility) and digital recommendations: website redesign, multilingual chatbot, visa request tracking.">Immersion dans sept services consulaires, audit du site web (liens inactifs, incohérences tarifaires, accessibilité des documents) et recommandations numériques : refonte du site, chatbot multilingue, suivi des demandes de visa.</li>
-            <li data-fr="Conception d'une solution de gestion des associations et analyse de centaines de réponses d'enquête (Google Sheets, tableaux croisés dynamiques)." data-en="Design of an associations management solution and analysis of hundreds of survey responses (Google Sheets, pivot tables).">Conception d'une solution de gestion des associations et analyse de centaines de réponses d'enquête (Google Sheets, tableaux croisés dynamiques).</li>
+            <li data-fr="Conception d'une solution de gestion des associations et analyse de plus de 200 réponses d'enquête (Google Sheets, tableaux croisés dynamiques)." data-en="Design of an associations management solution and analysis of more than 200 survey responses (Google Sheets, pivot tables).">Conception d'une solution de gestion des associations et analyse de plus de 200 réponses d'enquête (Google Sheets, tableaux croisés dynamiques).</li>
             <li data-fr="Présentation des diagnostics et propositions au Consul Général et aux conseillers consulaires, lors de plusieurs séances." data-en="Presentation of diagnoses and proposals to the Consul General and consular advisors over several sessions.">Présentation des diagnostics et propositions au Consul Général et aux conseillers consulaires, lors de plusieurs séances.</li>
           </ul>
         </div>
@@ -801,11 +805,11 @@ footer .sig{color:var(--or);font-style:italic}
 <section id="contact">
   <div class="section-inner">
     <div class="section-tag" data-fr="Travaillons ensemble" data-en="Let's work together">Travaillons ensemble</div>
-    <h2 class="section-title" data-fr="Prête dès novembre 2026" data-en="Ready from November 2026">Prête dès novembre 2026</h2>
-    <p class="contact-sub" data-fr="Alternance Data & IA | Paris et Île-de-France | ECE Paris" data-en="Data & AI Apprenticeship | Paris region | ECE Paris">Alternance Data & IA | Paris et Île-de-France | ECE Paris</p>
+    <h2 class="section-title" data-fr="Disponible dès maintenant" data-en="Available now">Disponible dès maintenant</h2>
+    <p class="contact-sub" data-fr="Alternance Data & IA | Paris, Île-de-France, mobile partout en France | ECE Paris" data-en="Data & AI Apprenticeship | Paris, Île-de-France, mobile anywhere in France | ECE Paris">Alternance Data & IA | Paris, Île-de-France, mobile partout en France | ECE Paris</p>
     <div class="contact-btns">
       <a href="mailto:kadibaga22@gmail.com" class="btn-white"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5-8-5V6l8 5 8-5v2.24z"/></svg>kadibaga22@gmail.com</a>
-      <a href="https://linkedin.com/in/kadi-bagayoko" target="_blank" rel="noopener noreferrer" class="btn-outline-white"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18.34V9.99H5.67v8.35h2.67zM7 8.81a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1zm11.34 9.53v-4.58c0-2.45-1.31-3.59-3.06-3.59-1.41 0-2.04.78-2.39 1.32v-1.13h-2.67c.04.75 0 8.35 0 8.35h2.67v-4.66c0-.24.02-.48.09-.65.19-.48.62-.98 1.35-.98.96 0 1.34.73 1.34 1.79v4.5h2.67z"/></svg>LinkedIn</a>
+      <a href="https://www.linkedin.com/in/kadi-bagayoko" target="_blank" rel="noopener noreferrer" class="btn-outline-white"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18.34V9.99H5.67v8.35h2.67zM7 8.81a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1zm11.34 9.53v-4.58c0-2.45-1.31-3.59-3.06-3.59-1.41 0-2.04.78-2.39 1.32v-1.13h-2.67c.04.75 0 8.35 0 8.35h2.67v-4.66c0-.24.02-.48.09-.65.19-.48.62-.98 1.35-.98.96 0 1.34.73 1.34 1.79v4.5h2.67z"/></svg>LinkedIn</a>
       <a href="https://github.com/Kadi2207" target="_blank" rel="noopener noreferrer" class="btn-outline-white"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.7c-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.84c.85 0 1.71.12 2.51.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.82c0 .27.18.59.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>GitHub</a>
     </div>
   </div>

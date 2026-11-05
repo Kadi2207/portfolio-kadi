@@ -9,9 +9,12 @@
     "images": "node scripts/images.mjs",
     "kb": "node scripts/sync-kb.mjs",
     "preserve": "node scripts/sync-kb.mjs",
-    "serve": "node scripts/dev.mjs"
+    "serve": "node scripts/dev.mjs",
+    "check": "node scripts/check.mjs"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
+    "@playwright/test": "^1.56.1",
     "sharp": "0.35.5"
   }
 }

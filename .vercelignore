@@ -6,3 +6,7 @@ node_modules
 package-lock.json
 desktop.ini
 certs
+.github
+.gitignore
+.vercelignore
+.env.example

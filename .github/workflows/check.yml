@@ -1,0 +1,65 @@
+# Controle automatique du portfolio : chaque lundi a 7 h (heure de Paris en hiver), a chaque envoi sur main,
+# et a la demande (onglet Actions > Controle du portfolio > Run workflow).
+# En cas d'echec : GitHub t'envoie un email, et une "issue" d'alerte est ouverte dans le depot.
+name: Controle du portfolio
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: npm run check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Pas d'installation : le controle n'utilise que Node.
+      # SITE_URL est une variable du depot (Settings > Secrets and variables > Actions > Variables),
+      # a definir apres la mise en ligne : le controle verifie alors aussi le site en ligne et /api/health.
+      - run: node scripts/check.mjs
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+
+  secrets:
+    name: Recherche de secrets (gitleaks)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  alerte:
+    name: Ouvrir une alerte en cas d'echec
+    needs: [check, secrets]
+    if: failure() && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          TITLE="Alerte : le controle du portfolio a echoue"
+          if [ -z "$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[].number')" ]; then
+            gh issue create --title "$TITLE" --body "Le controle automatique a echoue. Details : $RUN_URL
+
+          Ouvre le lien, lis les lignes ECHEC, corrige, puis relance le controle (voir MAINTENANCE.md, section Lire une alerte). Ferme cette issue une fois le probleme regle."
+          else
+            echo "Une alerte est deja ouverte, pas de doublon."
+          fi

@@ -24,6 +24,15 @@ const ATTEMPT_TIMEOUT_MS = 12000; // par modele
 const DEADLINE_MS = 25000;        // pour toute la requete
 
 /* ---------- configuration ---------- */
+// Questions libres : fermees par defaut. Mettre CHAT_FREE_ENABLED=true sur Vercel pour les rouvrir.
+export function chatFreeEnabled() {
+  return String(process.env.CHAT_FREE_ENABLED || '').trim().toLowerCase() === 'true';
+}
+const FREE_OFF_MESSAGE = {
+  fr: 'Les questions libres sont désactivées. Utilisez les questions suggérées ou écrivez à kadibaga22@gmail.com.',
+  en: 'Free questions are disabled. Use the suggested questions or write to kadibaga22@gmail.com.',
+};
+
 export function modelList() {
   const list = [process.env.GROQ_MODEL || DEFAULT_MODEL, ...(process.env.GROQ_MODELS || '').split(',')]
     .map(s => s.trim())
@@ -181,6 +190,9 @@ export async function POST(request) {
     try { body = JSON.parse(raw); } catch { return json(400, { error: 'bad_request' }, origin); }
     const input = validate(body);
     if (!input) return json(400, { error: 'bad_request' }, origin);
+
+    // Interrupteur : questions libres fermees tant que CHAT_FREE_ENABLED ne vaut pas "true" (meme en appel direct).
+    if (!chatFreeEnabled()) return json(503, { error: 'disabled', message: FREE_OFF_MESSAGE[input.lang] }, origin);
 
     if (!process.env.GROQ_API_KEY) {
       console.warn('[chat] GROQ_API_KEY absente');

@@ -30,6 +30,22 @@ jobs:
         env:
           SITE_URL: ${{ vars.SITE_URL }}
 
+  tests:
+    name: Tests du site (Playwright)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
+        env:
+          CI: "true"
+
   secrets:
     name: Recherche de secrets (gitleaks)
     runs-on: ubuntu-latest
@@ -44,7 +60,7 @@ jobs:
 
   alerte:
     name: Ouvrir une alerte en cas d'echec
-    needs: [check, secrets]
+    needs: [check, tests, secrets]
     if: failure() && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:

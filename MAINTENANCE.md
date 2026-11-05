@@ -90,6 +90,20 @@ Vérifie ensuite `https://ton-domaine/api/health` : `"chatFree":true` et `"groqK
 
 Ne colle jamais la clé dans un fichier du projet autre que `.env.local`, dans un message ou dans une capture d'écran.
 
+## Changer l'adresse du site (domaine)
+
+L'adresse du site est écrite à un seul endroit, puis recopiée par un script dans la balise canonical, les balises de partage (LinkedIn, WhatsApp), le JSON-LD, sitemap.xml et robots.txt.
+
+1. Tape `npm run seo -- https://kadi-bagayoko.fr` (avec ton adresse, sans / à la fin).
+2. Tape `npm run check`, puis républie (voir plus bas).
+3. Dans Google Search Console, envoie `https://kadi-bagayoko.fr/sitemap.xml`.
+
+Le même script regénère l'image de partage `og.jpg` (1200 x 630) et les icônes à partir de `img/kadi.webp`.
+
+## Lancer les tests automatiques
+
+`npm test` ouvre le site dans un navigateur invisible et vérifie : aucune erreur console, langues et thèmes, les 8 certifications, les badges et la galerie, le chatbot, l'affichage à 390 px et le poids de la page. La première fois sur un nouvel ordinateur : `npx playwright install chromium`.
+
 ## Républier après une modification
 
 1. `npm run check` (doit finir par « Tout est en ordre »).

@@ -10,11 +10,13 @@
     "kb": "node scripts/sync-kb.mjs",
     "preserve": "node scripts/sync-kb.mjs",
     "serve": "node scripts/dev.mjs",
-    "check": "node scripts/check.mjs"
+    "check": "node scripts/check.mjs",
+    "seo": "node scripts/seo.mjs",
+    "test": "playwright test"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.11.0",
-    "@playwright/test": "^1.56.1",
+    "@axe-core/playwright": "4.11.0",
+    "@playwright/test": "1.56.1",
     "sharp": "0.35.5"
   }
 }

@@ -169,6 +169,14 @@ function toggleLang(){
   });
   renderSuggestions();
   updateMailto();
+  setHeadLang();
+}
+/* Titre, description et libelles ARIA dans la langue choisie */
+function setHeadLang(){
+  const t=document.querySelector('title'),d=document.querySelector('meta[name="description"]');
+  if(t){if(!t.dataset.frContent)t.dataset.frContent=t.textContent;document.title=t.dataset[currentLang+'Content']||document.title;}
+  if(d){if(!d.dataset.frContent)d.dataset.frContent=d.content;d.content=d.dataset[currentLang+'Content']||d.content;}
+  document.querySelectorAll('[data-fr-aria]').forEach(el=>{const v=el.getAttribute('data-'+currentLang+'-aria');if(v)el.setAttribute('aria-label',v);});
 }
 
 /* ===== CHATBOT ===== */
@@ -571,12 +579,43 @@ document.querySelectorAll('#navmenu a').forEach(a=>a.addEventListener('click',()
 function toggleTheme(){
   const cur=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
   document.documentElement.setAttribute('data-theme',cur);
+  syncThemeSwitch();
   try{localStorage.setItem('kb-theme',cur);}catch(e){}
 }
+function syncThemeSwitch(){const dark=document.documentElement.getAttribute('data-theme')==='dark';document.querySelectorAll('.theme-switch').forEach(b=>b.setAttribute('aria-checked',String(dark)));}
 (function(){
   let t='light';
   try{t=localStorage.getItem('kb-theme')|| (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');}catch(e){}
   document.documentElement.setAttribute('data-theme',t);
+  syncThemeSwitch();
+})();
+
+/* ===== CLAVIER : cartes cliquables (role=button) et modales (focus piege, Escape, retour du focus) ===== */
+document.addEventListener('keydown',e=>{
+  if((e.key==='Enter'||e.key===' ')&&e.target.matches&&e.target.matches('[role="button"][data-act]:not(button)')){e.preventDefault();e.target.click();}
+});
+(function(){
+  const closers={chatModal:closeChat,projectModal:closeProject,certModal:closeCert,gLight:()=>document.getElementById('gLight').classList.remove('open')};
+  const FOC='a[href],button:not([disabled]),input,textarea,select,iframe,[tabindex]:not([tabindex="-1"])';
+  const focusables=m=>[...m.querySelectorAll(FOC)].filter(el=>el.getClientRects().length&&getComputedStyle(el).visibility!=='hidden');
+  const stack=[];
+  for(const id of Object.keys(closers)){
+    const m=document.getElementById(id);if(!m)continue;
+    if(!m.hasAttribute('tabindex'))m.tabIndex=-1;
+    new MutationObserver(()=>{
+      const open=m.classList.contains('open'),i=stack.findIndex(s=>s.m===m);
+      if(open&&i<0){stack.push({m,back:document.activeElement});const f=focusables(m);(f[0]||m).focus({preventScroll:true});}
+      else if(!open&&i>=0){const s=stack.splice(i,1)[0];if(s.back&&s.back.focus)s.back.focus({preventScroll:true});}
+    }).observe(m,{attributes:true,attributeFilter:['class']});
+  }
+  document.addEventListener('keydown',e=>{
+    const top=stack[stack.length-1];if(!top)return;
+    if(e.key==='Escape'){e.preventDefault();closers[top.m.id]();return;}
+    if(e.key!=='Tab')return;
+    const f=focusables(top.m);if(!f.length){e.preventDefault();top.m.focus();return;}
+    const a=f[0],z=f[f.length-1],cur=document.activeElement;
+    if(!top.m.contains(cur)||(e.shiftKey&&cur===a)||(!e.shiftKey&&cur===z)){e.preventDefault();(e.shiftKey?z:a).focus();}
+  });
 })();
 renderSuggestions();
 

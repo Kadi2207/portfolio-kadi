@@ -64,6 +64,19 @@ for (const m of html.matchAll(/(?:src|href)="(?!https?:|mailto:|data:|#)([^"?]+)
   if (!fs.existsSync(path.join(ROOT, m[1]))) fail(`fichier local introuvable : ${m[1]}`);
 }
 
+// Referencement : canonical, sitemap, robots et JSON-LD pointent vers la meme adresse
+const canonical = (html.match(/<link rel="canonical" href="([^"]+)"/) || [])[1];
+if (!canonical) fail('balise canonical absente : lance "npm run seo"');
+else {
+  const sitemap = fs.existsSync(path.join(ROOT, 'sitemap.xml')) ? read('sitemap.xml') : '';
+  const robots = fs.existsSync(path.join(ROOT, 'robots.txt')) ? read('robots.txt') : '';
+  if (!sitemap.includes(`<loc>${canonical}</loc>`)) fail('sitemap.xml absent ou adresse differente de la canonical : lance "npm run seo"');
+  if (!robots.includes(`Sitemap: ${canonical}sitemap.xml`)) fail('robots.txt absent ou adresse differente : lance "npm run seo"');
+  if (!html.includes(`"url":"${canonical}"`)) fail('JSON-LD : url differente de la canonical : lance "npm run seo"');
+  if (SITE_URL && canonical !== SITE_URL + '/') warn(`la canonical (${canonical}) ne correspond pas a SITE_URL : lance "npm run seo -- ${SITE_URL}"`);
+}
+for (const f of ['og.jpg', 'favicon.svg', 'favicon-32.png', 'apple-touch-icon.png']) if (!fs.existsSync(path.join(ROOT, f))) fail(`${f} manquant : lance "npm run seo"`);
+
 // 4. Textes provisoires et secrets --------------------------------------------------------
 step('4. Textes provisoires et secrets');
 const front = { 'index.html': html, 'app.js': app };
@@ -92,7 +105,7 @@ if (!OFFLINE) {
   const urls = new Set([
     ...[...html.matchAll(/href="(https:[^"]+)"/g)].map(m => m[1]),
     ...[...app.matchAll(/link:'(https:[^']+)'/g)].map(m => m[1]),
-  ]);
+  ].filter(u => !canonical || !u.startsWith(canonical))); // l'adresse du site lui-meme est controlee en partie 7 (SITE_URL)
   await Promise.all([...urls].map(async u => {
     try {
       const r = await fetch(u, { redirect: 'follow', signal: AbortSignal.timeout(15000), headers: { 'User-Agent': 'Mozilla/5.0 (verification de liens du portfolio)' } });

@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preload" href="fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/mulish-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="images.json" as="fetch" crossorigin="anonymous">
-<title>Kadidiatou Ibrahima Bagayoko | Data & IA</title>
-<meta name="description" content="Portfolio de Kadidiatou Ibrahima Bagayoko, étudiante spécialisée en Data & Intelligence Artificielle à l'ECE Paris. Analyse de données, machine learning et solutions d'IA.">
 <style>
 /* Polices Fraunces et Mulish (SIL Open Font License), hebergees localement, sous-ensembles latin et latin-ext */
 @font-face {font-family:'Fraunces';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/fraunces-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;}
@@ -35,14 +33,14 @@
   --violet:#667eea; --violet2:#764ba2; --violet-deep:#1e3a5f; --violet-navy:#1e3a5f;
   --or:#c8901a; --or-clair:#e3b24a; --or-deep:#a6760f;
   --steel:#6485b5; --steel-soft:#8aa6cd;
-  --ink:#1a1a2e; --muted:#6b7280; --soft:#9ca3af;
+  --ink:#1a1a2e; --muted:#5f6673; --soft:#6b7280;
   --bg-soft:#faf6ef; --bg-soft2:#f5efe3; --border:#ece7db;
   --beige:#faf6ef; --beige2:#f3ecdd;
   --grad:#1e3a5f; --grad2:#16304f;
   --grad-or:#c8901a;
   /* surfaces sémantiques */
   --page:#ffffff; --surface:#ffffff; --surface-soft:#f6f1e8; --card:#ffffff; --dot:rgba(30,58,95,.16);
-  --txt:#1a1a2e; --txt-muted:#6b7280; --line:#ece7db; --chip-bg:#ffffff;
+  --txt:#1a1a2e; --txt-muted:#5f6673; --line:#ece7db; --chip-bg:#ffffff;
 }
 :root[data-theme="dark"]{
   --page:#13161d; --surface:#171b24; --surface-soft:#1b2029; --card:#1b2029; --dot:rgba(200,144,26,.14);
@@ -59,7 +57,27 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 /* ---------- NAV ---------- */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:color-mix(in srgb,var(--page) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between;transition:background .3s}
 nav .logo{font-family:'Fraunces',serif;font-weight:700;font-size:1.4rem;letter-spacing:.3px}
-nav .logo span{color:#1e3a5f}
+nav .logo span{color:var(--violet-navy)}
+/* Accessibilite : contrastes AA en sombre, focus visible, cibles tactiles de 44 px sans changer l'apparence */
+:root[data-theme="dark"] .btn-white{color:#1e3a5f}
+:root[data-theme="dark"] .mini-chip{color:var(--steel-soft)}
+/* Petits textes dores sur fond clair : or fonce pour le contraste AA (4,9:1 sur beige) */
+:root:not([data-theme="dark"]) .section-tag,:root:not([data-theme="dark"]) footer .sig,
+:root:not([data-theme="dark"]) .skill-group h4,:root:not([data-theme="dark"]) .lan-meta{color:#8a6210}
+/* Contrastes AA : etiquettes bleu acier et textes secondaires */
+:root:not([data-theme="dark"]) .tag,:root:not([data-theme="dark"]) .mini-chip{color:#48689a}
+:root[data-theme="dark"] .tag{color:var(--steel-soft)}
+/* Mode sombre : cartes et pastilles qui restaient sur fond clair avec un texte clair */
+:root[data-theme="dark"] .exp-desc{color:var(--txt-muted)}
+:root[data-theme="dark"] .lan-badge{background:var(--card);border-color:var(--line)}
+:root[data-theme="dark"] .lan-meta{color:var(--or-clair)}
+:root[data-theme="dark"] .skill-tag{background:var(--chip-bg);border-color:var(--line)}
+:root[data-theme="dark"] .exp-company{background:none;-webkit-text-fill-color:var(--or-clair);color:var(--or-clair)}
+:focus-visible{outline:2px solid var(--or);outline-offset:3px}
+nav ul a,.lang-btn,.g-tick{position:relative}
+nav ul a::after,.lang-btn::after{content:'';position:absolute;left:-4px;right:-4px;top:50%;height:44px;transform:translateY(-50%)}
+.g-tick::after{content:'';position:absolute;left:-3px;right:-3px;top:-20px;bottom:-20px}
+@media (pointer:coarse){.theme-switch{height:44px;padding:9px 3px}.ts-knob{top:9px}}
 nav .logo em{color:var(--or);font-style:normal}
 nav ul{list-style:none;display:flex;gap:22px;align-items:center}
 nav ul a{text-decoration:none;color:var(--muted);font-size:.88rem;transition:.2s;font-weight:500}
@@ -447,10 +465,27 @@ footer .sig{color:var(--or);font-style:italic}
 @media(max-width:900px){.lan-row{grid-template-columns:repeat(2,1fr);row-gap:40px}}
 @media(max-width:520px){.lan-row{grid-template-columns:1fr}}
 </style>
-<meta property="og:type" content="website"><meta property="og:title" content="Kadidiatou Ibrahima Bagayoko | Data &amp; IA"><meta property="og:description" content="Portfolio de Kadidiatou, étudiante Data &amp; Intelligence Artificielle à l'ECE Paris, en recherche d'alternance."><meta property="og:image" content="img/kadi.webp?v=e50206f1">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231e3a5f'/%3E%3Ctext x='32' y='44' font-size='36' text-anchor='middle' font-family='Georgia,serif' fill='%23e3b24a'%3EK%3C/text%3E%3C/svg%3E">
-<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#1e3a5f">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Kadidiatou Ibrahima Bagayoko","jobTitle":"Étudiante Data & Intelligence Artificielle, en recherche d'alternance","alumniOf":{"@type":"CollegeOrUniversity","name":"ECE Paris"},"knowsAbout":["Data analysis","Machine Learning","NLP","Python","Flask","Intelligence artificielle"],"sameAs":["https://www.linkedin.com/in/kadi-bagayoko","https://github.com/Kadi2207"]}</script>
+<!-- seo:start (genere par npm run seo, ne pas modifier a la main) -->
+<title data-en-content="Kadidiatou Ibrahima Bagayoko | Data &amp; AI">Kadidiatou Ibrahima Bagayoko | Data &amp; IA</title>
+<meta name="description" content="Portfolio de Kadidiatou Ibrahima Bagayoko, étudiante spécialisée en Data &amp; Intelligence Artificielle à l'ECE Paris. Analyse de données, machine learning et solutions d'IA." data-en-content="Portfolio of Kadidiatou Ibrahima Bagayoko, student specializing in Data &amp; Artificial Intelligence at ECE Paris. Data analysis, machine learning and AI solutions.">
+<link rel="canonical" href="https://portfolio-kadi.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://portfolio-kadi.vercel.app/">
+<meta property="og:site_name" content="Kadidiatou Ibrahima Bagayoko">
+<meta property="og:locale" content="fr_FR"><meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Kadidiatou Ibrahima Bagayoko | Data &amp; IA">
+<meta property="og:description" content="Portfolio de Kadidiatou, étudiante Data &amp; Intelligence Artificielle à l'ECE Paris, en recherche d'alternance.">
+<meta property="og:image" content="https://portfolio-kadi.vercel.app/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kadidiatou Ibrahima Bagayoko, Data &amp; IA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kadidiatou Ibrahima Bagayoko | Data &amp; IA">
+<meta name="twitter:description" content="Portfolio de Kadidiatou, étudiante Data &amp; Intelligence Artificielle à l'ECE Paris, en recherche d'alternance.">
+<meta name="twitter:image" content="https://portfolio-kadi.vercel.app/og.jpg">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1e3a5f">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Kadidiatou Ibrahima Bagayoko","url":"https://portfolio-kadi.vercel.app/","image":"https://portfolio-kadi.vercel.app/og.jpg","email":"mailto:kadibaga22@gmail.com","jobTitle":"Étudiante Data & Intelligence Artificielle, en recherche d'alternance","alumniOf":{"@type":"CollegeOrUniversity","name":"ECE Paris"},"address":{"@type":"PostalAddress","addressLocality":"Paris","addressRegion":"Île-de-France","addressCountry":"FR"},"knowsAbout":["Data analysis","Machine Learning","NLP","Python","Flask","Intelligence artificielle"],"sameAs":["https://www.linkedin.com/in/kadi-bagayoko","https://github.com/Kadi2207"]}</script>
+<!-- seo:end -->
 </head>
 <body>
 <div id="progress"></div>
@@ -465,7 +500,7 @@ footer .sig{color:var(--or);font-style:italic}
     <li><a href="#certifications" data-fr="Certifications" data-en="Certifications">Certifications</a></li>
     <li><a href="#competences" data-fr="Compétences" data-en="Skills">Compétences</a></li>
     <li><a href="#contact" data-fr="Contact" data-en="Contact">Contact</a></li>
-    <li><button class="theme-switch" data-act="theme" role="switch" aria-label="Basculer clair/sombre">
+    <li><button class="theme-switch" data-act="theme" role="switch" aria-checked="false" aria-label="Mode sombre" data-fr-aria="Mode sombre" data-en-aria="Dark mode">
       <span class="ts-knob"></span>
       <span class="ts-seg ts-light" data-fr="Clair" data-en="Light">Clair</span>
       <span class="ts-seg ts-dark" data-fr="Sombre" data-en="Dark">Sombre</span>
@@ -475,6 +510,7 @@ footer .sig{color:var(--or);font-style:italic}
 </nav>
 
 <!-- HERO -->
+<main id="main">
 <section class="hero">
   <div class="hero-photo-wrap">
     <div class="hero-photo-ring"></div>
@@ -513,7 +549,7 @@ footer .sig{color:var(--or);font-style:italic}
     <p style="color:var(--muted);margin-top:10px" data-fr="Un assistant qui répond à vos questions sur mon parcours, mes projets et mes compétences." data-en="An assistant that answers your questions about my background, projects and skills.">Un assistant qui répond à vos questions sur mon parcours, mes projets et mes compétences.</p>
   </div>
   <div class="chatbot-inner reveal">
-    <div class="chatbot-preview" data-act="chat-open">
+    <div class="chatbot-preview" tabindex="0" role="button" data-act="chat-open">
       <div class="chatbot-bar">
         <div class="chatbot-avatar">🤖</div>
         <div class="chatbot-bar-info">
@@ -541,7 +577,7 @@ footer .sig{color:var(--or);font-style:italic}
         <h3 id="chatTitle" data-fr="Assistante de Kadidiatou" data-en="Kadidiatou's Assistant">Assistante de Kadidiatou</h3>
         <p><span class="online-dot"></span><span data-fr="En ligne | Répond en quelques secondes" data-en="Online | Responds in seconds">En ligne | Répond en quelques secondes</span></p>
       </div>
-      <button data-act="chat-close" style="background:rgba(255,255,255,.2);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.1rem;color:#fff;margin-left:auto">✕</button>
+      <button data-act="chat-close" aria-label="Fermer" data-fr-aria="Fermer" data-en-aria="Close" style="background:rgba(255,255,255,.2);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.1rem;color:#fff;margin-left:auto">✕</button>
     </div>
     <div class="chat-messages" id="chatMessages">
       <div class="msg bot" data-fr="Bonjour ! Je suis l'assistante virtuelle de Kadidiatou. Posez-moi vos questions sur son parcours, ses projets ou ses compétences." data-en="Hello! I'm Kadidiatou's virtual assistant. Ask me anything about her background, projects or skills.">Bonjour ! Je suis l'assistante virtuelle de Kadidiatou. Posez-moi vos questions sur son parcours, ses projets ou ses compétences.</div>
@@ -565,7 +601,7 @@ footer .sig{color:var(--or);font-style:italic}
     </div>
     <div class="projects-grid four reveal">
 
-      <div class="project-card" data-act="project" data-key="tcim">
+      <div class="project-card" tabindex="0" role="button" data-act="project" data-key="tcim">
         <div class="card-media"><span class="media-label">TCIM</span><img data-img="projet-tcim" alt="" loading="lazy" decoding="async"></div>
         <div class="card-body">
           <div class="card-title" data-fr="Protection de données par IA : TCIM" data-en="AI Data Protection: TCIM">Protection de données par IA : TCIM</div>
@@ -575,7 +611,7 @@ footer .sig{color:var(--or);font-style:italic}
         </div>
       </div>
 
-      <div class="project-card" data-act="project" data-key="ecommerce">
+      <div class="project-card" tabindex="0" role="button" data-act="project" data-key="ecommerce">
         <div class="card-media"><span class="media-label">E-commerce</span><img data-img="projet-ecommerce" alt="" loading="lazy" decoding="async"></div>
         <div class="card-body">
           <div class="card-title" data-fr="Dashboard E-commerce Analytics" data-en="E-commerce Analytics Dashboard">Dashboard E-commerce Analytics</div>
@@ -585,7 +621,7 @@ footer .sig{color:var(--or);font-style:italic}
         </div>
       </div>
 
-      <div class="project-card" data-act="project" data-key="revops">
+      <div class="project-card" tabindex="0" role="button" data-act="project" data-key="revops">
         <div class="card-media"><span class="media-label">RevOps</span><img data-img="projet-revops" alt="" loading="lazy" decoding="async"></div>
         <div class="card-body">
           <div class="card-title" data-fr="Audit RevOps & Migration CRM" data-en="RevOps Audit & CRM Migration">Audit RevOps & Migration CRM</div>
@@ -595,7 +631,7 @@ footer .sig{color:var(--or);font-style:italic}
         </div>
       </div>
 
-      <div class="project-card" data-act="project" data-key="wmdp">
+      <div class="project-card" tabindex="0" role="button" data-act="project" data-key="wmdp">
         <div class="card-media"><span class="media-label">LLM</span><img data-img="projet-wmdp" alt="" loading="lazy" decoding="async"></div>
         <div class="card-body">
           <div class="card-title" data-fr="Évaluation de robustesse de LLMs" data-en="LLM Robustness Evaluation">Évaluation de robustesse de LLMs</div>
@@ -612,22 +648,22 @@ footer .sig{color:var(--or);font-style:italic}
       <div class="strip active" data-act="strip" data-key="candy" tabindex="0">
         <span class="media-label">Candy</span>
         <span class="strip-plus"></span><span class="strip-vert">Candy</span>
-        <div class="strip-body"><h4 data-fr="CandyECE : Jeu en C" data-en="CandyECE: C game">CandyECE : Jeu en C</h4><p data-fr="Jeu Candy Crush en langage C : grille 15×15, 4 niveaux, score et sauvegarde." data-en="Candy Crush game in C: 15×15 grid, 4 levels, scoring and save.">Jeu Candy Crush en langage C : grille 15×15, 4 niveaux, score et sauvegarde.</p><span class="strip-cta" aria-label="Plus" data-fr-aria="Plus"></span></div>
+        <div class="strip-body"><h4 data-fr="CandyECE : Jeu en C" data-en="CandyECE: C game">CandyECE : Jeu en C</h4><p data-fr="Jeu Candy Crush en langage C : grille 15×15, 4 niveaux, score et sauvegarde." data-en="Candy Crush game in C: 15×15 grid, 4 levels, scoring and save.">Jeu Candy Crush en langage C : grille 15×15, 4 niveaux, score et sauvegarde.</p><span class="strip-cta" aria-hidden="true"></span></div>
       </div>
       <div class="strip" data-act="strip" data-key="lms" tabindex="0">
         <span class="media-label">LMS</span><img data-img="projet-lms" alt="" loading="lazy" decoding="async">
         <span class="strip-plus"></span><span class="strip-vert">LMS</span>
-        <div class="strip-body"><h4 data-fr="Plateforme LMS" data-en="LMS Platform">Plateforme LMS</h4><p data-fr="Plateforme d'apprentissage type Blackboard : cours, examens, reporting, SSO." data-en="Blackboard-style learning platform: courses, exams, reporting, SSO.">Plateforme d'apprentissage type Blackboard : cours, examens, reporting, SSO.</p><span class="strip-cta" aria-label="Plus" data-fr-aria="Plus"></span></div>
+        <div class="strip-body"><h4 data-fr="Plateforme LMS" data-en="LMS Platform">Plateforme LMS</h4><p data-fr="Plateforme d'apprentissage type Blackboard : cours, examens, reporting, SSO." data-en="Blackboard-style learning platform: courses, exams, reporting, SSO.">Plateforme d'apprentissage type Blackboard : cours, examens, reporting, SSO.</p><span class="strip-cta" aria-hidden="true"></span></div>
       </div>
       <div class="strip" data-act="strip" data-key="bijoux" tabindex="0">
         <span class="media-label">Bijoux</span><img data-img="boutique-bijou1" alt="" loading="lazy" decoding="async">
         <span class="strip-plus"></span><span class="strip-vert">Bijoux</span>
-        <div class="strip-body"><h4 data-fr="Boutique de bijoux" data-en="Jewelry store">Boutique de bijoux</h4><p data-fr="Site e-commerce complet sur WordPress (thème Kadence) : catalogue et tunnel d'achat." data-en="Full e-commerce site on WordPress (Kadence theme): catalog and checkout.">Site e-commerce complet sur WordPress (thème Kadence) : catalogue et tunnel d'achat.</p><span class="strip-cta" aria-label="Plus" data-fr-aria="Plus"></span></div>
+        <div class="strip-body"><h4 data-fr="Boutique de bijoux" data-en="Jewelry store">Boutique de bijoux</h4><p data-fr="Site e-commerce complet sur WordPress (thème Kadence) : catalogue et tunnel d'achat." data-en="Full e-commerce site on WordPress (Kadence theme): catalog and checkout.">Site e-commerce complet sur WordPress (thème Kadence) : catalogue et tunnel d'achat.</p><span class="strip-cta" aria-hidden="true"></span></div>
       </div>
       <div class="strip" data-act="strip" data-key="veloMax" tabindex="0">
         <span class="media-label">VéloMax</span>
         <span class="strip-plus"></span><span class="strip-vert">VéloMax</span>
-        <div class="strip-body"><h4 data-fr="VéloMax : Base de données" data-en="VéloMax: Database">VéloMax : Base de données</h4><p data-fr="Modélisation et création d'une base relationnelle et d'une appli console de gestion." data-en="Modeling and building a relational database and a console management app.">Modélisation et création d'une base relationnelle et d'une appli console de gestion.</p><span class="strip-cta" aria-label="Plus" data-fr-aria="Plus"></span></div>
+        <div class="strip-body"><h4 data-fr="VéloMax : Base de données" data-en="VéloMax: Database">VéloMax : Base de données</h4><p data-fr="Modélisation et création d'une base relationnelle et d'une appli console de gestion." data-en="Modeling and building a relational database and a console management app.">Modélisation et création d'une base relationnelle et d'une appli console de gestion.</p><span class="strip-cta" aria-hidden="true"></span></div>
       </div>
     </div>
   </div>
@@ -635,8 +671,8 @@ footer .sig{color:var(--or);font-style:italic}
 
 <!-- MODAL PROJET -->
 <div id="projectModal" class="modal-overlay" data-act="project-overlay">
-  <div style="background:#fff;border-radius:24px;width:100%;max-width:700px;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.3)">
-    <button data-act="project-close" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,.95);border:none;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1.2rem;color:#666;z-index:2;box-shadow:0 2px 10px rgba(0,0,0,.1)">✕</button>
+  <div role="dialog" aria-modal="true" aria-labelledby="projTitle" style="background:#fff;border-radius:24px;width:100%;max-width:700px;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.3)">
+    <button data-act="project-close" aria-label="Fermer" data-fr-aria="Fermer" data-en-aria="Close" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,.95);border:none;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1.2rem;color:#666;z-index:2;box-shadow:0 2px 10px rgba(0,0,0,.1)">✕</button>
     <img id="projImg" alt="" decoding="async" style="width:100%;height:auto;display:none;border-radius:24px 24px 0 0;background:#f5f3ff">
     <div style="padding:32px">
       
@@ -740,7 +776,7 @@ footer .sig{color:var(--or);font-style:italic}
       <h2 class="section-title" data-fr="Galerie" data-en="Gallery">Gal<span class="grad">erie</span></h2>
     </div>
     <div class="reveal">
-      <div class="g-stage" id="gStage" tabindex="0" aria-label="Galerie photos"><div class="g-track" id="gTrack"></div></div>
+      <div class="g-stage" id="gStage" tabindex="0" role="region" aria-label="Galerie photos"><div class="g-track" id="gTrack"></div></div>
       <div class="g-bar" id="gBar">
         <button class="g-arrow" id="gPrev" aria-label="Précédent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
         <div class="g-count"><b id="gNow">01</b> / <span id="gTot">00</span></div>
@@ -751,11 +787,11 @@ footer .sig{color:var(--or);font-style:italic}
   </div>
 </section>
 
-<div class="g-light" id="gLight"><img id="gLightImg" alt=""></div>
+<div class="g-light" id="gLight" role="dialog" aria-modal="true" aria-label="Photo"><img id="gLightImg" alt=""></div>
 
 <!-- MODAL CERTIFICATION -->
 <div id="certModal" class="modal-overlay" data-act="cert-overlay">
-  <div style="background:var(--card);border-radius:24px;width:100%;max-width:860px;max-height:90vh;overflow:hidden;position:relative;display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,.3)">
+  <div role="dialog" aria-modal="true" aria-labelledby="cModalName" style="background:var(--card);border-radius:24px;width:100%;max-width:860px;max-height:90vh;overflow:hidden;position:relative;display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,.3)">
     <div style="padding:22px 26px;display:flex;align-items:center;gap:15px;border-bottom:1px solid var(--border);flex-shrink:0">
       <div id="cModalLogo" style="width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0"></div>
       <div style="flex:1">
@@ -764,7 +800,7 @@ footer .sig{color:var(--or);font-style:italic}
       </div>
       <div style="display:flex;gap:10px;align-items:center">
         <a id="cModalLink" href="#" target="_blank" rel="noopener noreferrer" style="background:var(--grad);color:#fff;padding:10px 18px;border-radius:50px;font-weight:700;text-decoration:none;font-size:.82rem;white-space:nowrap" data-fr="Ouvrir PDF →" data-en="Open PDF →">Ouvrir PDF →</a>
-        <button data-act="cert-close" style="background:#f5f5f5;border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.1rem;color:#666">✕</button>
+        <button data-act="cert-close" aria-label="Fermer" data-fr-aria="Fermer" data-en-aria="Close" style="background:#f5f5f5;border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.1rem;color:#666">✕</button>
       </div>
     </div>
     <div id="cModalId" style="padding:8px 26px;background:#fafafa;font-size:.74rem;color:#999;font-family:monospace;border-bottom:1px solid var(--border);flex-shrink:0"></div>
@@ -814,6 +850,8 @@ footer .sig{color:var(--or);font-style:italic}
     </div>
   </div>
 </section>
+
+</main>
 
 <footer>
   © 2026 Kadidiatou Ibrahima Bagayoko | Data & Intelligence Artificielle | ECE Paris<br>

@@ -10,3 +10,7 @@ certs
 .gitignore
 .vercelignore
 .env.example
+tests
+playwright.config.js
+test-results
+playwright-report

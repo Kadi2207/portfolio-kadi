@@ -194,6 +194,68 @@ test('chatbot : reponse predefinie sans reseau et bouton email FR/EN', async ({ 
   expect(decodeURIComponent(await mail.getAttribute('href'))).toContain('subject=Question from your portfolio');
 });
 
+test('chatbot : bouton FR | EN, messages re-rendus sans reseau, choix garde pour la session', async ({ page }) => {
+  let apiCalls = 0;
+  await page.route('**/api/**', r => { apiCalls++; return r.abort(); });
+  await page.goto('/');
+  await page.locator('[data-act="chat-open"]').first().click();
+  const fr = page.locator('[data-act="chat-lang"][data-lang="fr"]'), en = page.locator('[data-act="chat-lang"][data-lang="en"]');
+  await expect(fr).toHaveAttribute('aria-pressed', 'true');
+  await expect(en).toHaveAttribute('aria-pressed', 'false');
+  // cibles tactiles d'au moins 44 px
+  for (const b of [fr, en]) { const r = await b.boundingBox(); expect(r.width).toBeGreaterThanOrEqual(44); expect(r.height).toBeGreaterThanOrEqual(44); }
+  await page.locator('.suggestions-row > *', { hasText: 'Pourquoi la recruter ?' }).click();
+  const answer = page.locator('#chatMessages .msg.bot').last();
+  await expect(answer).toContainText('Major de promotion', { timeout: 3000 });
+  // au clavier : Tab jusqu'au bouton EN puis Entree
+  await en.focus();
+  await page.keyboard.press('Enter');
+  await expect(en).toHaveAttribute('aria-pressed', 'true');
+  await expect(fr).toHaveAttribute('aria-pressed', 'false');
+  await expect(page.locator('.chat-panel')).toHaveAttribute('lang', 'en');
+  await expect(page.locator('#chatMessages .msg.user').last()).toHaveText('Why hire her?');
+  await expect(answer).toContainText('Top of the B2 class');
+  await expect(page.locator('#chatMessages .msg.bot').first()).toContainText("Hello! I'm Kadidiatou's virtual assistant");
+  await expect(page.locator('.suggestions-row > *').first()).toHaveText('Why hire her?');
+  await expect(page.locator('#chatTitle')).toHaveText("Kadidiatou's Assistant");
+  await expect(page.locator('[data-act="chat-close"]')).toHaveAttribute('aria-label', 'Close');
+  expect(decodeURIComponent(await page.locator('#chatMail').getAttribute('href'))).toContain('subject=Question from your portfolio');
+  // le site reste en francais, et changer la langue du site ne change plus celle du chat
+  await expect(page.locator('html')).toHaveAttribute('lang', 'fr');
+  await page.keyboard.press('Escape');
+  await page.locator('[data-act="lang"]').first().click();
+  await page.locator('[data-act="lang"]').first().click();
+  await expect(page.locator('html')).toHaveAttribute('lang', 'fr');
+  await expect(en).toHaveAttribute('aria-pressed', 'true');
+  await expect(answer).toContainText('Top of the B2 class');
+  // retour en francais : tout est re-rendu
+  await page.locator('[data-act="chat-open"]').first().click();
+  await fr.click();
+  await expect(answer).toContainText('Major de promotion');
+  await expect(page.locator('#chatMessages .msg.user').last()).toHaveText('Pourquoi la recruter ?');
+  // choix memorise pour la session
+  await en.click();
+  await page.reload();
+  await expect(page.locator('[data-act="chat-lang"][data-lang="en"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.suggestions-row > *').first()).toHaveText('Why hire her?');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'fr');
+  expect(apiCalls).toBe(0);
+});
+
+test('chatbot : sans choix dans le chat, la langue du site entraine celle du chat', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('[data-act="chat-open"]').first().click();
+  await page.locator('.suggestions-row > *', { hasText: 'Pourquoi la recruter ?' }).click();
+  const answer = page.locator('#chatMessages .msg.bot').last();
+  await expect(answer).toContainText('Major de promotion', { timeout: 3000 });
+  await page.keyboard.press('Escape');
+  await page.locator('[data-act="lang"]').first().click();
+  await expect(page.locator('[data-act="chat-lang"][data-lang="en"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.chat-panel')).toHaveAttribute('lang', 'en');
+  await expect(answer).toContainText('Top of the B2 class');
+  await expect(page.locator('#chatMessages .msg.user').last()).toHaveText('Why hire her?');
+});
+
 for (const vp of [{ width: 1366, height: 768 }, { width: 390, height: 844 }, { width: 360, height: 640 }]) {
   test(`chatbot : panneau entierement visible a ${vp.width}x${vp.height}`, async ({ page }) => {
     await page.setViewportSize(vp);

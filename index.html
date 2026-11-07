@@ -150,6 +150,14 @@ section{padding:90px 40px}
 .bot-ava{width:28px;height:28px;margin-top:2px}
 .msg-row{display:flex;align-items:flex-start;gap:9px;align-self:flex-start;max-width:90%}
 .msg-row .msg{max-width:none;min-width:0}
+/* Langue du chat (FR | EN), independante de celle du site ; cibles de 44 px */
+.chat-lang{margin-left:auto;display:flex;align-items:center;flex-shrink:0}
+.chat-lang button{min-width:44px;min-height:44px;padding:0 6px;background:none;border:0;border-radius:8px;color:rgba(255,255,255,.78);font:inherit;font-size:.82rem;font-weight:700;letter-spacing:.6px;cursor:pointer;position:relative}
+.chat-lang button:hover{color:#fff}
+.chat-lang button[aria-pressed="true"]{color:#fff}
+.chat-lang button[aria-pressed="true"]::after{content:'';position:absolute;left:13px;right:13px;bottom:9px;height:2px;border-radius:1px;background:#e3b24a}
+.chat-lang-sep{color:rgba(255,255,255,.45);font-size:.85rem}
+@media(max-width:480px){.chat-panel .chatbot-bar{padding:14px 12px 14px 16px;gap:10px}.chat-panel .chatbot-avatar{width:40px;height:40px}.chat-panel .chatbot-bar-info p{display:none}.chat-panel .chatbot-bar-info h3{font-size:.95rem;line-height:1.3}}
 .chatbot-bar-info h3{color:#fff;font-size:1rem;font-weight:700}
 .chatbot-bar-info p{color:rgba(255,255,255,.85);font-size:.8rem;margin-top:2px}
 .online-dot{width:8px;height:8px;background:#4ade80;border-radius:50%;display:inline-block;margin-right:6px;animation:pulse 2s infinite}
@@ -598,7 +606,8 @@ footer .sig{color:var(--or);font-style:italic}
         <h3 id="chatTitle" data-fr="Assistante de Kadidiatou" data-en="Kadidiatou's Assistant">Assistante de Kadidiatou</h3>
         <p><span class="online-dot"></span><span data-fr="En ligne | Répond en quelques secondes" data-en="Online | Responds in seconds">En ligne | Répond en quelques secondes</span></p>
       </div>
-      <button data-act="chat-close" aria-label="Fermer" data-fr-aria="Fermer" data-en-aria="Close" style="background:rgba(255,255,255,.2);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.1rem;color:#fff;margin-left:auto">✕</button>
+      <div class="chat-lang" role="group" aria-label="Langue du chat" data-fr-aria="Langue du chat" data-en-aria="Chat language"><button type="button" data-act="chat-lang" data-lang="fr" aria-pressed="true" lang="fr" aria-label="Français">FR</button><span class="chat-lang-sep" aria-hidden="true">|</span><button type="button" data-act="chat-lang" data-lang="en" aria-pressed="false" lang="en" aria-label="English">EN</button></div>
+      <button data-act="chat-close" aria-label="Fermer" data-fr-aria="Fermer" data-en-aria="Close" style="background:rgba(255,255,255,.2);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.1rem;color:#fff;flex-shrink:0">✕</button>
     </div>
     <div class="chat-messages" id="chatMessages">
       <div class="msg-row bot"><span class="bot-ava" aria-hidden="true"><svg focusable="false"><use href="#bot-ico"/></svg></span><div class="msg bot" data-fr="Bonjour ! Je suis l'assistante virtuelle de Kadidiatou. Posez-moi vos questions sur son parcours, ses projets ou ses compétences." data-en="Hello! I'm Kadidiatou's virtual assistant. Ask me anything about her background, projects or skills.">Bonjour ! Je suis l'assistante virtuelle de Kadidiatou. Posez-moi vos questions sur son parcours, ses projets ou ses compétences.</div></div>
@@ -841,30 +850,8 @@ footer .sig{color:var(--or);font-style:italic}
 
 <!-- COMPETENCES -->
 <section id="competences">
-  <div class="section-inner">
-    <div class="section-head reveal">
-      <div class="section-tag" data-fr="Stack technique" data-en="Technical stack">Stack technique</div>
-      <h2 class="section-title" data-fr="Compétences" data-en="Skills">Compé<span class="grad">tences</span></h2>
-    </div>
-    <div class="skills-grid reveal">
-      <div class="skill-group">
-        <h4 data-fr="Python & Machine Learning" data-en="Python & Machine Learning">Python & Machine Learning</h4>
-        <div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">Pandas</span><span class="skill-tag">NumPy</span><span class="skill-tag">Scikit-learn</span><span class="skill-tag">TensorFlow</span><span class="skill-tag">PyTorch</span><span class="skill-tag">NLP (TF-IDF)</span><span class="skill-tag" data-fr="Classification" data-en="Classification">Classification</span></div>
-      </div>
-      <div class="skill-group">
-        <h4 data-fr="Data & Business Intelligence" data-en="Data & Business Intelligence">Data & Business Intelligence</h4>
-        <div class="skill-tags"><span class="skill-tag">SQL</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">MySQL</span><span class="skill-tag">MongoDB</span><span class="skill-tag" data-fr="Excel avancé" data-en="Advanced Excel">Excel avancé</span><span class="skill-tag">Power BI</span><span class="skill-tag">Streamlit</span><span class="skill-tag">Plotly</span></div>
-      </div>
-      <div class="skill-group">
-        <h4 data-fr="IA générative" data-en="Generative AI">IA générative</h4>
-        <div class="skill-tags"><span class="skill-tag">LLMs</span><span class="skill-tag">Prompt Engineering</span><span class="skill-tag">Hugging Face</span><span class="skill-tag">API Groq</span><span class="skill-tag">Gemini</span><span class="skill-tag">NotebookLM</span><span class="skill-tag">AWS Cloud</span></div>
-      </div>
-      <div class="skill-group">
-        <h4 data-fr="Développement web" data-en="Web development">Développement web</h4>
-        <div class="skill-tags"><span class="skill-tag">HTML</span><span class="skill-tag">CSS</span><span class="skill-tag">JavaScript</span><span class="skill-tag">Java</span><span class="skill-tag">Flask</span><span class="skill-tag">API REST</span><span class="skill-tag">Git</span><span class="skill-tag">Docker</span><span class="skill-tag">WordPress</span></div>
-      </div>
-    </div>
-  </div>
+  
+  
 </section>
 
 <!-- CONTACT -->

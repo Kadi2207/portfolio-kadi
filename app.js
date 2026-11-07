@@ -47,14 +47,14 @@ function toggleLang(){
   currentLang = currentLang==='fr'?'en':'fr';
   document.querySelectorAll('.lang-btn').forEach(b=>b.textContent = currentLang==='fr'?'EN':'FR');
   document.documentElement.lang = currentLang;
-  chatHistory=[];
   document.querySelectorAll('[data-fr]').forEach(el=>{
     if(el.tagName==='INPUT'){el.placeholder = currentLang==='fr'?'Posez votre question...':'Ask your question...';}
     else{el.innerHTML = el.getAttribute('data-'+currentLang);}
   });
-  renderSuggestions();
-  updateMailto();
   setHeadLang();
+  // le chat suit la langue du site, sauf si le visiteur a choisi une langue dans le chat
+  if(!chatLangChoice)chatHistory=[];
+  applyChatLang();
 }
 /* Titre, description et libelles ARIA dans la langue choisie */
 function setHeadLang(){
@@ -72,7 +72,39 @@ const MAIL={to:'kadibaga22@gmail.com',
   fr:{subject:'Question depuis votre portfolio',body:"Bonjour Kadi,\n\nJ'ai consulté votre portfolio et j'aimerais vous poser une question :\n\n"},
   en:{subject:'Question from your portfolio',body:'Hello Kadi,\n\nI visited your portfolio and would like to ask you a question:\n\n'}};
 function mailtoHref(lang){const m=MAIL[lang];return 'mailto:'+MAIL.to+'?subject='+encodeURIComponent(m.subject)+'&body='+encodeURIComponent(m.body);}
-function updateMailto(){const a=document.getElementById('chatMail');if(a)a.href=mailtoHref(currentLang);}
+function updateMailto(){const a=document.getElementById('chatMail');if(a)a.href=mailtoHref(chatLang());}
+
+/* ===== LANGUE DU CHAT =====
+   Bouton FR | EN dans l'en-tete du chat, independant de la langue du site.
+   Choix garde pour la session (sessionStorage) ; sans choix, le chat suit la langue du site.
+   Les messages issus des questions suggerees gardent l'id de leur reponse (data-canned) :
+   ils sont re-rendus dans l'autre langue sans appel reseau. */
+let chatLangChoice=null;
+try{const v=sessionStorage.getItem('kb-chat-lang');if(v==='fr'||v==='en')chatLangChoice=v;}catch(e){}
+function chatLang(){return chatLangChoice||currentLang;}
+function setChatLang(l){
+  if(l!=='fr'&&l!=='en')return;
+  if(l!==chatLang())chatHistory=[];
+  chatLangChoice=l;
+  try{sessionStorage.setItem('kb-chat-lang',l);}catch(e){}
+  applyChatLang();
+}
+function applyChatLang(){
+  const modal=document.getElementById('chatModal');if(!modal)return;
+  const l=chatLang();
+  modal.querySelector('.chat-panel').lang=l;
+  modal.querySelectorAll('[data-fr]').forEach(el=>{if(el.tagName!=='INPUT')el.innerHTML=el.getAttribute('data-'+l);});
+  modal.querySelectorAll('[data-fr-aria]').forEach(el=>{const v=el.getAttribute('data-'+l+'-aria');if(v)el.setAttribute('aria-label',v);});
+  modal.querySelectorAll('.msg[data-canned]').forEach(el=>{
+    const id=el.dataset.canned;
+    if(el.dataset.kind==='q'){const s=SUGGESTIONS[l].find(x=>x[0]===id);if(s)el.textContent=s[1];}
+    else if(el.dataset.ready&&CANNED[l][id])el.innerHTML=mdToHtml(CANNED[l][id]);
+  });
+  const inp=document.getElementById('chatInput');if(inp)inp.placeholder=l==='fr'?'Posez votre question...':'Ask your question...';
+  modal.querySelectorAll('[data-act="chat-lang"]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===l)));
+  renderSuggestions();
+  updateMailto();
+}
 function setupChatFooter(){
   updateMailto();
   if(!CHAT_FREE)return;
@@ -81,13 +113,13 @@ function setupChatFooter(){
   row.innerHTML='<input class="chat-input" id="chatInput" maxlength="1000" data-fr="" data-en="" aria-label="Question"><button class="chat-send" data-act="chat-send" data-fr="Envoyer" data-en="Send"></button>';
   box.replaceWith(row);
   const input=row.querySelector('input'),btn=row.querySelector('button');
-  input.placeholder=currentLang==='fr'?'Posez votre question...':'Ask your question...';btn.textContent=currentLang==='fr'?'Envoyer':'Send';
+  input.placeholder=chatLang()==='fr'?'Posez votre question...':'Ask your question...';btn.textContent=chatLang()==='fr'?'Envoyer':'Send';
   input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing)sendMessage();});
 }
 function renderSuggestions(){
   const row=document.getElementById('suggestionsRow');
   row.innerHTML='';
-  SUGGESTIONS[currentLang].forEach(([id,q])=>{
+  SUGGESTIONS[chatLang()].forEach(([id,q])=>{
     const sp=document.createElement('span');
     sp.className='suggestion';sp.textContent=q;
     sp.onclick=()=>askCanned(id,q);
@@ -95,10 +127,11 @@ function renderSuggestions(){
   });
 }
 function askCanned(id,q){
-  addMessage(q,'user');
-  const bot=addMessage('…','bot');
-  chatHistory.push({role:'user',content:q},{role:'assistant',content:CANNED[currentLang][id]});
-  setTimeout(()=>{bot.innerHTML=mdToHtml(CANNED[currentLang][id]);const m=document.getElementById('chatMessages');m.scrollTop=m.scrollHeight;},550);
+  const u=addMessage(q,'user');u.dataset.canned=id;u.dataset.kind='q';
+  const bot=addMessage('…','bot');bot.dataset.canned=id;bot.dataset.kind='a';
+  chatHistory.push({role:'user',content:q},{role:'assistant',content:CANNED[chatLang()][id]});
+  // langue lue au moment de l'affichage : un changement de langue pendant l'attente est respecte
+  setTimeout(()=>{bot.dataset.ready='1';bot.innerHTML=mdToHtml(CANNED[chatLang()][id]);const m=document.getElementById('chatMessages');m.scrollTop=m.scrollHeight;},550);
 }
 function openChat(){document.getElementById('chatModal').classList.add('open');}
 function closeChat(){document.getElementById('chatModal').classList.remove('open');}
@@ -109,7 +142,8 @@ async function sendMessage(){
   const msg=input.value.trim();
   if(!msg)return;
   input.value='';
-  const hit=SUGGESTIONS[currentLang].find(x=>x[1].toLowerCase()===msg.toLowerCase());
+  const lang=chatLang();
+  const hit=SUGGESTIONS[lang].find(x=>x[1].toLowerCase()===msg.toLowerCase());
   if(hit){askCanned(hit[0],msg);return;}
   addMessage(msg,'user');
   const typing=addMessage('…','bot');
@@ -121,7 +155,7 @@ async function sendMessage(){
     const ctl=new AbortController();const to=setTimeout(()=>ctl.abort(),28000);
     const res=await fetch('/api/chat',{signal:ctl.signal,method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({lang:currentLang,message:msg.slice(0,1000),history:hist})
+      body:JSON.stringify({lang,message:msg.slice(0,1000),history:hist})
     });
     clearTimeout(to);
     if(!res.ok)throw new Error('HTTP '+res.status);
@@ -132,7 +166,7 @@ async function sendMessage(){
     typing.innerHTML=mdToHtml(reply);
   }catch(e){
     const quota=/429/.test(String(e.message));const slow=e.name==='AbortError'||/504/.test(String(e.message));
-    typing.textContent=currentLang==='fr'
+    typing.textContent=lang==='fr'
       ?(quota?"Beaucoup de questions en ce moment, réessayez dans une minute.":slow?"La réponse met trop de temps, réessayez.":"Le chat est momentanément indisponible. Les questions suggérées ci-dessous fonctionnent toujours. Pour toute autre question, contactez Kadidiatou directement : kadibaga22@gmail.com")
       :(quota?"Lots of questions right now, please try again in a minute.":slow?"The answer is taking too long, please try again.":"The chat is temporarily unavailable. The suggested questions below still work. For anything else, contact Kadidiatou directly: kadibaga22@gmail.com");
   }
@@ -521,6 +555,7 @@ document.addEventListener('click',e=>{
     case 'chat-open':openChat();break;
     case 'chat-overlay':if(e.target===el)closeChat();break;
     case 'chat-close':closeChat();break;
+    case 'chat-lang':setChatLang(el.dataset.lang);break;
     case 'chat-send':if(CHAT_FREE)sendMessage();break;
     case 'project':openProject(k);break;
     case 'strip':stripClick(el,k);break;
@@ -532,3 +567,4 @@ document.addEventListener('click',e=>{
   }
 });
 setupChatFooter();
+applyChatLang();

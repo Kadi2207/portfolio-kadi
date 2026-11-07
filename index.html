@@ -321,6 +321,9 @@ footer .sig{color:var(--or);font-style:italic}
 .g-light{position:fixed;inset:0;background:#0d1017;z-index:400;display:none;align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
 .g-light.open{display:flex}
 .g-light img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px}
+.g-light-close{position:fixed;top:max(14px,env(safe-area-inset-top));right:max(14px,env(safe-area-inset-right));z-index:2;width:44px;height:44px;border-radius:50%;border:none;background:#fff;color:#1a1a2e;font-size:1.15rem;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.35);transition:background .2s}
+.g-light-close:hover{background:#f1ece2}
+.g-light-close:focus-visible{outline:3px solid var(--or-clair);outline-offset:3px}
 @media(max-width:900px){.g-stage{height:380px;--gh:290px}.g-track{gap:24px}}
 
 
@@ -787,7 +790,7 @@ footer .sig{color:var(--or);font-style:italic}
   </div>
 </section>
 
-<div class="g-light" id="gLight" role="dialog" aria-modal="true" aria-label="Photo"><img id="gLightImg" alt=""></div>
+<div class="g-light" id="gLight" role="dialog" aria-modal="true" aria-label="Photo"><button type="button" class="g-light-close" data-act="light-close" aria-label="Fermer" data-fr-aria="Fermer" data-en-aria="Close">✕</button><img id="gLightImg" alt=""></div>
 
 <!-- MODAL CERTIFICATION -->
 <div id="certModal" class="modal-overlay" data-act="cert-overlay">

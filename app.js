@@ -1,7 +1,7 @@
 /* Portfolio de Kadidiatou Ibrahima Bagayoko : scripts du site (sortis de index.html pour la politique de securite CSP). */
 
 /* ===== LIGHTBOX ===== */
-window.LB={list:[],i:0};function openLB(list){LB.list=list;LB.i=0;var im=document.getElementById('gLightImg');im.src=list[0];document.getElementById('gLight').classList.add('open');im.style.cursor=list.length>1?'pointer':'';}document.getElementById('gLightImg').addEventListener('click',function(e){if(LB.list.length>1){e.stopPropagation();LB.i=(LB.i+1)%LB.list.length;this.src=LB.list[LB.i];}});
+window.LB={list:[],i:0};function closeLight(){document.getElementById('gLight').classList.remove('open');}function openLB(list){LB.list=list;LB.i=0;var im=document.getElementById('gLightImg');im.src=list[0];document.getElementById('gLight').classList.add('open');im.style.cursor=list.length>1?'pointer':'';}document.getElementById('gLightImg').addEventListener('click',function(e){if(LB.list.length>1){e.stopPropagation();LB.i=(LB.i+1)%LB.list.length;this.src=LB.list[LB.i];}});
 
 let currentLang = 'fr';
 /* ===== IMAGES : manifeste images.json (genere par "npm run images") =====
@@ -364,7 +364,7 @@ function closeCert(){
 (function(){
   const track=document.getElementById('gTrack'),stage=document.getElementById('gStage'),bar=document.getElementById('gBar');
   const ticks=document.getElementById('gTicks'),now=document.getElementById('gNow'),tot=document.getElementById('gTot');
-  const light=document.getElementById('gLight'),lightImg=document.getElementById('gLightImg');
+  const light=document.getElementById('gLight');
   const items=[];let idx=0;
   const pad=n=>String(n).padStart(2,'0');
   // Seules la carte active et ses 2 voisines de chaque cote (celles visibles a l'ecran) sont chargees,
@@ -387,10 +387,10 @@ function closeCert(){
     [...ticks.children].forEach((t,k)=>t.classList.toggle('on',k===idx));
     now.textContent=pad(idx+1);layout();loadNear();
   }
-  function openLight(src){lightImg.src=src;light.classList.add('open');}
-  light.onclick=()=>light.classList.remove('open');
+  // clic sur le fond (ou sur une photo seule) : ferme la visionneuse
+  light.onclick=closeLight;
   document.addEventListener('keydown',e=>{
-    if(e.key==='Escape')light.classList.remove('open');
+    if(e.key==='Escape')closeLight();
     const r=stage.getBoundingClientRect();
     if((e.key==='ArrowRight'||e.key==='ArrowLeft')&&r.top<innerHeight&&r.bottom>0&&document.activeElement===stage){go(idx+(e.key==='ArrowRight'?1:-1));}
   });
@@ -410,7 +410,7 @@ function closeCert(){
       im.dataset.src=info.sm||info.src;
       d.appendChild(im);
       // photo pleine taille chargee seulement a l'agrandissement
-      d.addEventListener('click',()=>{if(Math.abs(dx)>6)return;if(i===idx)openLight(info.src);else go(i);});
+      d.addEventListener('click',()=>{if(Math.abs(dx)>6)return;if(i===idx)openLB([info.src]);else go(i);});
       track.appendChild(d);items.push(d);
       const t=document.createElement('button');t.className='g-tick';t.setAttribute('aria-label','Photo '+(i+1));t.onclick=()=>go(i);ticks.appendChild(t);
     });
@@ -502,7 +502,7 @@ document.querySelectorAll('.cert-card').forEach(c=>c.addEventListener('keydown',
       const j=h('p'+n+v);
       b.style.cssText='--gf-slot:'+slot+';--gf-depth:'+(cnt-1-v)+';--gf-jx:'+((j-.5)*10).toFixed(2)+'px;--gf-jr:'+((h('r'+n+v)-.5)*3.2).toFixed(2)+'deg;z-index:'+(v+1);
       b.innerHTML=(src?'<img src="'+escHtml(src)+'" alt="" draggable="false">':'')+'<span class="gf-sheet-name">'+(src?'Photo '+(v+1):'Photos à venir')+'</span>';
-      if(src)b.onclick=()=>{document.getElementById('gLightImg').src=src;document.getElementById('gLight').classList.add('open');};
+      if(src)b.onclick=()=>openLB([src]);
       const slotEl=document.createElement('div');slotEl.setAttribute('role','listitem');slotEl.style.display='contents';slotEl.appendChild(b);fl.appendChild(slotEl);
     });
   });
@@ -595,7 +595,7 @@ document.addEventListener('keydown',e=>{
   if((e.key==='Enter'||e.key===' ')&&e.target.matches&&e.target.matches('[role="button"][data-act]:not(button)')){e.preventDefault();e.target.click();}
 });
 (function(){
-  const closers={chatModal:closeChat,projectModal:closeProject,certModal:closeCert,gLight:()=>document.getElementById('gLight').classList.remove('open')};
+  const closers={chatModal:closeChat,projectModal:closeProject,certModal:closeCert,gLight:closeLight};
   const FOC='a[href],button:not([disabled]),input,textarea,select,iframe,[tabindex]:not([tabindex="-1"])';
   const focusables=m=>[...m.querySelectorAll(FOC)].filter(el=>el.getClientRects().length&&getComputedStyle(el).visibility!=='hidden');
   const stack=[];
@@ -637,6 +637,7 @@ document.addEventListener('click',e=>{
     case 'project-close':closeProject();break;
     case 'cert-overlay':if(e.target===el)closeCert();break;
     case 'cert-close':closeCert();break;
+    case 'light-close':closeLight();break;
   }
 });
 setupChatFooter();

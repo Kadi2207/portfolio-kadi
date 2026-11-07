@@ -100,6 +100,61 @@ test('la galerie ouvre ses images', async ({ page }) => {
   await expect.poll(activeIndex).not.toBe(before);
 });
 
+for (const theme of ['light', 'dark']) {
+  test(`visionneuse : bouton fermer au clavier, Echap et clic sur le fond a 390 px (${theme})`, async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.emulateMedia({ colorScheme: theme });
+    await page.goto('/');
+    await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
+    const light = page.locator('#gLight'), close = page.locator('#gLight .g-light-close');
+
+    // Ouvre une photo (galerie ou badge) et verifie la croix : visible, dans l'ecran, focus dessus
+    async function openAndCheck(open) {
+      await open();
+      await expect(light).toHaveClass(/open/);
+      await expect(close).toBeVisible();
+      const b = await close.boundingBox();
+      expect(b.x).toBeGreaterThanOrEqual(0);
+      expect(b.y).toBeGreaterThanOrEqual(0);
+      expect(b.x + b.width).toBeLessThanOrEqual(390);
+      expect(b.width).toBeGreaterThanOrEqual(44);
+      await expect(close).toBeFocused();
+      await expect(close).toHaveAttribute('aria-label', 'Fermer');
+    }
+    const openGallery = async () => {
+      await page.locator('#gStage').scrollIntoViewIfNeeded();
+      await page.locator('#gStage .g-item.is-active').click();
+    };
+    const badge = page.locator('.lan .lan-badge').first();
+    const openBadge = async () => {
+      await badge.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(300);
+      await badge.click();
+    };
+
+    // 1. Entree sur la croix ferme et rend le focus au badge
+    await openAndCheck(openBadge);
+    await page.keyboard.press('Enter');
+    await expect(light).not.toHaveClass(/open/);
+    await expect(badge).toBeFocused();
+
+    // 2. Echap ferme
+    await openAndCheck(openGallery);
+    await page.keyboard.press('Escape');
+    await expect(light).not.toHaveClass(/open/);
+
+    // 3. Clic sur le fond (coin bas gauche, hors image) ferme
+    await openAndCheck(openGallery);
+    await page.mouse.click(4, 840);
+    await expect(light).not.toHaveClass(/open/);
+
+    // 4. Clic souris sur la croix ferme
+    await openAndCheck(openBadge);
+    await close.click();
+    await expect(light).not.toHaveClass(/open/);
+  });
+}
+
 test('chatbot : reponse predefinie sans reseau et bouton email FR/EN', async ({ page }) => {
   let apiCalls = 0;
   await page.route('**/api/**', r => { apiCalls++; return r.abort(); });

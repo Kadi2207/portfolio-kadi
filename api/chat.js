@@ -42,8 +42,8 @@ export function modelList() {
 
 function systemPrompt(lang) {
   const head = lang === 'fr'
-    ? "\n\nRÉPONSES DE RÉFÉRENCE (validées par Kadidiatou). Si la question correspond à l'un de ces sujets, reprends ces informations fidèlement, sans rien ajouter ni contredire, en raccourcissant si la question est plus étroite :\n"
-    : '\n\nREFERENCE ANSWERS (validated by Kadidiatou). If the question matches one of these topics, reuse this information faithfully, adding or contradicting nothing, shortening it if the question is narrower:\n';
+    ? "\n\nRÉPONSES DE RÉFÉRENCE (validées par Kadidiatou). Si la question correspond à l'un de ces sujets, reprends ces informations fidèlement, sans rien ajouter ni contredire, en 3 phrases maximum :\n"
+    : '\n\nREFERENCE ANSWERS (validated by Kadidiatou). If the question matches one of these topics, reuse this information faithfully, adding or contradicting nothing, in 3 sentences maximum:\n';
   return (lang === 'fr' ? KB_FR : KB_EN) + head + Object.values(CANNED[lang]).join('\n\n---\n\n');
 }
 
@@ -127,7 +127,7 @@ async function askGroq(messages, deadline) {
     const ctl = new AbortController();
     const timer = setTimeout(() => ctl.abort(), Math.min(ATTEMPT_TIMEOUT_MS, left));
     try {
-      const payload = { model, messages, temperature: 0.2, max_tokens: 1200 };
+      const payload = { model, messages, temperature: 0.2, max_tokens: 300 };
       if (/^openai\/gpt-oss/.test(model)) payload.reasoning_effort = 'low';
       const res = await fetch(GROQ_URL, {
         method: 'POST',

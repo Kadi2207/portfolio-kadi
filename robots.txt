@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://portfolio-kadi.vercel.app/sitemap.xml
+Sitemap: https://kadidiatou-bagayoko.vercel.app/sitemap.xml

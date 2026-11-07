@@ -14,17 +14,19 @@ import path from 'node:path';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const INDEX = path.join(ROOT, 'index.html');
-const DEFAULT_URL = 'https://portfolio-kadi.vercel.app'; // adresse provisoire, remplacee par le domaine final
+const DEFAULT_URL = 'https://kadidiatou-bagayoko.vercel.app'; // adresse Vercel actuelle, remplacee par le domaine final
 
+// Titre et description : FR affiches par defaut et repris par les balises de partage (Open Graph, Twitter),
+// EN appliques par app.js quand on bascule la langue.
+const NAME = 'Kadidiatou Bagayoko';
 const TEXT = {
   fr: {
-    title: 'Kadidiatou Ibrahima Bagayoko | Data & IA',
-    description: "Portfolio de Kadidiatou Ibrahima Bagayoko, étudiante spécialisée en Data & Intelligence Artificielle à l'ECE Paris. Analyse de données, machine learning et solutions d'IA.",
-    og: "Portfolio de Kadidiatou, étudiante Data & Intelligence Artificielle à l'ECE Paris, en recherche d'alternance.",
+    title: 'Kadidiatou Bagayoko | Data & IA | Portfolio',
+    description: "Portfolio de Kadidiatou Bagayoko, étudiante en Data & Intelligence Artificielle à l'ECE Paris. Projets en Python, SQL, machine learning, analyse de données et IA générative. Disponible pour une alternance Data & IA.",
   },
   en: {
-    title: 'Kadidiatou Ibrahima Bagayoko | Data & AI',
-    description: 'Portfolio of Kadidiatou Ibrahima Bagayoko, student specializing in Data & Artificial Intelligence at ECE Paris. Data analysis, machine learning and AI solutions.',
+    title: 'Kadidiatou Bagayoko | Data & AI | Portfolio',
+    description: 'Portfolio of Kadidiatou Bagayoko, Data & Artificial Intelligence student at ECE Paris. Projects in Python, SQL, machine learning, data analysis and generative AI. Available for a Data & AI apprenticeship.',
   },
 };
 
@@ -42,6 +44,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Kadidiatou Ibrahima Bagayoko',
+  alternateName: NAME,
   url: url + '/',
   image: url + '/og.jpg',
   email: 'mailto:kadibaga22@gmail.com',
@@ -58,15 +61,15 @@ const block = `<!-- seo:start (genere par npm run seo, ne pas modifier a la main
 <link rel="canonical" href="${url}/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="${url}/">
-<meta property="og:site_name" content="Kadidiatou Ibrahima Bagayoko">
+<meta property="og:site_name" content="${esc(NAME)}">
 <meta property="og:locale" content="fr_FR"><meta property="og:locale:alternate" content="en_US">
 <meta property="og:title" content="${esc(TEXT.fr.title)}">
-<meta property="og:description" content="${esc(TEXT.fr.og)}">
+<meta property="og:description" content="${esc(TEXT.fr.description)}">
 <meta property="og:image" content="${url}/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Kadidiatou Ibrahima Bagayoko, Data &amp; IA">
+<meta property="og:image:alt" content="${esc(NAME)}, Data &amp; IA">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(TEXT.fr.title)}">
-<meta name="twitter:description" content="${esc(TEXT.fr.og)}">
+<meta name="twitter:description" content="${esc(TEXT.fr.description)}">
 <meta name="twitter:image" content="${url}/og.jpg">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">

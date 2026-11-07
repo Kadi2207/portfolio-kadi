@@ -24,10 +24,14 @@ test('le site charge sans erreur console', async ({ page }) => {
 test('les deux langues basculent (textes, lang, titre)', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('html')).toHaveAttribute('lang', 'fr');
-  await expect(page).toHaveTitle(/Data & IA/);
+  await expect(page).toHaveTitle('Kadidiatou Bagayoko | Data & IA | Portfolio');
+  const desc = page.locator('meta[name="description"]');
+  await expect(desc).toHaveAttribute('content', /^Portfolio de Kadidiatou Bagayoko, étudiante en Data & Intelligence Artificielle/);
+  await expect(page.locator('meta[property="og:title"]')).toHaveAttribute('content', 'Kadidiatou Bagayoko | Data & IA | Portfolio');
   await page.locator('[data-act="lang"]').first().click();
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-  await expect(page).toHaveTitle(/Data & AI/);
+  await expect(page).toHaveTitle('Kadidiatou Bagayoko | Data & AI | Portfolio');
+  await expect(desc).toHaveAttribute('content', /^Portfolio of Kadidiatou Bagayoko, Data & Artificial Intelligence student/);
   await expect(page.locator('#contact .section-title')).toHaveText('Available now');
   await expect(page.locator('#collaborer h2')).toHaveText('I turn data into levers for decision-making and business needs into Data & AI solutions.');
   await expect(page.locator('#collaborer a[href="#contact"]')).toHaveText('Get in touch');

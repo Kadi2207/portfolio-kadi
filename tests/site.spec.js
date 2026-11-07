@@ -29,8 +29,23 @@ test('les deux langues basculent (textes, lang, titre)', async ({ page }) => {
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
   await expect(page).toHaveTitle(/Data & AI/);
   await expect(page.locator('#contact .section-title')).toHaveText('Available now');
+  await expect(page.locator('#collaborer h2')).toHaveText('I turn data into levers for decision-making and business needs into Data & AI solutions.');
+  await expect(page.locator('#collaborer a[href="#contact"]')).toHaveText('Get in touch');
   await page.locator('[data-act="lang"]').first().click();
   await expect(page.locator('#contact .section-title')).toHaveText('Disponible dès maintenant');
+  await expect(page.locator('#collaborer h2')).toHaveText('Je transforme les données en leviers de décision et les besoins métier en solutions Data & IA.');
+  await expect(page.locator('#collaborer a[href="#contact"]')).toHaveText('Me contacter');
+});
+
+test('le bandeau Collaborer est juste avant Competences et mene a Contact', async ({ page }) => {
+  await page.goto('/');
+  expect(await page.evaluate(() => document.getElementById('competences').previousElementSibling.id)).toBe('collaborer');
+  const btn = page.locator('#collaborer a[href="#contact"]');
+  await btn.scrollIntoViewIfNeeded();
+  await btn.click();
+  await expect(page).toHaveURL(/#contact$/);
+  // Contact est en bas de page : on verifie que son titre est bien a l'ecran apres le defilement
+  await expect.poll(() => page.evaluate(() => { const r = document.querySelector('#contact .section-title').getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight; })).toBe(true);
 });
 
 test('les deux themes basculent', async ({ page }) => {

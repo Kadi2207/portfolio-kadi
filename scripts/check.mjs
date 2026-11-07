@@ -89,7 +89,7 @@ for (const f of ['index.html', 'app.js', 'api/chat.js', 'api/health.js', 'api/_l
 
 // 5. Typographie : tirets longs, points medians, emoji ---------------------------------
 step('5. Typographie');
-const ALLOWED_EMOJI = new Set(['\u{1F916}', '\u{1F4AC}', '©']); // robot du chatbot, bulle du bouton "Discuter avec mon IA", copyright
+const ALLOWED_EMOJI = new Set(['\u{1F4AC}', '©']); // bulle du bouton "Discuter avec mon IA", copyright (l'avatar du chatbot est un SVG)
 const NAMES = { '—': 'tiret long', '–': 'tiret moyen', '·': 'point median' };
 for (const [f, t] of Object.entries({ ...front, 'api/_lib/knowledge.js': kb })) {
   t.split('\n').forEach((line, i) => {

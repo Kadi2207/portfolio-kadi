@@ -142,7 +142,14 @@ section{padding:90px 40px}
 .chatbot-preview{cursor:pointer;border-radius:24px;overflow:hidden;box-shadow:0 8px 26px rgba(26,26,46,.1);transition:.3s;border:1px solid #e5ddc9}
 .chatbot-preview:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(26,26,46,.14)}
 .chatbot-bar{background:var(--grad);padding:22px 26px;display:flex;align-items:center;gap:15px}
-.chatbot-avatar{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+/* Avatar de l'assistante : trait or sur disque marine, identique en clair et en sombre (contraste 5,9:1) */
+.chatbot-avatar,.bot-ava{border-radius:50%;background:#1e3a5f;color:#e3b24a;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 0 1px rgba(227,178,74,.45)}
+.chatbot-avatar{width:56px;height:56px}
+.chatbot-avatar svg,.bot-ava svg{width:100%;height:100%;display:block}
+.chat-panel .chatbot-avatar{width:48px;height:48px}
+.bot-ava{width:28px;height:28px;margin-top:2px}
+.msg-row{display:flex;align-items:flex-start;gap:9px;align-self:flex-start;max-width:90%}
+.msg-row .msg{max-width:none;min-width:0}
 .chatbot-bar-info h3{color:#fff;font-size:1rem;font-weight:700}
 .chatbot-bar-info p{color:rgba(255,255,255,.85);font-size:.8rem;margin-top:2px}
 .online-dot{width:8px;height:8px;background:#4ade80;border-radius:50%;display:inline-block;margin-right:6px;animation:pulse 2s infinite}
@@ -500,6 +507,8 @@ footer .sig{color:var(--or);font-style:italic}
 <!-- seo:end -->
 </head>
 <body>
+<!-- Avatar de l'assistante (dessin original), reutilise par <use href="#bot-ico"> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="bot-ico" viewBox="5 1 38 38"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 10v4"/><rect x="14" y="14" width="20" height="17" rx="6"/><rect x="10.5" y="19" width="3.5" height="8" rx="1.75"/><rect x="34" y="19" width="3.5" height="8" rx="1.75"/><path d="M12.25 27v2.5a3.5 3.5 0 0 0 3.5 3.5H19"/></g><g fill="currentColor"><circle cx="24" cy="8.5" r="2.2"/><circle cx="19.5" cy="22.5" r="2.1"/><circle cx="28.5" cy="22.5" r="2.1"/><circle cx="20.3" cy="33" r="1.3"/></g></symbol></svg>
 <div id="progress"></div>
 
 <nav>
@@ -561,9 +570,9 @@ footer .sig{color:var(--or);font-style:italic}
     <p style="color:var(--muted);margin-top:10px" data-fr="Un assistant qui répond à vos questions sur mon parcours, mes projets et mes compétences." data-en="An assistant that answers your questions about my background, projects and skills.">Un assistant qui répond à vos questions sur mon parcours, mes projets et mes compétences.</p>
   </div>
   <div class="chatbot-inner reveal">
-    <div class="chatbot-preview" tabindex="0" role="button" data-act="chat-open">
+    <div class="chatbot-preview" tabindex="0" role="button" data-act="chat-open" aria-label="Ouvrir le chat avec l'assistante de Kadidiatou" data-fr-aria="Ouvrir le chat avec l'assistante de Kadidiatou" data-en-aria="Open the chat with Kadidiatou's assistant">
       <div class="chatbot-bar">
-        <div class="chatbot-avatar">🤖</div>
+        <div class="chatbot-avatar" aria-hidden="true"><svg focusable="false"><use href="#bot-ico"/></svg></div>
         <div class="chatbot-bar-info">
           <h3 data-fr="Assistante de Kadidiatou" data-en="Kadidiatou's Assistant">Assistante de Kadidiatou</h3>
           <p><span class="online-dot"></span><span data-fr="En ligne | Cliquez pour discuter" data-en="Online | Click to chat">En ligne | Cliquez pour discuter</span></p>
@@ -584,7 +593,7 @@ footer .sig{color:var(--or);font-style:italic}
 <div id="chatModal" class="modal-overlay" data-act="chat-overlay">
   <div class="chat-panel" role="dialog" aria-modal="true" aria-labelledby="chatTitle">
     <div class="chatbot-bar" style="flex-shrink:0">
-      <div class="chatbot-avatar">🤖</div>
+      <div class="chatbot-avatar" aria-hidden="true"><svg focusable="false"><use href="#bot-ico"/></svg></div>
       <div class="chatbot-bar-info">
         <h3 id="chatTitle" data-fr="Assistante de Kadidiatou" data-en="Kadidiatou's Assistant">Assistante de Kadidiatou</h3>
         <p><span class="online-dot"></span><span data-fr="En ligne | Répond en quelques secondes" data-en="Online | Responds in seconds">En ligne | Répond en quelques secondes</span></p>
@@ -592,7 +601,7 @@ footer .sig{color:var(--or);font-style:italic}
       <button data-act="chat-close" aria-label="Fermer" data-fr-aria="Fermer" data-en-aria="Close" style="background:rgba(255,255,255,.2);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.1rem;color:#fff;margin-left:auto">✕</button>
     </div>
     <div class="chat-messages" id="chatMessages">
-      <div class="msg bot" data-fr="Bonjour ! Je suis l'assistante virtuelle de Kadidiatou. Posez-moi vos questions sur son parcours, ses projets ou ses compétences." data-en="Hello! I'm Kadidiatou's virtual assistant. Ask me anything about her background, projects or skills.">Bonjour ! Je suis l'assistante virtuelle de Kadidiatou. Posez-moi vos questions sur son parcours, ses projets ou ses compétences.</div>
+      <div class="msg-row bot"><span class="bot-ava" aria-hidden="true"><svg focusable="false"><use href="#bot-ico"/></svg></span><div class="msg bot" data-fr="Bonjour ! Je suis l'assistante virtuelle de Kadidiatou. Posez-moi vos questions sur son parcours, ses projets ou ses compétences." data-en="Hello! I'm Kadidiatou's virtual assistant. Ask me anything about her background, projects or skills.">Bonjour ! Je suis l'assistante virtuelle de Kadidiatou. Posez-moi vos questions sur son parcours, ses projets ou ses compétences.</div></div>
     </div>
     <div class="suggestions-row" id="suggestionsRow"></div>
     <div class="chat-contact" id="chatContact">

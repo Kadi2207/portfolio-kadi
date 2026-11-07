@@ -138,11 +138,17 @@ async function sendMessage(){
   }
   const m=document.getElementById('chatMessages');m.scrollTop=m.scrollHeight;
 }
+/* Bulle de message ; les reponses de l'assistante sont precedees de son avatar (symbole #bot-ico de index.html). */
 function addMessage(text,type){
   const m=document.getElementById('chatMessages');
   const d=document.createElement('div');
   d.className='msg '+type;d.textContent=text;
-  m.appendChild(d);m.scrollTop=m.scrollHeight;return d;
+  if(type==='bot'){
+    const row=document.createElement('div');row.className='msg-row bot';
+    row.innerHTML='<span class="bot-ava" aria-hidden="true"><svg focusable="false"><use href="#bot-ico"/></svg></span>';
+    row.appendChild(d);m.appendChild(row);
+  }else m.appendChild(d);
+  m.scrollTop=m.scrollHeight;return d;
 }
 /* Echappement HTML : tout texte venant du modele ou du manifeste passe par ici avant innerHTML. */
 function escHtml(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}

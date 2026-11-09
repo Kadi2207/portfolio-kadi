@@ -32,7 +32,9 @@ jobs:
 
   tests:
     name: Tests du site (Playwright)
-    runs-on: ubuntu-latest
+    # Image figee : "ubuntu-latest" passe a Ubuntu 26, ou "playwright install --with-deps" 1.56 echoue
+    # (CI rouge depuis le 7 novembre 2026). A revoir quand Playwright sera mis a jour.
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4

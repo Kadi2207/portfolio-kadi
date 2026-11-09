@@ -222,6 +222,28 @@ for (const width of [1280, 390]) {
   });
 }
 
+test('focus visible au clavier seulement : volets, galerie, dossiers de certification ; puces de galerie de 24 px', async ({ page }) => {
+  await page.goto('/');
+  await page.addStyleTag({ content: '*,*::before,*::after{transition:none!important}' });
+  const outline = sel => page.evaluate(s => { const e = document.querySelector(s); const cs = getComputedStyle(e); return cs.outlineStyle !== 'none' && parseFloat(cs.outlineWidth) > 0; }, sel);
+  // souris : aucun contour
+  const strip = page.locator('.strip').nth(1);
+  await strip.scrollIntoViewIfNeeded(); await strip.click();
+  expect(await outline('.strip:nth-child(2)')).toBe(false);
+  // clavier : contour sur chaque composant
+  for (const [sel, check] of [['.strip', '.strip'], ['#gStage', '#gStage'], ['.gf-root[data-cert] .gf-hit', '.gf-root[data-cert]']]) {
+    await page.locator('body').click({ position: { x: 1, y: 1 } });
+    await page.locator(sel).first().evaluate(e => e.scrollIntoView({ block: 'center' }));
+    await page.locator(sel).first().focus();
+    await page.keyboard.press('Shift+Tab'); await page.keyboard.press('Tab');
+    expect(await page.evaluate(s => document.activeElement === document.querySelector(s), sel), sel).toBe(true);
+    expect(await outline(check), check).toBe(true);
+  }
+  // zone cliquable des puces : au moins 24 px de large
+  const w = await page.locator('.g-tick').first().evaluate(e => parseFloat(getComputedStyle(e, '::after').width) || e.offsetWidth + parseFloat(getComputedStyle(e, '::after').left) * -2);
+  expect(w).toBeGreaterThanOrEqual(24);
+});
+
 test('la galerie ouvre ses images', async ({ page }) => {
   await page.goto('/');
   await page.locator('#gStage').scrollIntoViewIfNeeded();

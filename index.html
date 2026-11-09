@@ -76,7 +76,11 @@ nav .logo span{color:var(--violet-navy)}
 :focus-visible{outline:2px solid var(--or);outline-offset:3px}
 nav ul a,.lang-btn,.g-tick{position:relative}
 nav ul a::after,.lang-btn::after{content:'';position:absolute;left:-4px;right:-4px;top:50%;height:44px;transform:translateY(-50%)}
-.g-tick::after{content:'';position:absolute;left:-3px;right:-3px;top:-20px;bottom:-20px}
+.g-tick::after{content:'';position:absolute;left:-4px;right:-4px;top:-20px;bottom:-20px}
+/* Focus clavier (:focus-visible, jamais au toucher ni a la souris) sur les composants qui n'avaient pas de contour */
+.strip:focus-visible{outline:2px solid var(--or);outline-offset:3px}
+.g-stage:focus-visible{outline:2px solid var(--or);outline-offset:-3px}
+.gf-root:has(.gf-hit:focus-visible){outline:2px solid var(--or);outline-offset:4px;border-radius:18px}
 @media (pointer:coarse){.theme-switch{height:44px;padding:9px 3px}.ts-knob{top:9px}}
 nav .logo em{color:var(--or);font-style:normal}
 nav ul{list-style:none;display:flex;gap:22px;align-items:center}

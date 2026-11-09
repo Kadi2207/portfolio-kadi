@@ -265,10 +265,10 @@ function closeProject(){document.getElementById('projectModal').classList.remove
 
 /* ===== CERTIFICATIONS ===== */
 const certData={
-  'aws':{name:'AWS Cloud Foundations',org:'Amazon Web Services',id:'ID: f4bb5cf1-902a-4336-9372-0b41a9ac4d16',link:'https://www.credly.com/badges/f4bb5cf1-902a-4336-9372-0b41a9ac4d16',bg:'linear-gradient(135deg,#FF9900,#FF6600)',img:'cert-aws'},
+  'aws':{name:'AWS Cloud Foundations',org:'Amazon Web Services',id:'ID: f4bb5cf1-902a-4336-9372-0b41a9ac4d16',link:'https://www.credly.com/badges/f4bb5cf1-902a-4336-9372-0b41a9ac4d16',linkLabel:{fr:'Voir le badge Credly →',en:'View Credly badge →'},bg:'linear-gradient(135deg,#FF9900,#FF6600)',img:'cert-aws'},
   'aigenai':{name:'AI & GenAI : Level 2',org:'Liora.io',id:'ID: b790e3cd-ee26-4cde-9efb-8b29a1a328ec',link:'https://files.datascientest.com/certification/b790e3cd-ee26-4cde-9efb-8b29a1a328ec.pdf',bg:'linear-gradient(135deg,#667eea,#764ba2)',img:'cert-aigenai'},
   'prompt':{name:'Prompt Engineering Fundamentals',org:'Datascientest',id:'ID: 7ea44b89-fdaf-42fc-accb-836379ef2ef5',link:'https://files.datascientest.com/certification/7ea44b89-fdaf-42fc-accb-836379ef2ef5.pdf',bg:'linear-gradient(135deg,#06b6d4,#0284c7)',img:'cert-prompt'},
-  'structuring':{name:'Structuring Data & GenAI Tools',org:'OMNES Education',id:'OMNES Education, 2025',link:'#',bg:'linear-gradient(135deg,#8b5cf6,#6d28d9)',img:'cert-structuring'},
+  'structuring':{name:'Structuring Data & GenAI Tools',org:'OMNES Education',id:'OMNES Education, 2025',link:'',bg:'linear-gradient(135deg,#8b5cf6,#6d28d9)',img:'cert-structuring'},
   'programming':{name:'Programming Niveau 1',org:'Datascientest',id:'ID: 6b58e001-7972-4f3e-988a-a7d7a9340ce9',link:'https://files.datascientest.com/certification/6b58e001-7972-4f3e-988a-a7d7a9340ce9.pdf',bg:'linear-gradient(135deg,#10b981,#059669)',img:'cert-programming'},
   'nocode':{name:'No Code Final : TechAway',org:'Datascientest × OMNES',id:'ID: 0c1a7a6f-c731-46c6-a80c-a54ca84a76f7',link:'https://files.datascientest.com/certification/0c1a7a6f-c731-46c6-a80c-a54ca84a76f7.pdf',bg:'linear-gradient(135deg,#f59e0b,#d97706)',img:'cert-nocode'},
   'sheets':{name:'Google Sheets Marketing',org:'Datascientest',id:'ID: b3bf7f96-c814-4058-9838-619b5288d174',link:'https://files.datascientest.com/certification/b3bf7f96-c814-4058-9838-619b5288d174.pdf',bg:'linear-gradient(135deg,#22c55e,#16a34a)',img:'cert-market'},
@@ -280,14 +280,20 @@ function openCert(key){
   document.getElementById('cModalName').textContent=c.name;
   document.getElementById('cModalOrg').textContent=c.org;
   document.getElementById('cModalId').textContent=c.id;
-  document.getElementById('cModalLink').href=c.link;
+  // lien officiel : libelle "Ouvrir PDF" pour un PDF, libelle propre sinon (badge Credly) ; masque s'il n'y en a pas
+  const link=document.getElementById('cModalLink'),lbl=c.linkLabel||{fr:'Ouvrir PDF →',en:'Open PDF →'};
+  link.setAttribute('data-fr',lbl.fr);link.setAttribute('data-en',lbl.en);link.textContent=lbl[currentLang];
+  if(c.link)link.href=c.link;else link.removeAttribute('href');
+  // certificat en grand dans un nouvel onglet (image du site), masque si l'image manque
+  const tab=document.getElementById('cModalTab'),full=imgGet(c.img)?imgSrc(c.img):null;
+  if(full){tab.href=full;tab.style.display='';}else{tab.removeAttribute('href');tab.style.display='none';}
   const iframe=document.getElementById('cModalIframe'),cimg=document.getElementById('cModalImg');
   iframe.style.display='none';cimg.style.display='none';
-  const showPdf=()=>{cimg.style.display='none';if(c.link&&c.link!=='#'){iframe.src=c.link;iframe.style.display='block';}};
+  const showPdf=()=>{cimg.style.display='none';if(c.link){iframe.src=c.link;iframe.style.display='block';}};
   // image pleine taille chargee seulement a l'ouverture ; PDF officiel en secours
   cimg.onerror=showPdf;cimg.onload=null;
   if(imgGet(c.img)&&imgApply(cimg,c.img)){cimg.style.display='block';}else{showPdf();}
-  document.getElementById('cModalLink').style.display=(c.link&&c.link!=='#')?'':'none';
+  link.style.display=c.link?'':'none';
   document.getElementById('certModal').classList.add('open');
 }
 function closeCert(){

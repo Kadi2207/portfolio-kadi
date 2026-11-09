@@ -90,25 +90,33 @@ test('les deux themes basculent', async ({ page }) => {
   await expect(html).toHaveAttribute('data-theme', 'light');
 });
 
-test('les 8 certifications s\'ouvrent', async ({ page }) => {
+test('les 8 certifications s\'ouvrent au clic et au clavier, image chargee et lien nouvel onglet valide', async ({ page, request }) => {
   await page.goto('/');
   const roots = page.locator('.gf-root[data-cert]');
   await expect(roots).toHaveCount(8);
+  const modal = page.locator('#certModal'), tab = page.locator('#cModalTab'), link = page.locator('#cModalLink');
   for (let i = 0; i < 8; i++) {
-    const root = roots.nth(i);
-    await root.scrollIntoViewIfNeeded();
-    await root.locator('.gf-hit').click();
-    const modal = page.locator('#certModal');
-    await expect(modal).toHaveClass(/open/);
-    await expect(page.locator('#cModalName')).not.toBeEmpty();
-    // image du certificat chargee (ou PDF officiel en secours)
-    await expect.poll(() => page.evaluate(() => {
-      const im = document.getElementById('cModalImg'), fr = document.getElementById('cModalIframe');
-      return (im.style.display === 'block' && im.complete && im.naturalWidth > 0) || fr.style.display === 'block';
-    })).toBe(true);
-    await page.keyboard.press('Escape');
-    await expect(modal).not.toHaveClass(/open/);
+    const hit = roots.nth(i).locator('.gf-hit');
+    await hit.scrollIntoViewIfNeeded();
+    for (const how of ['clic', 'clavier']) {
+      if (how === 'clic') await hit.click(); else { await hit.focus(); await page.keyboard.press('Enter'); }
+      await expect(modal).toHaveClass(/open/);
+      await expect(page.locator('#cModalName')).not.toBeEmpty();
+      // image du certificat chargee (pas de PDF en secours : toutes les images existent)
+      await expect.poll(() => page.evaluate(() => { const im = document.getElementById('cModalImg'); return im.style.display === 'block' && im.complete && im.naturalWidth > 0; })).toBe(true);
+      // "Ouvrir dans un nouvel onglet" : visible, nouvel onglet, fichier existant
+      await expect(tab).toBeVisible();
+      await expect(tab).toHaveText('Ouvrir dans un nouvel onglet');
+      await expect(tab).toHaveAttribute('target', '_blank');
+      expect((await request.get(await tab.getAttribute('href'))).status()).toBe(200);
+      // aucun lien qui ne mene nulle part
+      const href = await link.getAttribute('href');
+      if (await link.isVisible()) expect(href).toMatch(/^https:\/\//); else expect(href).toBeNull();
+      await page.keyboard.press('Escape');
+      await expect(modal).not.toHaveClass(/open/);
+    }
   }
+  expect(await page.locator('a[href="#"]').count()).toBe(0);
 });
 
 test('les 4 badges Prise de parole ouvrent leur photo', async ({ page }) => {

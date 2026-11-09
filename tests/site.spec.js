@@ -308,6 +308,23 @@ test('chatbot : bouton FR | EN, messages re-rendus sans reseau, choix garde pour
   expect(apiCalls).toBe(0);
 });
 
+test('chatbot : Distinctions en 5 lignes (titre en gras, sans puce) et Sa formation sans Bac+5, FR et EN', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('[data-act="chat-open"]').first().click();
+  await page.locator('.suggestions-row > *', { hasText: 'Distinctions et engagement ?' }).click();
+  const answer = page.locator('#chatMessages .msg.bot').last();
+  await expect(answer.locator('p')).toHaveCount(5, { timeout: 3000 });
+  await expect(answer.locator('li')).toHaveCount(0);
+  await expect(answer.locator('p strong').first()).toHaveText('Major de promotion B2');
+  await expect(answer.locator('p').first()).toContainText('19/20 de moyenne');
+  await page.locator('[data-act="chat-lang"][data-lang="en"]').click();
+  await expect(answer.locator('p strong').last()).toHaveText('ECE Ambassador');
+  await page.locator('.suggestions-row > *', { hasText: 'Her education?' }).click();
+  const edu = page.locator('#chatMessages .msg.bot').last();
+  await expect(edu).toContainText('advanced English (C1)', { timeout: 3000 });
+  await expect(edu).not.toContainText('Bac+5');
+});
+
 test('chatbot : sans choix dans le chat, la langue du site entraine celle du chat', async ({ page }) => {
   await page.goto('/');
   await page.locator('[data-act="chat-open"]').first().click();

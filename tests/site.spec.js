@@ -35,7 +35,9 @@ test('les deux langues basculent (textes, lang, titre)', async ({ page }) => {
   await expect(page.locator('#contact .section-title')).toHaveText('Available now');
   await expect(page.locator('#collaborer h2')).toHaveText('I turn data into levers for decision-making and business needs into Data & AI solutions.');
   await expect(page.locator('#collaborer a[href="#contact"]')).toHaveText('Get in touch');
+  await expect(page.locator('footer .sig')).toHaveText('From business need to solution: understand, design, lead, deliver.');
   await page.locator('[data-act="lang"]').first().click();
+  await expect(page.locator('footer .sig')).toHaveText('Du besoin métier à la solution : comprendre, concevoir, piloter, réaliser.');
   await expect(page.locator('#contact .section-title')).toHaveText('Disponible dès maintenant');
   await expect(page.locator('#collaborer h2')).toHaveText('Je transforme les données en leviers de décision et les besoins métier en solutions Data & IA.');
   await expect(page.locator('#collaborer a[href="#contact"]')).toHaveText('Me contacter');

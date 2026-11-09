@@ -357,6 +357,12 @@ test('chatbot : Distinctions en 5 lignes (titre en gras, sans puce) et Sa format
   const edu = page.locator('#chatMessages .msg.bot').last();
   await expect(edu).toContainText('advanced English (C1)', { timeout: 3000 });
   await expect(edu).not.toContainText('Bac+5');
+  await expect(edu).not.toContainText('Embedding Lab');
+  await expect(edu.locator('p strong')).toHaveCount(6);
+  await expect(edu.locator('li')).toHaveCount(0);
+  await expect(edu).toContainText('19/20');
+  await page.locator('[data-act="chat-lang"][data-lang="fr"]').click();
+  await expect(edu.locator('p strong').nth(1)).toHaveText('Développement');
 });
 
 test('chatbot : sans choix dans le chat, la langue du site entraine celle du chat', async ({ page }) => {

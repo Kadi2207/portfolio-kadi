@@ -184,6 +184,14 @@
       "src": "img/projet-wmdp.webp?v=2afe52d7",
       "w": 900,
       "h": 900
+    },
+    "recommandation-femmes-audacieuses": {
+      "src": "img/recommandation-femmes-audacieuses.webp?v=d697d3fb",
+      "w": 657,
+      "h": 344,
+      "sm": "img/recommandation-femmes-audacieuses-sm.webp?v=d697d3fb",
+      "smw": 400,
+      "smh": 209
     }
   }
 }

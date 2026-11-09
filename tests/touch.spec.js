@@ -13,6 +13,7 @@ const TARGETS = [
   ['apercu du chat', '.chatbot-preview'],
   ['carte projet', '.project-card'],
   ['carte experience', '.exp-card'],
+  ['etiquette recommandation', '.rec-tag'],
   ['dossier de certification', '.gf-root[data-cert] .gf-hit'],
   ['fleche de la galerie', '.g-arrow'],
   ['bouton Me contacter', '.cta-band .btn-primary'],

@@ -189,6 +189,39 @@ for (const width of [360, 390, 1280]) {
   });
 }
 
+for (const width of [1280, 390]) {
+  test(`etiquette Recommandation : vignette entiere, placement, clic, Entree et Espace ouvrent la capture a ${width} px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 860 });
+    await page.goto('/');
+    const tag = page.locator('.rec-tag'), light = page.locator('#gLight'), img = page.locator('#gLightImg');
+    await tag.scrollIntoViewIfNeeded();
+    await expect.poll(() => tag.locator('img').evaluate(i => i.complete && i.naturalWidth > 0)).toBe(true);
+    // vignette entiere : ratio affiche = ratio reel (aucun rognage)
+    const r = await tag.locator('img').evaluate(i => ({ shown: i.offsetWidth / i.offsetHeight, real: i.naturalWidth / i.naturalHeight }));
+    expect(Math.abs(r.shown - r.real)).toBeLessThan(0.02);
+    await expect(tag).toHaveAttribute('aria-label', 'Agrandir la recommandation de la tutrice de stage');
+    await expect(tag.locator('.rec-kicker')).toHaveText('Recommandation');
+    await expect(tag.locator('.rec-cap')).toHaveText('Tutrice de stage, 2025');
+    // placement : a droite des puces sur ordinateur, sous les puces sur mobile ; environ 150 px de large
+    const pos = await page.evaluate(() => { const t = document.querySelector('.rec-tag'), ul = t.closest('.exp-card').querySelector('.exp-desc'); const a = t.getBoundingClientRect(), b = ul.getBoundingClientRect(); return { w: t.offsetWidth, right: a.left >= b.right - 1, below: a.top >= b.bottom - 1 }; });
+    expect(Math.abs(pos.w - 150)).toBeLessThanOrEqual(10);
+    if (width > 900) expect(pos.right).toBe(true); else expect(pos.below).toBe(true);
+    for (const how of ['clic', 'Enter', 'Space']) {
+      if (how === 'clic') await tag.click(); else { await tag.focus(); await page.keyboard.press(how); }
+      await expect(light, how).toHaveClass(/open/);
+      await expect.poll(() => img.evaluate(i => i.complete && i.naturalWidth > 0 && /recommandation-femmes-audacieuses/.test(i.src))).toBe(true);
+      const close = await page.locator('.g-light-close').boundingBox();
+      expect(close.width).toBeGreaterThanOrEqual(44);
+      expect(close.x + close.width).toBeLessThanOrEqual(width);
+      const whole = await img.evaluate(i => { const b = i.getBoundingClientRect(); return Math.abs(b.width / b.height - i.naturalWidth / i.naturalHeight) < 0.02 && b.left >= 0 && b.right <= innerWidth; });
+      expect(whole).toBe(true);
+      await page.keyboard.press('Escape');
+      await expect(light).not.toHaveClass(/open/);
+      await expect(tag).toBeFocused();
+    }
+  });
+}
+
 test('la galerie ouvre ses images', async ({ page }) => {
   await page.goto('/');
   await page.locator('#gStage').scrollIntoViewIfNeeded();

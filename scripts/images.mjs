@@ -35,6 +35,7 @@ const RULES = [
   [/^parole-\d+(-\d+)?$/, { full: 1600, sm: 900, box: true }],
   [/^cert-/, { full: 1400, sm: 700, trim: true }],
   [/^(projet|boutique)-/, { full: 900 }],
+  [/^recommandation-/, { full: 1400, sm: 400 }],
   [/.*/, { full: 1600 }],
 ];
 

@@ -15,7 +15,7 @@ function imgNames(re){return IMG.m?Object.keys(IMG.m).filter(k=>re.test(k)).sort
 function imgApply(el,name,small){const i=imgGet(name);if(!i)return false;const s=small&&i.sm;const w=s?i.smw:i.w,h=s?i.smh:i.h;if(w&&h){el.width=w;el.height=h;}el.src=s?i.sm:i.src;return true;}
 document.addEventListener('error',e=>{const t=e.target;if(t&&t.tagName==='IMG')t.style.visibility='hidden';},true);
 document.addEventListener('load',e=>{const t=e.target;if(t&&t.tagName==='IMG')t.style.visibility='';},true);
-IMG.ready.then(()=>document.querySelectorAll('img[data-img]').forEach(el=>{if(!imgApply(el,el.dataset.img))el.remove();}));
+IMG.ready.then(()=>document.querySelectorAll('img[data-img]').forEach(el=>{if(!imgApply(el,el.dataset.img,!!el.dataset.sm))el.remove();}));
 
 /* ===== QUESTIONS SUGGÉRÉES ===== */
 const CANNED={fr:{profil:`Kadidiatou Bagayoko évolue à l'intersection du business, de la data et de l'IA. Étudiante en 3ème année de Bachelor Intelligence Artificielle, spécialisation Data & IA à l'ECE Paris, et major de promotion B2, elle part du besoin métier et de l'audit des processus pour aller jusqu'au cadrage, au pilotage et à la réalisation technique : Python, SQL, Machine Learning, NLP et IA générative. Son objectif : relier enjeux business et possibilités technologiques pour livrer des solutions utiles et exploitables.`,
@@ -62,6 +62,7 @@ function setHeadLang(){
   if(t){if(!t.dataset.frContent)t.dataset.frContent=t.textContent;document.title=t.dataset[currentLang+'Content']||document.title;}
   if(d){if(!d.dataset.frContent)d.dataset.frContent=d.content;d.content=d.dataset[currentLang+'Content']||d.content;}
   document.querySelectorAll('[data-fr-aria]').forEach(el=>{const v=el.getAttribute('data-'+currentLang+'-aria');if(v)el.setAttribute('aria-label',v);});
+  document.querySelectorAll('[data-fr-alt]').forEach(el=>{const v=el.getAttribute('data-'+currentLang+'-alt');if(v)el.alt=v;});
 }
 
 /* ===== CHATBOT ===== */
@@ -615,6 +616,7 @@ document.addEventListener('click',e=>{
     case 'cert-overlay':if(e.target===el)closeCert();break;
     case 'cert-close':closeCert();break;
     case 'light-close':closeLight();break;
+    case 'rec-open':{const s=imgSrc('recommandation-femmes-audacieuses');if(s)openLB([s]);break;}
   }
 });
 setupChatFooter();

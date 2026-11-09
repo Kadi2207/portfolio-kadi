@@ -240,9 +240,19 @@ a.chat-send{display:inline-flex;align-items:center;justify-content:center;min-he
 .proj-points li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:6px;background:var(--or);border-radius:2px}
 .proj-points strong{color:#1a1a2e;font-weight:700}
 /* Citation de la tutrice : filet or fin, sans ombre */
-.exp-quote{margin-top:16px;padding:2px 0 2px 18px;border-left:2px solid var(--or)}
-.exp-quote p{font-size:.88rem;line-height:1.7;font-style:italic;color:var(--txt)}
-.exp-quote .exp-quote-src{font-style:normal;font-size:.76rem;line-height:1.5;color:var(--txt-muted);margin-top:8px}
+.rec-hang{flex:0 0 150px;margin-left:auto;display:flex;flex-direction:column;align-items:center}
+.rec-hook{width:10px;height:10px;border:2px solid var(--or);border-radius:50%}
+.rec-cord{width:2px;height:18px;background:var(--or)}
+.rec-tag{all:unset;box-sizing:border-box;position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;width:150px;padding:14px 10px 10px;background:var(--card);border:1px solid var(--line);border-radius:10px;text-align:center;cursor:zoom-in;transform:rotate(-2deg);transform-origin:50% 0;transition:transform .35s ease,opacity .2s}
+.rec-hole{position:absolute;left:50%;top:5px;width:22px;height:4px;margin-left:-11px;border-radius:2px;background:var(--line)}
+.rec-kicker{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--or-clair)}
+:root:not([data-theme="dark"]) .rec-kicker{color:#8a6210}
+.rec-img{display:block;width:100%;height:auto;border-radius:3px}
+.rec-cap{font-size:.7rem;line-height:1.3;color:var(--txt-muted)}
+.rec-tag:focus-visible{outline:2px solid var(--or);outline-offset:3px}
+@media (hover:hover) and (pointer:fine){.rec-tag:hover{transform:rotate(0)}}
+@media(prefers-reduced-motion:reduce){.rec-tag{transition:none}}
+@media(max-width:900px){.rec-hang{margin-left:0;align-self:flex-start}}
 
 /* ---------- SPEAKING ---------- */
 #speaking{background:var(--page)}
@@ -779,10 +789,16 @@ footer .sig{color:var(--or);font-style:italic}
             <li data-fr="Analyse du marché, de la concurrence et des audiences pour orienter la stratégie de l'accélérateur." data-en="Market, competitor and audience analysis to steer the accelerator's strategy.">Analyse du marché, de la concurrence et des audiences pour orienter la stratégie de l'accélérateur.</li>
             <li data-fr="Propositions validées par la CEO et planning éditorial de deux mois sur Notion, pour une hausse estimée de 30&#8239;% de l'engagement." data-en="Proposals approved by the CEO and a two-month editorial plan on Notion, for an estimated 30% increase in engagement.">Propositions validées par la CEO et planning éditorial de deux mois sur Notion, pour une hausse estimée de 30&#8239;% de l'engagement.</li>
           </ul>
-          <blockquote class="exp-quote">
-            <p data-fr="«&#8239;L'étudiante a été pleinement impliquée tout au long de son stage, en s'intégrant rapidement à notre équipe et en assumant ses missions avec sérieux et sens des responsabilités. Elle a démontré créativité, rigueur et une réelle capacité d'adaptation. Son apport a été précieux pour la structure et nous la recommandons sans réserve.&#8239;»" data-en="“The student was fully involved throughout her internship, quickly integrating into our team and carrying out her assignments with seriousness and a sense of responsibility. She demonstrated creativity, rigor and a genuine ability to adapt. Her contribution was valuable to the organization and we recommend her without reservation.”">«&#8239;L'étudiante a été pleinement impliquée tout au long de son stage, en s'intégrant rapidement à notre équipe et en assumant ses missions avec sérieux et sens des responsabilités. Elle a démontré créativité, rigueur et une réelle capacité d'adaptation. Son apport a été précieux pour la structure et nous la recommandons sans réserve.&#8239;»</p>
-            <p class="exp-quote-src" data-fr="Tutrice de stage, Femmes Audacieuses (2025). Référence disponible sur demande." data-en="Internship supervisor, Femmes Audacieuses (2025). Reference available on request.">Tutrice de stage, Femmes Audacieuses (2025). Référence disponible sur demande.</p>
-          </blockquote>
+        </div>
+        <!-- Etiquette suspendue : capture de la recommandation de la tutrice, agrandie au clic dans la visionneuse -->
+        <div class="rec-hang">
+          <span class="rec-hook" aria-hidden="true"></span><span class="rec-cord" aria-hidden="true"></span>
+          <button type="button" class="rec-tag" data-act="rec-open" aria-label="Agrandir la recommandation de la tutrice de stage" data-fr-aria="Agrandir la recommandation de la tutrice de stage" data-en-aria="Enlarge the internship supervisor's recommendation">
+            <span class="rec-hole" aria-hidden="true"></span>
+            <span class="rec-kicker" data-fr="Recommandation" data-en="Recommendation">Recommandation</span>
+            <img class="rec-img" data-img="recommandation-femmes-audacieuses" data-sm="1" loading="lazy" decoding="async" alt="Capture du commentaire de la tutrice de stage de Femmes Audacieuses sur le stage de Kadidiatou, avec le tampon de l'entreprise" data-fr-alt="Capture du commentaire de la tutrice de stage de Femmes Audacieuses sur le stage de Kadidiatou, avec le tampon de l'entreprise" data-en-alt="Screenshot of the Femmes Audacieuses internship supervisor's comment on Kadidiatou's internship, with the company stamp">
+            <span class="rec-cap" data-fr="Tutrice de stage, 2025" data-en="Internship supervisor, 2025">Tutrice de stage, 2025</span>
+          </button>
         </div>
       </div>
 

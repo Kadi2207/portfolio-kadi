@@ -523,7 +523,8 @@ footer .sig{color:var(--or);font-style:italic}
 .lan-badge:active{cursor:grabbing}
 .lan-badge:focus-visible{outline:2px solid var(--or);outline-offset:3px}
 .lan-hole{position:absolute;left:50%;top:12px;width:44px;height:8px;margin-left:-22px;border-radius:4px;background:var(--bg,#f5f0e8);box-shadow:inset 0 1px 2px rgba(0,0,0,.25)}
-.lan-photo{display:block;width:100%;aspect-ratio:4/3;border-radius:10px;background:var(--grad) center/cover no-repeat;margin-bottom:6px}
+/* Photo du badge : cadre carre commun, photo entiere (contain) sur fond uni, jamais rognee */
+.lan-photo{display:block;width:100%;aspect-ratio:1;border-radius:10px;background:var(--surface-soft) center/contain no-repeat;margin-bottom:6px}
 .lan-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;color:var(--violet-navy);line-height:1.2}
 .lan-meta{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--or-deep)}
 .lan-desc{font-size:.8rem;line-height:1.5;color:var(--txt-muted)}

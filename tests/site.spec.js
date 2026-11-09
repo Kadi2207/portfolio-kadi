@@ -167,6 +167,26 @@ test('les 4 badges Prise de parole ouvrent leur photo', async ({ page }) => {
   }
 });
 
+for (const width of [360, 390, 1280]) {
+  test(`badges Prise de parole : photo entiere (contain) dans un cadre carre commun a ${width} px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    await page.locator('.lan-rail').scrollIntoViewIfNeeded();
+    await expect.poll(() => page.evaluate(() => [...document.querySelectorAll('.lan-photo')].every(p => p.style.backgroundImage))).toBe(true);
+    // taille de mise en page (offsetWidth/Height) : le balancement des badges ne compte pas
+    const photos = await page.locator('.lan-photo').evaluateAll(els => els.map(p => ({ size: getComputedStyle(p).backgroundSize, bg: getComputedStyle(p).backgroundColor, ratio: p.offsetWidth / p.offsetHeight, h: p.offsetHeight })));
+    expect(photos).toHaveLength(4);
+    for (const p of photos) { expect(p.size).toBe('contain'); expect(Math.abs(p.ratio - 1)).toBeLessThan(0.02); }
+    expect(new Set(photos.map(p => p.h)).size).toBe(1);
+    // bandes : variable de fond du site (var(--surface-soft)), coherente dans les deux themes
+    for (const theme of ['light', 'dark']) {
+      await page.evaluate(t => document.documentElement.setAttribute('data-theme', t), theme);
+      const [bg, token] = await page.evaluate(() => { const d = document.createElement('div'); d.style.backgroundColor = 'var(--surface-soft)'; document.body.append(d); const t = getComputedStyle(d).backgroundColor; d.remove(); return [getComputedStyle(document.querySelector('.lan-photo')).backgroundColor, t]; });
+      expect(bg, theme).toBe(token);
+    }
+  });
+}
+
 test('la galerie ouvre ses images', async ({ page }) => {
   await page.goto('/');
   await page.locator('#gStage').scrollIntoViewIfNeeded();

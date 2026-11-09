@@ -562,6 +562,8 @@ test('/api/chat refuse les questions libres quand CHAT_FREE_ENABLED est faux (ap
   expect(await r.json()).toMatchObject({ error: 'disabled' });
   const h = await (await request.get('/api/health')).json();
   expect(h.chatFree).toBe(false);
+  // /api/health ne donne que l'etat : ni nom de modele ni nombre de modeles de secours
+  expect(Object.keys(h).sort()).toEqual(['chatFree', 'groqKey', 'status', 'time']);
 });
 
 for (const theme of ['light', 'dark']) {

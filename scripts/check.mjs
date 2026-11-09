@@ -130,7 +130,7 @@ if (SITE_URL) {
     const h = await getJson(SITE_URL + '/api/health');
     if (h.status !== 200 || h.body?.status !== 'ok') fail(`/api/health en ligne ne repond pas correctement (HTTP ${h.status})`);
     else if (h.body.chatFree && !h.body.groqKey) fail('/api/health en ligne : questions libres ouvertes mais cle Groq absente, voir MAINTENANCE.md');
-    else console.log(`   en ligne : OK, questions libres ${h.body.chatFree ? 'ouvertes' : 'fermees'}, modele ${h.body.model}, ${h.body.fallbacks} secours`);
+    else console.log(`   en ligne : OK, questions libres ${h.body.chatFree ? 'ouvertes' : 'fermees'}, cle Groq ${h.body.groqKey ? 'presente' : 'absente'}`);
   } catch (e) { fail(`site en ligne injoignable : ${SITE_URL} (${e.name})`); }
 } else {
   const port = 8200 + Math.floor(Math.random() * 500);

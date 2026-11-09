@@ -1,17 +1,15 @@
 // Fonction serverless Vercel : GET /api/health
-// Repond 200 et indique si la cle Groq est configuree, sans jamais la montrer.
+// Repond 200 et indique l'etat du service (questions libres ouvertes ou non, cle Groq presente ou non),
+// sans jamais montrer la cle ni le nom des modeles utilises.
 // Utilise par la surveillance (UptimeRobot) et par "npm run check".
 
-import { modelList, chatFreeEnabled } from './chat.js';
+import { chatFreeEnabled } from './chat.js';
 
 function body() {
-  const models = modelList();
   return JSON.stringify({
     status: 'ok',
     chatFree: chatFreeEnabled(),
     groqKey: Boolean(process.env.GROQ_API_KEY),
-    model: models[0],
-    fallbacks: models.length - 1,
     time: new Date().toISOString(),
   });
 }

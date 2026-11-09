@@ -122,6 +122,7 @@ test('les 8 certifications s\'ouvrent au clic et au clavier, image chargee et li
 // Fiches detaillees des projets : phrase d'introduction puis puces (intitule en gras), FR et EN
 const SHEETS = {
   tcim: { n: 6, fr: ['Chez Skills4Mind, Kadidiatou a coordonné', 'Classification intelligente', 'Distinction'], en: ['At Skills4Mind, Kadidiatou coordinated', 'Smart classification', 'Distinction'] },
+  ecommerce: { n: 7, fr: ['Dashboard interactif (Streamlit et Plotly)', 'Données', 'Limites'], en: ['Interactive dashboard (Streamlit and Plotly)', 'Data', 'Limits'] },
 };
 for (const [key, s] of Object.entries(SHEETS)) {
   test(`fiche detaillee du projet ${key} : introduction et puces en FR et EN`, async ({ page }) => {

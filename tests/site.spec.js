@@ -43,6 +43,23 @@ test('les deux langues basculent (textes, lang, titre)', async ({ page }) => {
   await expect(page.locator('#collaborer a[href="#contact"]')).toHaveText('Me contacter');
 });
 
+test('EN : badges, galerie et volets traduits (textes visibles et noms accessibles)', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('[data-act="lang"]').first().click();
+  const badges = page.locator('.lan-badge');
+  await expect(badges.nth(0)).toHaveAttribute('aria-label', 'Interview: AI & GenAI');
+  await expect(badges.nth(2)).toHaveAttribute('aria-label', 'ECE Ambassador');
+  await expect(badges.nth(3)).toHaveAttribute('aria-label', 'Top of class & Referent');
+  await expect(badges.nth(2).locator('.lan-meta')).toHaveText('Open days and forums');
+  await expect(page.locator('#gStage')).toHaveAttribute('aria-label', 'Photo gallery');
+  await expect(page.locator('#gPrev')).toHaveAttribute('aria-label', 'Previous');
+  await expect(page.locator('#gNext')).toHaveAttribute('aria-label', 'Next');
+  await page.locator('[data-act="lang"]').first().click();
+  await expect(badges.nth(2)).toHaveAttribute('aria-label', "Ambassadrice de l'ECE");
+  await expect(badges.nth(2).locator('.lan-meta')).toHaveText('Portes ouvertes et forums');
+  await expect(page.locator('#gPrev')).toHaveAttribute('aria-label', 'Précédent');
+});
+
 test('le bandeau Collaborer est juste avant Competences et mene a Contact', async ({ page }) => {
   await page.goto('/');
   expect(await page.evaluate(() => document.getElementById('competences').previousElementSibling.id)).toBe('collaborer');

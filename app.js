@@ -486,28 +486,28 @@ const revObs=new IntersectionObserver((entries)=>{
 },{threshold:0.12});
 document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
 
-/* ===== ANIMATIONS : compteurs ===== */
-const countObs=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){animateCount(e.target);countObs.unobserve(e.target);}
-  });
-},{threshold:0.5});
-document.querySelectorAll('[data-count]').forEach(el=>countObs.observe(el));
-
+/* ===== ANIMATIONS : compteurs =====
+   Les valeurs finales sont ecrites en dur dans index.html (lisibles sans JavaScript et par les robots).
+   Le decompte ne joue qu'avec JavaScript, jamais en prefers-reduced-motion, et finit sur le texte exact de la langue. */
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
+  const countObs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){animateCount(e.target);countObs.unobserve(e.target);}
+    });
+  },{threshold:0.5});
+  document.querySelectorAll('[data-count]').forEach(el=>countObs.observe(el));
+}
 function animateCount(el){
   const target=parseFloat(el.dataset.count);
-  const suffix=el.dataset.suffix||'';
-  const plain=el.dataset.plain;
-  const decimals=(el.dataset.count.split('.')[1]||'').length;
-  let start=0;const dur=1400;const t0=performance.now();
+  const decimals=el.dataset.plain?0:(el.dataset.count.split('.')[1]||'').length;
+  const final=()=>el.getAttribute('data-'+currentLang)||el.textContent;
+  // le nombre anime remplace celui du texte final ("8,91 M£", "£8.91M"...), au format de la langue
+  const fmt=v=>final().replace(/\d[\d\s.,  ]*\d|\d/,(decimals?v:Math.floor(v)).toLocaleString(currentLang==='en'?'en-GB':'fr-FR',{minimumFractionDigits:decimals,maximumFractionDigits:decimals}));
+  const dur=1400;const t0=performance.now();
   function step(now){
     const prog=Math.min((now-t0)/dur,1);
-    const eased=1-Math.pow(1-prog,3);
-    const val=target*eased;
-    if(plain){el.textContent=Math.floor(val).toLocaleString('fr-FR');}
-    else{el.textContent=val.toFixed(decimals).replace('.',',')+suffix;}
-    if(prog<1)requestAnimationFrame(step);
-    else{el.textContent=plain?target.toLocaleString('fr-FR'):target.toFixed(decimals).replace('.',',')+suffix;}
+    if(prog<1){el.textContent=fmt(target*(1-Math.pow(1-prog,3)));requestAnimationFrame(step);}
+    else el.textContent=final();
   }
   requestAnimationFrame(step);
 }

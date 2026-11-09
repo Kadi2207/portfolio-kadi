@@ -52,6 +52,31 @@ test('le bandeau Collaborer est juste avant Competences et mene a Contact', asyn
   await expect.poll(() => page.evaluate(() => { const r = document.querySelector('#contact .section-title').getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight; })).toBe(true);
 });
 
+const STATS_FR = ['8,91 M£', '397 884', '82,5 %'];
+const STATS_EN = ['£8.91M', '397,884', '82.5%'];
+const statTexts = page => page.locator('.stat-value[data-count]').allTextContents();
+
+test('compteurs du hero : valeurs finales sans JavaScript (aucun 0)', async ({ browser }) => {
+  const ctx = await browser.newContext({ javaScriptEnabled: false });
+  const page = await ctx.newPage();
+  await page.goto('/');
+  expect(await statTexts(page)).toEqual(STATS_FR);
+  await ctx.close();
+});
+
+test('compteurs du hero : aucun decompte en prefers-reduced-motion, valeurs EN apres bascule', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  for (let i = 0; i < 4; i++) { expect(await statTexts(page)).toEqual(STATS_FR); await page.waitForTimeout(150); }
+  await page.locator('[data-act="lang"]').first().click();
+  expect(await statTexts(page)).toEqual(STATS_EN);
+});
+
+test('compteurs du hero : avec animation, ils finissent sur la valeur exacte', async ({ page }) => {
+  await page.goto('/');
+  await expect.poll(() => statTexts(page), { timeout: 4000 }).toEqual(STATS_FR);
+});
+
 test('les deux themes basculent', async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'light' });
   await page.goto('/');

@@ -125,7 +125,21 @@ function renderSuggestions(){
     sp.onclick=()=>askCanned(id,q);
     row.appendChild(sp);
   });
+  updateSuggMore();
 }
+/* Fleche "plus de questions" : visible seulement s'il reste des questions a faire defiler */
+function updateSuggMore(){
+  const row=document.getElementById('suggestionsRow'),b=document.getElementById('suggMore');if(!row||!b)return;
+  const more=row.scrollHeight-row.clientHeight>1&&row.scrollTop+row.clientHeight<row.scrollHeight-1;
+  if(!more&&document.activeElement===b){const n=document.getElementById('chatMail')||document.querySelector('#chatModal [data-act="chat-close"]');if(n)n.focus({preventScroll:true});}
+  b.hidden=!more;
+}
+function scrollSugg(){
+  const row=document.getElementById('suggestionsRow');
+  row.scrollBy({top:Math.max(40,Math.round(row.clientHeight*.8)),behavior:'auto'});
+  updateSuggMore();
+}
+(function(){const row=document.getElementById('suggestionsRow');if(row)row.addEventListener('scroll',updateSuggMore,{passive:true});addEventListener('resize',updateSuggMore);})();
 function askCanned(id,q){
   const u=addMessage(q,'user');u.dataset.canned=id;u.dataset.kind='q';
   const bot=addMessage('…','bot');bot.dataset.canned=id;bot.dataset.kind='a';
@@ -133,7 +147,7 @@ function askCanned(id,q){
   // langue lue au moment de l'affichage : un changement de langue pendant l'attente est respecte
   setTimeout(()=>{bot.dataset.ready='1';bot.innerHTML=mdToHtml(CANNED[chatLang()][id]);const m=document.getElementById('chatMessages');m.scrollTop=m.scrollHeight;},550);
 }
-function openChat(){document.getElementById('chatModal').classList.add('open');}
+function openChat(){document.getElementById('chatModal').classList.add('open');updateSuggMore();}
 function closeChat(){document.getElementById('chatModal').classList.remove('open');}
 
 let chatHistory=[];
@@ -556,6 +570,7 @@ document.addEventListener('click',e=>{
     case 'chat-overlay':if(e.target===el)closeChat();break;
     case 'chat-close':closeChat();break;
     case 'chat-lang':setChatLang(el.dataset.lang);break;
+    case 'sugg-more':scrollSugg();break;
     case 'chat-send':if(CHAT_FREE)sendMessage();break;
     case 'project':openProject(k);break;
     case 'strip':stripClick(el,k);break;

@@ -271,6 +271,29 @@ for (const vp of [{ width: 1366, height: 768 }, { width: 390, height: 844 }, { w
   });
 }
 
+for (const theme of ['light', 'dark']) {
+  test(`chatbot : fleche de defilement des questions suggerees a 360 px (${theme})`, async ({ page }) => {
+    await page.setViewportSize({ width: 360, height: 640 });
+    await page.emulateMedia({ colorScheme: theme });
+    await page.goto('/');
+    await page.locator('[data-act="chat-open"]').first().click();
+    const row = page.locator('#suggestionsRow'), more = page.locator('#suggMore');
+    await expect(more).toBeVisible();
+    await expect(more).toHaveAttribute('aria-label', 'Voir plus de questions');
+    // au clavier : Entree fait defiler
+    await more.focus();
+    await page.keyboard.press('Enter');
+    await expect.poll(() => row.evaluate(r => r.scrollTop)).toBeGreaterThan(0);
+    // a la souris jusqu'en fin de course : la fleche disparait
+    for (let i = 0; i < 10 && await more.isVisible(); i++) await more.click();
+    await expect(more).toBeHidden();
+    expect(await row.evaluate(r => r.scrollTop + r.clientHeight >= r.scrollHeight - 1)).toBe(true);
+    // en remontant, elle revient
+    await row.evaluate(r => { r.scrollTop = 0; });
+    await expect(more).toBeVisible();
+  });
+}
+
 test('chatbot : reponse libre via /api/chat simule (questions libres rouvertes)', async ({ page }) => {
   // Simule CHAT_FREE=true dans app.js et une reponse du serveur
   await page.route('**/app.js', async r => {

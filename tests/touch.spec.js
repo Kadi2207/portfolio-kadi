@@ -70,6 +70,39 @@ for (const [name, device] of Object.entries(PROFILES)) {
         expect(moved).toEqual([]);
       });
     }
+    for (const width of [360, 390, 412]) {
+      test(`Autres realisations : chaque "+" affiche son detail en entier et le volet reste visible (${width} px)`, async ({ page }) => {
+        await page.setViewportSize({ width, height: device.viewport.height });
+        await prepare(page);
+        const strips = page.locator('.strip');
+        const n = await strips.count();
+        // le volet actif au chargement (Candy) est visible
+        expect((await strips.first().boundingBox()).height).toBeGreaterThan(200);
+        for (let k = 0; k < n; k++) {
+          const s = strips.nth(k);
+          await s.evaluate(el => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
+          await page.waitForTimeout(200);
+          if (!(await s.evaluate(el => el.classList.contains('active')))) await s.locator('.strip-plus').tap({ force: true });
+          await page.waitForTimeout(1200);
+          await expect(s).toHaveClass(/active/);
+          const box = await s.boundingBox(), body = await s.locator('.strip-body').boundingBox();
+          const vh = page.viewportSize().height;
+          expect(box.height, `volet ${k + 1} visible`).toBeGreaterThan(200);
+          expect(box.y, `volet ${k + 1} sous la barre de navigation`).toBeGreaterThanOrEqual(63);
+          expect(box.y + box.height).toBeLessThanOrEqual(vh);
+          expect(body.y).toBeGreaterThanOrEqual(box.y - 1);
+          expect(body.y + body.height).toBeLessThanOrEqual(box.y + box.height + 1);
+          await expect(s.locator('.strip-body h4')).not.toBeEmpty();
+          await expect(s.locator('.strip-body p')).not.toBeEmpty();
+          // le "+" du detail ouvre la fiche, qui se ferme par sa croix
+          await s.locator('.strip-cta').tap({ force: true });
+          await expect(page.locator('#projectModal')).toHaveClass(/open/);
+          await expect(page.locator('#projTitle')).not.toBeEmpty();
+          await page.locator('[data-act="project-close"]').tap();
+          await expect(page.locator('#projectModal')).not.toHaveClass(/open/);
+        }
+      });
+    }
     test('badges du rail : un tap ne les deplace pas (mouvement reduit, sans balancement)', async ({ page }) => {
       await page.emulateMedia({ reducedMotion: 'reduce' });
       await prepare(page);

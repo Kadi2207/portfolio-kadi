@@ -396,6 +396,13 @@ function closeCert(){
 function stripClick(el,key){
   if(el.classList.contains('active')){openProject(key);return;}
   document.querySelectorAll('.strip').forEach(x=>x.classList.remove('active'));el.classList.add('active');
+  // mobile (volets en colonne) : quand le volet du dessus se referme, le volet ouvert remonte ; on le ramene dans l'ecran
+  if(matchMedia('(max-width:900px)').matches){
+    const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+    let done=false;const go=()=>{if(done)return;done=true;el.removeEventListener('transitionend',onEnd);el.scrollIntoView({block:'nearest',behavior:rm?'auto':'smooth'});};
+    const onEnd=e=>{if(e.target===el&&e.propertyName==='height')go();};
+    if(rm)go();else{el.addEventListener('transitionend',onEnd);setTimeout(go,900);}
+  }
 }
 (function(){
   const strips=document.querySelectorAll('.strip');

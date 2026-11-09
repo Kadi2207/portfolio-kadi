@@ -282,7 +282,7 @@ test('chatbot : bouton FR | EN, messages re-rendus sans reseau, choix garde pour
   await expect(page.locator('#chatMessages .msg.user').last()).toHaveText('Why hire her?');
   await expect(answer).toContainText('Top of the B2 class');
   await expect(page.locator('#chatMessages .msg.bot').first()).toContainText("Hello! I'm Kadidiatou's virtual assistant");
-  await expect(page.locator('.suggestions-row > *').first()).toHaveText('Why hire her?');
+  await expect(page.locator('.suggestions-row > *').first()).toHaveText('Profile overview');
   await expect(page.locator('#chatTitle')).toHaveText("Kadidiatou's Assistant");
   await expect(page.locator('[data-act="chat-close"]')).toHaveAttribute('aria-label', 'Close');
   expect(decodeURIComponent(await page.locator('#chatMail').getAttribute('href'))).toContain('subject=Question from your portfolio');
@@ -303,9 +303,21 @@ test('chatbot : bouton FR | EN, messages re-rendus sans reseau, choix garde pour
   await en.click();
   await page.reload();
   await expect(page.locator('[data-act="chat-lang"][data-lang="en"]')).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.locator('.suggestions-row > *').first()).toHaveText('Why hire her?');
+  await expect(page.locator('.suggestions-row > *').first()).toHaveText('Profile overview');
   await expect(page.locator('html')).toHaveAttribute('lang', 'fr');
   expect(apiCalls).toBe(0);
+});
+
+test('chatbot : les 10 questions suggerees dans l\'ordre (FR puis EN), sans Consulat', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('[data-act="chat-open"]').first().click();
+  const chips = page.locator('.suggestions-row > *');
+  await expect(chips).toHaveText(['Présentation du profil', 'Pourquoi la recruter ?', 'Parle-moi de ses expériences', 'Son projet TCIM ?', 'A-t-elle dirigé une équipe ?', 'Ses compétences en IA ?', 'Son projet e-commerce ?', 'Est-elle disponible ?', 'Distinctions et engagement ?', 'Sa formation ?']);
+  await page.locator('[data-act="chat-lang"][data-lang="en"]').click();
+  await expect(chips).toHaveText(['Profile overview', 'Why hire her?', 'Tell me about her experience', 'Her TCIM project?', 'Has she led a team?', 'Her AI skills?', 'Her e-commerce project?', 'Is she available?', 'Awards and engagement?', 'Her education?']);
+  expect(await page.evaluate(() => Object.keys(CANNED.fr).concat(Object.keys(CANNED.en)).includes('consulat'))).toBe(false);
+  await chips.first().click();
+  await expect(page.locator('#chatMessages .msg.bot').last()).toContainText('works at the intersection of business, data and AI', { timeout: 3000 });
 });
 
 test('chatbot : Distinctions en 5 lignes (titre en gras, sans puce) et Sa formation sans Bac+5, FR et EN', async ({ page }) => {

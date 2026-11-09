@@ -63,7 +63,7 @@ nav .logo span{color:var(--violet-navy)}
 :root[data-theme="dark"] .mini-chip{color:var(--steel-soft)}
 /* Petits textes dores sur fond clair : or fonce pour le contraste AA (4,9:1 sur beige) */
 :root:not([data-theme="dark"]) .section-tag,:root:not([data-theme="dark"]) footer .sig,
-:root:not([data-theme="dark"]) .skill-group h4,:root:not([data-theme="dark"]) .lan-meta{color:#8a6210}
+:root:not([data-theme="dark"]) .skill-group h3,:root:not([data-theme="dark"]) .lan-meta{color:#8a6210}
 /* Contrastes AA : etiquettes bleu acier et textes secondaires */
 :root:not([data-theme="dark"]) .tag,:root:not([data-theme="dark"]) .mini-chip{color:#48689a}
 :root[data-theme="dark"] .tag{color:var(--steel-soft)}
@@ -297,7 +297,7 @@ a.chat-send{display:inline-flex;align-items:center;justify-content:center;min-he
 @media(max-width:900px){.cta-band{padding:48px 20px}.cta-title{font-size:1.35rem}}
 .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
 .skill-group{background:var(--card);border-radius:20px;padding:26px;box-shadow:0 2px 12px rgba(26,26,46,.06)}
-.skill-group h4{font-size:.78rem;text-transform:uppercase;letter-spacing:2px;color:var(--or);margin-bottom:16px;font-weight:700}
+.skill-group h3{font-size:.78rem;text-transform:uppercase;letter-spacing:2px;color:var(--or);margin-bottom:16px;font-weight:700}
 .skill-tags{display:flex;flex-wrap:wrap;gap:9px}
 .skill-tag{font-size:.84rem;font-weight:500;padding:8px 16px;border-radius:50px;background:#faf6ef;color:var(--violet-navy);border:1px solid #ece0c8;transition:.2s}
 @media (hover:hover) and (pointer:fine){.skill-tag:hover{background:var(--or);color:#1e3a5f;border-color:transparent;transform:translateY(-2px)}}
@@ -397,7 +397,7 @@ footer .sig{color:var(--or);font-style:italic}
 .strip.active .strip-vert{opacity:0}
 .strip-body{position:absolute;left:0;right:0;bottom:0;background:var(--grad2);color:#fff;padding:22px 26px;z-index:2;transform:translateY(101%);transition:transform .7s cubic-bezier(.22,.8,.24,1) .1s;border-top:3px solid var(--or)}
 .strip.active .strip-body{transform:none}
-.strip-body h4{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;margin-bottom:6px;color:#fff}
+.strip-body h3{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;margin-bottom:6px;color:#fff}
 .strip-body p{font-size:.86rem;line-height:1.55;color:#d8dbe3}
 .strip-cta{display:inline-block;margin-top:12px;font-size:.82rem;font-weight:700;color:var(--or-clair);border-bottom:1px solid var(--or-clair)}
 @media(max-width:900px){.strips{flex-direction:column;height:auto}.strip{flex:none;height:76px;transition:height .7s cubic-bezier(.22,.8,.24,1)}.strip.active{flex:none;height:330px}.strip{scroll-margin:80px 0 16px}.strip-vert{writing-mode:horizontal-tb;rotate:none;left:60px;bottom:auto;top:26px;transform:none}}
@@ -712,25 +712,25 @@ footer .sig{color:var(--or);font-style:italic}
 
     <div class="subhead reveal" data-fr="Autres réalisations" data-en="Other projects">Autres réalisations</div>
     <div class="strips reveal" id="strips">
-      <div class="strip active" data-act="strip" data-key="candy" tabindex="0">
+      <div class="strip active" data-act="strip" data-key="candy" tabindex="0" role="button" aria-expanded="true" aria-label="CandyECE : Jeu en C" data-fr-aria="CandyECE : Jeu en C" data-en-aria="CandyECE: C game">
         <span class="media-label">Candy</span>
         <span class="strip-plus"></span><span class="strip-vert">Candy</span>
-        <div class="strip-body"><h4 data-fr="CandyECE : Jeu en C" data-en="CandyECE: C game">CandyECE : Jeu en C</h4><p data-fr="Jeu Candy Crush en langage C : grille 15×15, 4 niveaux, score et sauvegarde." data-en="Candy Crush game in C: 15×15 grid, 4 levels, scoring and save.">Jeu Candy Crush en langage C : grille 15×15, 4 niveaux, score et sauvegarde.</p><span class="strip-cta" aria-hidden="true"></span></div>
+        <div class="strip-body"><h3 data-fr="CandyECE : Jeu en C" data-en="CandyECE: C game">CandyECE : Jeu en C</h3><p data-fr="Jeu Candy Crush en langage C : grille 15×15, 4 niveaux, score et sauvegarde." data-en="Candy Crush game in C: 15×15 grid, 4 levels, scoring and save.">Jeu Candy Crush en langage C : grille 15×15, 4 niveaux, score et sauvegarde.</p><span class="strip-cta" aria-hidden="true"></span></div>
       </div>
-      <div class="strip" data-act="strip" data-key="lms" tabindex="0">
+      <div class="strip" data-act="strip" data-key="lms" tabindex="0" role="button" aria-expanded="false" aria-label="Plateforme LMS" data-fr-aria="Plateforme LMS" data-en-aria="LMS Platform">
         <span class="media-label">LMS</span><img data-img="projet-lms" alt="" loading="lazy" decoding="async">
         <span class="strip-plus"></span><span class="strip-vert">LMS</span>
-        <div class="strip-body"><h4 data-fr="Plateforme LMS" data-en="LMS Platform">Plateforme LMS</h4><p data-fr="Plateforme d'apprentissage type Blackboard : cours, examens, reporting, SSO." data-en="Blackboard-style learning platform: courses, exams, reporting, SSO.">Plateforme d'apprentissage type Blackboard : cours, examens, reporting, SSO.</p><span class="strip-cta" aria-hidden="true"></span></div>
+        <div class="strip-body"><h3 data-fr="Plateforme LMS" data-en="LMS Platform">Plateforme LMS</h3><p data-fr="Plateforme d'apprentissage type Blackboard : cours, examens, reporting, SSO." data-en="Blackboard-style learning platform: courses, exams, reporting, SSO.">Plateforme d'apprentissage type Blackboard : cours, examens, reporting, SSO.</p><span class="strip-cta" aria-hidden="true"></span></div>
       </div>
-      <div class="strip" data-act="strip" data-key="bijoux" tabindex="0">
+      <div class="strip" data-act="strip" data-key="bijoux" tabindex="0" role="button" aria-expanded="false" aria-label="Boutique de bijoux" data-fr-aria="Boutique de bijoux" data-en-aria="Jewelry store">
         <span class="media-label">Bijoux</span><img data-img="boutique-bijou1" alt="" loading="lazy" decoding="async">
         <span class="strip-plus"></span><span class="strip-vert">Bijoux</span>
-        <div class="strip-body"><h4 data-fr="Boutique de bijoux" data-en="Jewelry store">Boutique de bijoux</h4><p data-fr="Site e-commerce complet sur WordPress (thème Kadence) : catalogue et tunnel d'achat." data-en="Full e-commerce site on WordPress (Kadence theme): catalog and checkout.">Site e-commerce complet sur WordPress (thème Kadence) : catalogue et tunnel d'achat.</p><span class="strip-cta" aria-hidden="true"></span></div>
+        <div class="strip-body"><h3 data-fr="Boutique de bijoux" data-en="Jewelry store">Boutique de bijoux</h3><p data-fr="Site e-commerce complet sur WordPress (thème Kadence) : catalogue et tunnel d'achat." data-en="Full e-commerce site on WordPress (Kadence theme): catalog and checkout.">Site e-commerce complet sur WordPress (thème Kadence) : catalogue et tunnel d'achat.</p><span class="strip-cta" aria-hidden="true"></span></div>
       </div>
-      <div class="strip" data-act="strip" data-key="veloMax" tabindex="0">
+      <div class="strip" data-act="strip" data-key="veloMax" tabindex="0" role="button" aria-expanded="false" aria-label="VéloMax : Base de données" data-fr-aria="VéloMax : Base de données" data-en-aria="VéloMax: Database">
         <span class="media-label">VéloMax</span>
         <span class="strip-plus"></span><span class="strip-vert">VéloMax</span>
-        <div class="strip-body"><h4 data-fr="VéloMax : Base de données" data-en="VéloMax: Database">VéloMax : Base de données</h4><p data-fr="Modélisation et création d'une base relationnelle et d'une appli console de gestion." data-en="Modeling and building a relational database and a console management app.">Modélisation et création d'une base relationnelle et d'une appli console de gestion.</p><span class="strip-cta" aria-hidden="true"></span></div>
+        <div class="strip-body"><h3 data-fr="VéloMax : Base de données" data-en="VéloMax: Database">VéloMax : Base de données</h3><p data-fr="Modélisation et création d'une base relationnelle et d'une appli console de gestion." data-en="Modeling and building a relational database and a console management app.">Modélisation et création d'une base relationnelle et d'une appli console de gestion.</p><span class="strip-cta" aria-hidden="true"></span></div>
       </div>
     </div>
   </div>
@@ -905,19 +905,19 @@ footer .sig{color:var(--or);font-style:italic}
     </div>
     <div class="skills-grid reveal">
       <div class="skill-group">
-        <h4 data-fr="Python & Machine Learning" data-en="Python & Machine Learning">Python & Machine Learning</h4>
+        <h3 data-fr="Python & Machine Learning" data-en="Python & Machine Learning">Python & Machine Learning</h3>
         <div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">Pandas</span><span class="skill-tag">NumPy</span><span class="skill-tag">Scikit-learn</span><span class="skill-tag">TensorFlow</span><span class="skill-tag">PyTorch</span><span class="skill-tag">NLP (TF-IDF)</span><span class="skill-tag" data-fr="Classification" data-en="Classification">Classification</span></div>
       </div>
       <div class="skill-group">
-        <h4 data-fr="Data & Business Intelligence" data-en="Data & Business Intelligence">Data & Business Intelligence</h4>
+        <h3 data-fr="Data & Business Intelligence" data-en="Data & Business Intelligence">Data & Business Intelligence</h3>
         <div class="skill-tags"><span class="skill-tag">SQL</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">MySQL</span><span class="skill-tag">MongoDB</span><span class="skill-tag" data-fr="Excel avancé" data-en="Advanced Excel">Excel avancé</span><span class="skill-tag">Power BI</span><span class="skill-tag">Streamlit</span><span class="skill-tag">Plotly</span></div>
       </div>
       <div class="skill-group">
-        <h4 data-fr="IA générative" data-en="Generative AI">IA générative</h4>
+        <h3 data-fr="IA générative" data-en="Generative AI">IA générative</h3>
         <div class="skill-tags"><span class="skill-tag">LLMs</span><span class="skill-tag">Prompt Engineering</span><span class="skill-tag">Hugging Face</span><span class="skill-tag">API Groq</span><span class="skill-tag">Gemini</span><span class="skill-tag">NotebookLM</span><span class="skill-tag">AWS Cloud</span></div>
       </div>
       <div class="skill-group">
-        <h4 data-fr="Développement web" data-en="Web development">Développement web</h4>
+        <h3 data-fr="Développement web" data-en="Web development">Développement web</h3>
         <div class="skill-tags"><span class="skill-tag">HTML</span><span class="skill-tag">CSS</span><span class="skill-tag">JavaScript</span><span class="skill-tag">Java</span><span class="skill-tag">Flask</span><span class="skill-tag">API REST</span><span class="skill-tag">Git</span><span class="skill-tag">Docker</span><span class="skill-tag">WordPress</span></div>
       </div>
     </div>

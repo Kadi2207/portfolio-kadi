@@ -93,7 +93,8 @@ for (const [name, device] of Object.entries(PROFILES)) {
           expect(box.y + box.height).toBeLessThanOrEqual(vh);
           expect(body.y).toBeGreaterThanOrEqual(box.y - 1);
           expect(body.y + body.height).toBeLessThanOrEqual(box.y + box.height + 1);
-          await expect(s.locator('.strip-body h4')).not.toBeEmpty();
+          await expect(s.locator('.strip-body h3')).not.toBeEmpty();
+          await expect(s).toHaveAttribute('aria-expanded', 'true');
           await expect(s.locator('.strip-body p')).not.toBeEmpty();
           // le "+" du detail ouvre la fiche, qui se ferme par sa croix
           await s.locator('.strip-cta').tap({ force: true });

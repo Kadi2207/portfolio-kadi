@@ -361,6 +361,8 @@ function closeCert(){
   light.onclick=closeLight;
   document.addEventListener('keydown',e=>{
     if(e.key==='Escape')closeLight();
+    // Entree ou Espace sur la galerie : ouvre la photo active en grand
+    if((e.key==='Enter'||e.key===' ')&&document.activeElement===stage&&items[idx]){e.preventDefault();openLB([items[idx].dataset.full]);return;}
     const r=stage.getBoundingClientRect();
     if((e.key==='ArrowRight'||e.key==='ArrowLeft')&&r.top<innerHeight&&r.bottom>0&&document.activeElement===stage){go(idx+(e.key==='ArrowRight'?1:-1));}
   });
@@ -380,6 +382,7 @@ function closeCert(){
       im.dataset.src=info.sm||info.src;
       d.appendChild(im);
       // photo pleine taille chargee seulement a l'agrandissement
+      d.dataset.full=info.src;
       d.addEventListener('click',()=>{if(Math.abs(dx)>6)return;if(i===idx)openLB([info.src]);else go(i);});
       track.appendChild(d);items.push(d);
       const t=document.createElement('button');t.className='g-tick';t.setAttribute('aria-label','Photo '+(i+1));t.onclick=()=>go(i);ticks.appendChild(t);
@@ -397,7 +400,7 @@ function closeCert(){
 /* ===== ANIMATIONS SUPPLEMENTAIRES ===== */
 function stripClick(el,key){
   if(el.classList.contains('active')){openProject(key);return;}
-  document.querySelectorAll('.strip').forEach(x=>x.classList.remove('active'));el.classList.add('active');
+  document.querySelectorAll('.strip').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-expanded','false');});el.classList.add('active');el.setAttribute('aria-expanded','true');
   // mobile (volets en colonne) : quand le volet du dessus se referme, le volet ouvert remonte ; on le ramene dans l'ecran
   if(matchMedia('(max-width:900px)').matches){
     const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -408,8 +411,8 @@ function stripClick(el,key){
 }
 (function(){
   const strips=document.querySelectorAll('.strip');
-  if(matchMedia('(hover:hover)').matches){strips.forEach(el=>el.addEventListener('mouseenter',()=>{strips.forEach(x=>x.classList.remove('active'));el.classList.add('active');}));}
-  strips.forEach(el=>el.addEventListener('keydown',e=>{if(e.key==='Enter')el.click();}));
+  if(matchMedia('(hover:hover)').matches){strips.forEach(el=>el.addEventListener('mouseenter',()=>{strips.forEach(x=>{x.classList.remove('active');x.setAttribute('aria-expanded','false');});el.classList.add('active');el.setAttribute('aria-expanded','true');}));}
+  // Entree et Espace : geres par le gestionnaire commun des [role="button"][data-act] (plus de double declenchement)
   // marquee
   const words=['Python','SQL','Machine Learning','NLP','Flask','PostgreSQL','Power BI','Streamlit','LLMs','Hugging Face','Docker','RGPD','Pandas','Scikit-learn'];
   const mt=document.getElementById('marqTrack');

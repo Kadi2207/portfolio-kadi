@@ -244,6 +244,38 @@ test('focus visible au clavier seulement : volets, galerie, dossiers de certific
   expect(w).toBeGreaterThanOrEqual(24);
 });
 
+test('clavier : Entree et Espace ouvrent la photo active de la galerie ; volets avec role, aria-expanded et nom FR/EN ; titres sans saut de niveau', async ({ page }) => {
+  await page.goto('/');
+  const stage = page.locator('#gStage'), light = page.locator('#gLight');
+  await stage.scrollIntoViewIfNeeded();
+  await expect(page.locator('#gStage .g-item.is-active')).toBeVisible();
+  for (const key of ['Enter', ' ']) {
+    await stage.focus(); await page.keyboard.press(key);
+    await expect(light).toHaveClass(/open/);
+    await expect.poll(() => page.evaluate(() => { const i = document.getElementById('gLightImg'); return i.complete && i.naturalWidth > 0 && /galerie-/.test(i.src); })).toBe(true);
+    await page.keyboard.press('Escape');
+    await expect(light).not.toHaveClass(/open/);
+    await expect(stage).toBeFocused();
+  }
+  // volets
+  const strips = page.locator('.strip');
+  await expect(strips.first()).toHaveAttribute('role', 'button');
+  await expect(strips.first()).toHaveAttribute('aria-expanded', 'true');
+  await expect(strips.nth(1)).toHaveAttribute('aria-label', 'Plateforme LMS');
+  await strips.nth(1).focus(); await page.keyboard.press('Enter');
+  await expect(strips.nth(1)).toHaveAttribute('aria-expanded', 'true');
+  await expect(strips.first()).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.locator('#projectModal')).not.toHaveClass(/open/); // un seul declenchement
+  await page.keyboard.press(' ');
+  await expect(page.locator('#projectModal')).toHaveClass(/open/); // 2e activation : fiche detaillee
+  await page.keyboard.press('Escape');
+  await page.locator('[data-act="lang"]').first().click();
+  await expect(strips.nth(1)).toHaveAttribute('aria-label', 'LMS Platform');
+  // titres : jamais un saut de niveau (h2 -> h4)
+  const order = await page.evaluate(() => [...document.querySelectorAll('main h1,main h2,main h3,main h4,main h5')].map(h => +h.tagName[1]));
+  for (let i = 1; i < order.length; i++) expect(order[i] - order[i - 1], `titre ${i}`).toBeLessThanOrEqual(1);
+});
+
 test('la galerie ouvre ses images', async ({ page }) => {
   await page.goto('/');
   await page.locator('#gStage').scrollIntoViewIfNeeded();

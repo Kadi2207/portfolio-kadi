@@ -145,20 +145,20 @@
       "smh": 548
     },
     "parole-3": {
-      "src": "img/parole-3.webp?v=d2a46dae",
-      "w": 1083,
-      "h": 1600,
-      "sm": "img/parole-3-sm.webp?v=d2a46dae",
-      "smw": 609,
-      "smh": 900
-    },
-    "parole-4": {
-      "src": "img/parole-4.webp?v=7f6d9d21",
+      "src": "img/parole-3.webp?v=7f6d9d21",
       "w": 1600,
       "h": 970,
-      "sm": "img/parole-4-sm.webp?v=7f6d9d21",
+      "sm": "img/parole-3-sm.webp?v=7f6d9d21",
       "smw": 900,
       "smh": 546
+    },
+    "parole-4": {
+      "src": "img/parole-4.webp?v=d2a46dae",
+      "w": 1083,
+      "h": 1600,
+      "sm": "img/parole-4-sm.webp?v=d2a46dae",
+      "smw": 609,
+      "smh": 900
     },
     "projet-ecommerce": {
       "src": "img/projet-ecommerce.webp?v=e356d5dd",

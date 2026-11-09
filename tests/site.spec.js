@@ -119,6 +119,38 @@ test('les 8 certifications s\'ouvrent au clic et au clavier, image chargee et li
   expect(await page.locator('a[href="#"]').count()).toBe(0);
 });
 
+// Fiches detaillees des projets : phrase d'introduction puis puces (intitule en gras), FR et EN
+const SHEETS = {
+  tcim: { n: 6, fr: ['Chez Skills4Mind, Kadidiatou a coordonné', 'Classification intelligente', 'Distinction'], en: ['At Skills4Mind, Kadidiatou coordinated', 'Smart classification', 'Distinction'] },
+};
+for (const [key, s] of Object.entries(SHEETS)) {
+  test(`fiche detaillee du projet ${key} : introduction et puces en FR et EN`, async ({ page }) => {
+    await page.goto('/');
+    const card = page.locator(`.project-card[data-key="${key}"]`), modal = page.locator('#projectModal');
+    const points = page.locator('#projPoints > li');
+    for (const lang of ['fr', 'en']) {
+      if (lang === 'en') await page.locator('[data-act="lang"]').first().click();
+      await card.scrollIntoViewIfNeeded();
+      await card.click();
+      await expect(modal).toHaveClass(/open/);
+      await expect(page.locator('#projDesc')).toContainText(s[lang][0]);
+      await expect(points).toHaveCount(s.n);
+      await expect(points.first().locator('strong')).toHaveText(s[lang][1]);
+      await expect(points.last().locator('strong')).toHaveText(s[lang][2]);
+      await page.keyboard.press('Escape');
+      await expect(modal).not.toHaveClass(/open/);
+    }
+  });
+}
+
+test('aucun element Embedding Lab sur le site (decision reportee a la fin du projet)', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.project-card')).toHaveCount(4);
+  expect(await page.evaluate(() => Object.keys(projectData).some(k => /embed/i.test(k)))).toBe(false);
+  await expect(page.locator('a[href*="semantic-agent-engine"]')).toHaveCount(0);
+  expect(await page.locator('main').innerText()).not.toMatch(/Embedding Lab/i);
+});
+
 test('les 4 badges Prise de parole ouvrent leur photo', async ({ page }) => {
   await page.goto('/');
   const badges = page.locator('.lan .lan-badge');

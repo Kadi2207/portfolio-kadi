@@ -238,6 +238,11 @@ a.chat-send{display:inline-flex;align-items:center;justify-content:center;min-he
 .exp-desc{font-size:.9rem;color:#555;line-height:1.75}
 .exp-desc li{margin-bottom:6px;list-style:none;padding-left:18px;position:relative}
 .exp-desc li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;background:var(--or);border-radius:2px}
+/* Fiche detaillee d'un projet : puces or (la fenetre reste sur fond blanc dans les deux themes) */
+.proj-points{list-style:none;margin:-6px 0 22px;font-size:.9rem;line-height:1.7;color:#555}
+.proj-points li{position:relative;padding-left:18px;margin-bottom:8px}
+.proj-points li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:6px;background:var(--or);border-radius:2px}
+.proj-points strong{color:#1a1a2e;font-weight:700}
 /* Citation de la tutrice : filet or fin, sans ombre */
 .exp-quote{margin-top:16px;padding:2px 0 2px 18px;border-left:2px solid var(--or)}
 .exp-quote p{font-size:.88rem;line-height:1.7;font-style:italic;color:var(--txt)}
@@ -657,7 +662,7 @@ footer .sig{color:var(--or);font-style:italic}
         <div class="card-media"><span class="media-label">TCIM</span><img data-img="projet-tcim" alt="" loading="lazy" decoding="async"></div>
         <div class="card-body">
           <div class="card-title" data-fr="Protection de données par IA : TCIM" data-en="AI Data Protection: TCIM">Protection de données par IA : TCIM</div>
-          <div class="card-desc" data-fr="Coordination d'une équipe de 4 en agile. Solution de sécurisation avec classification IA à 82,5% de précision, application complète Flask + PostgreSQL et dashboard temps réel." data-en="Led a team of 4 (agile). Data-protection solution with AI classification at 82.5% precision, full Flask + PostgreSQL app and real-time dashboard.">Coordination d'une équipe de 4 en agile. Solution de sécurisation avec classification IA à 82,5% de précision, application complète Flask + PostgreSQL et dashboard temps réel.</div>
+          <div class="card-desc" data-fr="Coordination d'une équipe de 4 en agile. Solution de sécurisation avec classification IA à 82,5&#8239;% de précision, application complète Flask + PostgreSQL et dashboard temps réel." data-en="Led a team of 4 (agile). Data-protection solution with AI classification at 82.5% precision, full Flask + PostgreSQL app and real-time dashboard.">Coordination d'une équipe de 4 en agile. Solution de sécurisation avec classification IA à 82,5&#8239;% de précision, application complète Flask + PostgreSQL et dashboard temps réel.</div>
           <div class="tags"><span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Flask</span><span class="tag">PostgreSQL</span></div>
           <span class="card-link" data-fr="Voir le projet →" data-en="View project →">Voir le projet →</span>
         </div>
@@ -730,6 +735,7 @@ footer .sig{color:var(--or);font-style:italic}
       
       <h3 id="projTitle" style="font-size:1.45rem;font-weight:800;margin-bottom:14px"></h3>
       <p id="projDesc" style="color:#555;line-height:1.8;font-size:.95rem;margin-bottom:20px"></p>
+      <ul id="projPoints" class="proj-points" style="display:none"></ul>
       <div id="projTags" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px"></div>
       <a id="projLink" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:var(--grad);color:#fff;padding:12px 28px;border-radius:50px;font-weight:700;text-decoration:none;font-size:.9rem">Voir →</a>
     </div>

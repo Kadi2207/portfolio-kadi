@@ -375,6 +375,24 @@ test('chatbot : les 10 questions suggerees dans l\'ordre (FR puis EN), sans Cons
   await expect(page.locator('#chatMessages .msg.bot').last()).toContainText('works at the intersection of business, data and AI', { timeout: 3000 });
 });
 
+test('chatbot : les questions suggerees sont des boutons atteignables au clavier (Tab, Entree, Espace)', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('[data-act="chat-open"]').first().click();
+  const chips = page.locator('#suggestionsRow .suggestion');
+  await expect(chips).toHaveCount(10);
+  expect(await chips.evaluateAll(els => els.every(e => e.tagName === 'BUTTON' && e.type === 'button'))).toBe(true);
+  // Tab depuis l'en-tete du chat jusqu'a la premiere question
+  let onChip = false;
+  for (let i = 0; i < 8 && !onChip; i++) { await page.keyboard.press('Tab'); onChip = await page.evaluate(() => document.activeElement.classList.contains('suggestion')); }
+  expect(onChip).toBe(true);
+  await expect(page.locator('#suggestionsRow .suggestion:focus')).toHaveText('Présentation du profil');
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#chatMessages .msg.bot').last()).toContainText("l'intersection du business", { timeout: 3000 });
+  await chips.nth(1).focus();
+  await page.keyboard.press(' ');
+  await expect(page.locator('#chatMessages .msg.user').last()).toHaveText('Pourquoi la recruter ?');
+});
+
 test('chatbot : Distinctions en 5 lignes (titre en gras, sans puce) et Sa formation sans Bac+5, FR et EN', async ({ page }) => {
   await page.goto('/');
   await page.locator('[data-act="chat-open"]').first().click();

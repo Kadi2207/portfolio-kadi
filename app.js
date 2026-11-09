@@ -121,8 +121,9 @@ function renderSuggestions(){
   const row=document.getElementById('suggestionsRow');
   row.innerHTML='';
   SUGGESTIONS[chatLang()].forEach(([id,q])=>{
-    const sp=document.createElement('span');
-    sp.className='suggestion';sp.textContent=q;
+    // vrai bouton : atteignable au clavier (Tab), active par Entree et Espace
+    const sp=document.createElement('button');
+    sp.type='button';sp.className='suggestion';sp.textContent=q;
     sp.onclick=()=>askCanned(id,q);
     row.appendChild(sp);
   });

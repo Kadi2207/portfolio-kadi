@@ -461,9 +461,16 @@ test('chatbot : Presentation du profil en 3 paragraphes, or seulement sur les te
   await expect(answer.locator('strong')).toHaveText(['Python', 'SQL', 'Machine Learning', 'NLP', 'generative AI']);
   await page.evaluate(() => { document.documentElement.dataset.theme = 'dark'; });
   await expect(answer.locator('strong').first()).toHaveCSS('color', 'rgb(200, 144, 26)');
-  // toutes les reponses : sans tiret long, point median ni " - ", sans rythme d'alternance ni mars 2027
-  const all = await page.evaluate(() => Object.values(CANNED.fr).concat(Object.values(CANNED.en)));
-  for (const t of all) { expect(t).not.toMatch(/[—–·]| - /); expect(t).not.toMatch(/mars 2027|March 2027|3 semaines|3 weeks|2 semaines|2 weeks/); }
+  // toutes les reponses : sans tiret long, point median ni " - ", sans rythme d'alternance ni 100 % en entreprise ;
+  // mars 2027 seulement dans la reponse dispo (stage de fin d'etudes)
+  const canned = await page.evaluate(() => CANNED);
+  for (const lang of ['fr', 'en']) for (const [id, t] of Object.entries(canned[lang])) {
+    expect(t, `${lang}.${id}`).not.toMatch(/[—–·]| - /);
+    expect(t, `${lang}.${id}`).not.toMatch(/3 semaines|3 weeks|2 semaines|2 weeks|100 % en entreprise|100% at the company/);
+    if (id !== 'dispo') expect(t, `${lang}.${id}`).not.toMatch(/mars 2027|March 2027/);
+  }
+  expect(canned.fr.dispo).toContain("Elle est aussi ouverte à un stage de fin d'études de **4 à 6 mois** à partir de **mars 2027**.");
+  expect(canned.en.dispo).toContain('She is also open to a **4 to 6 month** end-of-studies internship starting in **March 2027**.');
 });
 
 test('chatbot : les questions suggerees sont des boutons atteignables au clavier (Tab, Entree, Espace)', async ({ page }) => {

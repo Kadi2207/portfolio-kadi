@@ -183,7 +183,9 @@ section{padding:90px 40px}
 .msg.bot p:last-child{margin-bottom:0}
 .msg.bot ul{margin:4px 0 9px;padding-left:18px}
 .msg.bot li{margin:3px 0}
-.msg.bot strong{color:var(--or-deep);font-weight:700}
+/* Or des reponses du chat : contraste AA (4,5:1) sur la bulle, en clair comme en sombre */
+.msg.bot strong{color:#8a6210;font-weight:700}
+:root[data-theme="dark"] .msg.bot strong{color:var(--or)}
 .msg.user{background:var(--grad);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
 .suggestions-row{padding:14px 22px;background:#faf8ff;border-top:1px solid #f0ebff;display:flex;flex-wrap:wrap;gap:8px;flex-shrink:0;max-height:138px;overflow-y:auto}
 /* Indicateur de defilement des questions suggerees : fleche cliquable, masquee en fin de course, sans degrade ni animation */

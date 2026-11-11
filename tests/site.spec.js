@@ -446,6 +446,26 @@ test('chatbot : les 10 questions suggerees dans l\'ordre (FR puis EN), sans Cons
   await expect(page.locator('#chatMessages .msg.bot').last()).toContainText('works at the intersection of business, data and AI', { timeout: 3000 });
 });
 
+test('chatbot : Presentation du profil en 3 paragraphes, or seulement sur les technologies, contraste AA en clair et en sombre (FR et EN)', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('[data-act="chat-open"]').first().click();
+  await page.locator('.suggestions-row > *', { hasText: 'Présentation du profil' }).click();
+  const answer = page.locator('#chatMessages .msg.bot').last();
+  await expect(answer.locator('p')).toHaveCount(3, { timeout: 3000 });
+  await expect(answer.locator('p').nth(1)).toContainText("3ème année de Bachelor spécialisée dans la Data & l'intelligence artificielle");
+  await expect(answer.locator('strong')).toHaveText(['Python', 'SQL', 'Machine Learning', 'NLP', 'IA générative']);
+  await expect(answer.locator('strong').first()).toHaveCSS('color', 'rgb(138, 98, 16)');
+  await page.locator('[data-act="chat-lang"][data-lang="en"]').click();
+  await expect(answer.locator('p')).toHaveCount(3);
+  await expect(answer.locator('p').last()).toHaveText('Her goal: to connect the challenges of organizations with technological possibilities to deliver useful, actionable solutions.');
+  await expect(answer.locator('strong')).toHaveText(['Python', 'SQL', 'Machine Learning', 'NLP', 'generative AI']);
+  await page.evaluate(() => { document.documentElement.dataset.theme = 'dark'; });
+  await expect(answer.locator('strong').first()).toHaveCSS('color', 'rgb(200, 144, 26)');
+  // toutes les reponses : une idee par ligne, sans tiret long, point median ni " - ", et plus de 100 % en mars 2027
+  const all = await page.evaluate(() => Object.values(CANNED.fr).concat(Object.values(CANNED.en)));
+  for (const t of all) { expect(t).not.toMatch(/[—–·]| - /); expect(t).not.toMatch(/mars 2027|March 2027/); }
+});
+
 test('chatbot : les questions suggerees sont des boutons atteignables au clavier (Tab, Entree, Espace)', async ({ page }) => {
   await page.goto('/');
   await page.locator('[data-act="chat-open"]').first().click();

@@ -113,6 +113,31 @@ Le même script regénère l'image de partage `og.jpg` (1200 x 630) et les icôn
 
 Vercel publie automatiquement en une minute environ. En cas de problème, sur Vercel, onglet Deployments, choisis le déploiement précédent puis Promote to Production (ou Instant Rollback) : l'ancienne version revient immédiatement.
 
+## Tester une modification avant de la publier (prévisualisation)
+
+Pour une modification importante, travaille sur une branche au lieu de main :
+
+1. `git switch -c essai`
+2. Modifie, puis `git add -A`, `git commit -m "..."`, `git push -u origin essai`
+3. Vercel crée une adresse de prévisualisation (onglet Deployments, ligne « Preview »). Le site en ligne ne change pas.
+4. Si tout va bien : `git switch main`, `git merge essai`, `git push`. Le site en ligne est mis à jour.
+5. Sinon : `git switch main` et la branche essai est simplement oubliée.
+
+## Brancher un nom de domaine (une seule fois)
+
+1. Achète le domaine (par exemple chez OVH, Gandi ou directement sur Vercel).
+2. Sur Vercel : projet, Settings, Domains, Add, tape le domaine. Vercel affiche les enregistrements DNS à créer (un enregistrement A pour le domaine nu, un CNAME pour www).
+3. Crée ces enregistrements chez le registraire. Le HTTPS est activé automatiquement par Vercel, en général en moins d'une heure.
+4. Dans ce dossier : `npm run seo -- https://ton-domaine.fr`, puis `npm run check` et républie.
+5. Sur GitHub : Settings, Secrets and variables, Actions, Variables, mets `SITE_URL` à la nouvelle adresse.
+
+## Google Search Console (une seule fois, après la mise en ligne)
+
+1. Va sur search.google.com/search-console et ajoute une propriété « Préfixe d'URL » avec l'adresse du site.
+2. Choisis la vérification par balise HTML : copie seulement la valeur `content`, envoie-la moi (ou ajoute la balise dans le bloc seo de `scripts/seo.mjs`), relance `npm run seo` et républie, puis clique sur Valider. Avec un domaine personnel, la vérification par enregistrement DNS TXT marche aussi.
+3. Menu Sitemaps : envoie `sitemap.xml`.
+4. Menu Inspection de l'URL : colle l'adresse de la page d'accueil puis « Demander l'indexation ».
+
 ## Lire une alerte
 
 Tu peux recevoir trois sortes d'alertes par email.
@@ -163,7 +188,7 @@ Les lignes « Attention » ne bloquent pas : par exemple LinkedIn refuse souvent
 ## Chaque année
 
 1. Renouvelle la clé Groq (voir plus haut).
-2. Mets à jour les textes datés : disponibilité, projets « en cours », année de formation (B3), année du pied de page (© 2026), dans `index.html`, `app.js` et `api/_lib/knowledge.js`.
+2. Mets à jour les textes datés : disponibilité, projets « en cours », année de formation 3ème année, année du pied de page (© 2026), dans `index.html`, `app.js` et `api/_lib/knowledge.js`.
 3. Vérifie le renouvellement automatique du nom de domaine et la validité de ta carte chez le registraire.
 4. Dans `.github/workflows/check.yml`, passe `node-version` à la version LTS actuelle de Node.
 5. Mesure les performances sur pagespeed.web.dev (objectif : 90 ou plus sur mobile).

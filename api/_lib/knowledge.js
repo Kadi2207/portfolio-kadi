@@ -18,7 +18,7 @@ QUOI METTRE EN AVANT SELON LA QUESTION
 - Compétences data, analyse : Python (Pandas, NumPy), SQL, PostgreSQL, dashboard e-commerce (397 884 lignes), dashboard temps réel TCIM, Excel avancé, Power BI niveau opérationnel, nettoyage de données (RevOps).
 - IA et machine learning : classifieur TF-IDF + Random Forest (82,5% de précision), évaluation de 6 LLMs, Hugging Face, prompt engineering, certification AI & GenAI Level 2 (analyse de sentiments sur 50 000 avis).
 - Développement : Flask, HTML/CSS/JavaScript, Java, C, application TCIM complète, Docker, Git.
-- Disponibilité : alternance de 10 à 12 mois en Data & IA, disponible dès novembre 2026 (dès maintenant). Rythme de 3 semaines en entreprise et 2 semaines à l'école jusqu'en mars 2027, puis 100 % en entreprise dès mars 2027. Mobilité : toute la France.
+- Disponibilité : alternance de 10 à 12 mois en Data & IA, disponible dès novembre 2026 (dès maintenant). Mobilité : toute la France.
 - Un projet précis : donne le contexte, ce qu'elle a fait, le résultat chiffré, la stack. Rien d'autre.
 - Une expérience précise : mission, démarche, résultat, avec les limites honnêtes indiquées.
 
@@ -59,7 +59,7 @@ WHAT TO EMPHASIZE PER QUESTION
 - Data skills: Python (Pandas, NumPy), SQL, PostgreSQL, e-commerce dashboard (397,884 rows), real-time TCIM dashboard, advanced Excel, Power BI at working level, data cleaning (RevOps).
 - AI and machine learning: TF-IDF + Random Forest classifier (82.5% precision), evaluation of 6 LLMs, Hugging Face, prompt engineering, AI & GenAI Level 2 certification (sentiment analysis on 50,000 reviews).
 - Development: Flask, HTML/CSS/JavaScript, Java, C, full TCIM application, Docker, Git.
-- Availability: 10 to 12-month apprenticeship in Data & AI, available from November 2026 (now). 3 weeks at the company and 2 weeks at school until March 2027, then 100% at the company from March 2027. Mobility: anywhere in France.
+- Availability: 10 to 12-month apprenticeship in Data & AI, available from November 2026 (now). Mobility: anywhere in France.
 - A specific project: context, what she did, quantified result, stack. Nothing else.
 - A specific experience: mission, approach, result, with the honest limits given.
 

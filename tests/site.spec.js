@@ -461,9 +461,9 @@ test('chatbot : Presentation du profil en 3 paragraphes, or seulement sur les te
   await expect(answer.locator('strong')).toHaveText(['Python', 'SQL', 'Machine Learning', 'NLP', 'generative AI']);
   await page.evaluate(() => { document.documentElement.dataset.theme = 'dark'; });
   await expect(answer.locator('strong').first()).toHaveCSS('color', 'rgb(200, 144, 26)');
-  // toutes les reponses : une idee par ligne, sans tiret long, point median ni " - ", et plus de 100 % en mars 2027
+  // toutes les reponses : sans tiret long, point median ni " - ", sans rythme d'alternance ni mars 2027
   const all = await page.evaluate(() => Object.values(CANNED.fr).concat(Object.values(CANNED.en)));
-  for (const t of all) { expect(t).not.toMatch(/[—–·]| - /); expect(t).not.toMatch(/mars 2027|March 2027/); }
+  for (const t of all) { expect(t).not.toMatch(/[—–·]| - /); expect(t).not.toMatch(/mars 2027|March 2027|3 semaines|3 weeks|2 semaines|2 weeks/); }
 });
 
 test('chatbot : les questions suggerees sont des boutons atteignables au clavier (Tab, Entree, Espace)', async ({ page }) => {

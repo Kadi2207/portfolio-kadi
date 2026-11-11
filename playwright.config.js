@@ -7,6 +7,8 @@ const PORT = 8092;
 export default defineConfig({
   testDir: 'tests',
   timeout: 30000,
+  // Tests independants (chacun a sa page) : repartis entre les workers au lieu d'attendre fichier par fichier.
+  fullyParallel: true,
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? 'github' : 'list',
   use: { baseURL: `http://localhost:${PORT}`, ...devices['Desktop Chrome'] },
